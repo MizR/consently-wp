@@ -1,0 +1,473 @@
+# Copyright (C) 2024 Consently
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Consently - Cookie Consent & GDPR Compliance 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/consently\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: consently.php
+msgid "Consently requires PHP %1$s and WordPress %2$s or higher. Please update your server configuration."
+msgstr ""
+
+#: includes/class-core.php
+msgid "Consently is activated but not connected. %s to enable the consent banner."
+msgstr ""
+
+#: includes/class-core.php
+msgid "Connect your site"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Your site URL has changed from %1$s to %2$s. Please %3$s to update your Consently connection."
+msgstr ""
+
+#: includes/class-core.php
+msgid "reconnect"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Consently:"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Consent banner disabled — your site may not be compliant."
+msgstr ""
+
+#: includes/class-core.php
+msgid "Settings"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Yes"
+msgstr ""
+
+#: includes/class-core.php
+msgid "No"
+msgstr ""
+
+#: includes/class-core.php
+msgid "None detected"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Active"
+msgstr ""
+
+#: includes/class-core.php
+msgid "Not installed"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Consently Settings"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Consently"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Connection"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Plugin Audit"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "This plugin connects to consently.net to provide consent management. By using this plugin, you agree to the %s."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Consently Privacy Policy"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Security check failed. Please refresh the page and try again."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Too many connection attempts. Please wait 10 minutes before trying again."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Please enter an API key."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Successfully connected to Consently!"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Successfully disconnected from Consently."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Audit completed."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Settings saved successfully."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Connecting..."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Disconnecting..."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Analyzing plugins..."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Saving..."
+msgstr ""
+
+#: includes/class-admin.php
+msgid "This will disable the consent banner on your site. Are you sure you want to disconnect?"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Copied to clipboard!"
+msgstr ""
+
+#: includes/class-admin.php
+msgid "Failed to copy. Please select and copy manually."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Invalid response from Consently API."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Invalid API key. Please check your key and try again."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Domain mismatch. The site URL does not match the registered domain in your Consently account."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Your Consently account has reached its site limit. Please upgrade your plan to add more sites."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Unexpected status from API: %s"
+msgstr ""
+
+#: includes/class-api.php
+msgid "No API key stored. Please reconnect."
+msgstr ""
+
+#: includes/class-api.php
+msgid "API request failed: %s"
+msgstr ""
+
+#: includes/class-api.php
+msgid "Connection expired or API key revoked. Please reconnect."
+msgstr ""
+
+#: includes/class-api.php
+msgid "Consently service is temporarily unavailable. Please try again later."
+msgstr ""
+
+#: includes/class-api.php
+msgid "API request failed with status: %d"
+msgstr ""
+
+#: includes/class-api.php
+msgid "Invalid JSON response from API."
+msgstr ""
+
+#: includes/class-script.php
+msgid "A manually added Consently script was detected. Please remove the manual snippet from your theme to avoid a double banner."
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Connect to Consently"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "API Key:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Enter your API key"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Connect"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Don't have an API key?"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Get it from your Consently Dashboard"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Connected to Consently"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Site:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Plan:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Consently Dashboard"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Banner Editor"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Customize your consent banner"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Cookie Scanner"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Scan your site for cookies"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Consent Logs"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "View visitor consent records"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Site Settings"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Configure site options"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Disconnect"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Diagnostics"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "WordPress:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "PHP:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Home URL:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Canonical Domain:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Script Injected:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Cache Plugin:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Plugin Version:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Multisite:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "WP Consent API:"
+msgstr ""
+
+#: admin/views/connection.php
+msgid "Copy to clipboard"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Analyze your active plugins to identify which ones may set tracking cookies. This is informational only and not a guarantee of compliance."
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Note: This audit checks for common tracking patterns in active plugins. Results may be incomplete and do not imply regulatory non-compliance. Always verify with the Consently Cookie Scanner for accurate results."
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Analyze Plugins"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Showing cached results."
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Partial scan completed. Some plugins may not have been fully analyzed due to time or file limits."
+msgstr ""
+
+#: admin/views/audit.php
+msgid "%d plugin may set tracking cookies"
+msgid_plural "%d plugins may set tracking cookies"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/audit.php
+msgid "Plugin"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Detected Trackers"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Category"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Pattern detected"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "%d plugin without detected tracking"
+msgid_plural "%d plugins without detected tracking"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/audit.php
+msgid "Show clean plugins"
+msgstr ""
+
+#: admin/views/audit.php
+msgid "No active plugins found to analyze."
+msgstr ""
+
+#: admin/views/audit.php
+msgid "Scan completed in %s seconds."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Banner Settings"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Enable Banner"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Display consent banner on the site"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Disabling the banner may affect your site's compliance with privacy regulations."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Admin Preview"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Show banner to logged-in administrators"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Useful for testing and previewing banner changes."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Save Settings"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Cache Compatibility"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Detected cache plugins:"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Cache and optimization plugins may interfere with consent management. To ensure proper functionality, add these exclusion rules to your cache plugin settings:"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Exclude from JavaScript optimization:"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Exclude from Delay JS:"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Click on the code snippets above to copy them to your clipboard."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "No cache optimization plugins detected."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "General Guidelines:"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Do not defer or delay the Consently script"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Do not minify or combine the Consently script with other files"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "Ensure the script loads before any tracking scripts"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "WP Consent API"
+msgstr ""
+
+#: admin/views/settings.php
+msgid "WP Consent API is active. Consently will automatically sync consent preferences with other compatible plugins."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "The %s is not installed. Installing it allows Consently to communicate consent preferences to other compatible plugins."
+msgstr ""
+
+#: admin/views/settings.php
+msgid "WP Consent API plugin"
+msgstr ""
