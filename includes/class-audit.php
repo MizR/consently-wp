@@ -53,6 +53,25 @@ class Consently_Audit {
 	private $known_plugins_data = null;
 
 	/**
+	 * Plugins to skip during audit (consent/privacy tools that reference
+	 * tracking domains in their code but are not trackers themselves).
+	 *
+	 * @var array
+	 */
+	private $skip_slugs = array(
+		'consently',
+		'cookie-law-info',      // CookieYes.
+		'cookieyes',
+		'iubenda-cookie-law-solution',
+		'complianz-gdpr',
+		'real-cookie-banner',
+		'cookie-notice',
+		'gdpr-cookie-compliance',
+		'wp-consent-api',
+		'uk-cookie-consent',
+	);
+
+	/**
 	 * Run the plugin audit.
 	 *
 	 * @return array Audit results.
@@ -75,6 +94,10 @@ class Consently_Audit {
 		$known_plugins = $this->get_known_plugins();
 
 		foreach ( $active_plugins as $plugin_file ) {
+			// Skip consent/privacy plugins that reference tracking domains.
+			if ( $this->should_skip_plugin( $plugin_file ) ) {
+				continue;
+			}
 			// Check time limit.
 			if ( $this->is_time_exceeded() ) {
 				$this->partial_scan = true;
@@ -94,6 +117,31 @@ class Consently_Audit {
 		$results['scan_time']    = round( microtime( true ) - $this->scan_start_time, 2 );
 
 		return $results;
+	}
+
+	/**
+	 * Check if a plugin should be skipped during audit.
+	 *
+	 * Consent management and privacy plugins reference tracking domains
+	 * in their code but are not trackers themselves.
+	 *
+	 * @param string $plugin_file Plugin file path (e.g. "slug/file.php").
+	 * @return bool True if plugin should be skipped.
+	 */
+	private function should_skip_plugin( $plugin_file ) {
+		$slug = dirname( $plugin_file );
+
+		// Check against skip list.
+		if ( in_array( $slug, $this->skip_slugs, true ) ) {
+			return true;
+		}
+
+		// Skip this plugin itself.
+		if ( defined( 'CONSENTLY_PLUGIN_BASENAME' ) && $plugin_file === CONSENTLY_PLUGIN_BASENAME ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -321,15 +369,57 @@ class Consently_Audit {
 			'facebook.net',
 			'connect.facebook.net',
 			'facebook.com',
+			'fbcdn.net',
 			'doubleclick.net',
 			'googlesyndication.com',
 			'googleadservices.com',
 			'twitter.com',
 			'ads-twitter.com',
+			'static.ads-twitter.com',
 			'linkedin.com',
 			'snap.licdn.com',
+			'px.ads.linkedin.com',
 			'tiktok.com',
+			'analytics.tiktok.com',
 			'pinterest.com',
+			'pinimg.com',
+			'ct.pinterest.com',
+			'snapchat.com',
+			'sc-static.net',
+			'youtube.com',
+			'youtube-nocookie.com',
+			'vimeo.com',
+			'player.vimeo.com',
+			'maps.google.com',
+			'maps.googleapis.com',
+			'hubspot.com',
+			'js.hs-scripts.com',
+			'js.hsforms.net',
+			'intercom.io',
+			'widget.intercom.io',
+			'crisp.chat',
+			'tidio.co',
+			'widget-v4.tidiochat.com',
+			'tawk.to',
+			'embed.tawk.to',
+			'drift.com',
+			'js.driftt.com',
+			'livechatinc.com',
+			'smartsupp.com',
+			'olark.com',
+			'klaviyo.com',
+			'static.klaviyo.com',
+			'mailchimp.com',
+			'convertkit.com',
+			'activehosted.com',
+			'getdrip.com',
+			'optinmonster.com',
+			'optmnstr.com',
+			'sumo.com',
+			'load.sumo.com',
+			'onesignal.com',
+			'pushengage.com',
+			'pushowl.com',
 		);
 
 		foreach ( $domains as $domain ) {

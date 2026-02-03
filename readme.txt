@@ -4,7 +4,7 @@ Tags: cookie consent, GDPR, CCPA, privacy, cookie banner, consent management
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 0.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,17 +121,18 @@ The Consently CDN script automatically detects and blocks tracking scripts until
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release
+= 0.0.1 =
+* Initial development build
 * API connection and site registration
-* CDN script injection with site ID
+* CDN script injection with banner ID
 * Plugin Audit for tracking detection
 * WP Consent API integration
 * Cache plugin compatibility detection
 * Multisite support
 * Diagnostics for troubleshooting
+* Test mode for development
 
 == Upgrade Notice ==
 
-= 1.0.0 =
-Initial release of the Consently WordPress plugin.
+= 0.0.1 =
+Initial development build. Not for production use.
