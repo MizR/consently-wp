@@ -284,12 +284,17 @@ class Consently_Core {
 	}
 
 	/**
-	 * Get the site ID.
+	 * Get the site ID (banner ID).
 	 *
 	 * @return string|false Site ID or false if not connected.
 	 */
 	public function get_site_id() {
 		if ( $this->is_test_mode() ) {
+			// Check for user-entered banner ID first, then fall back to constant.
+			$custom_id = get_option( 'consently_test_banner_id' );
+			if ( ! empty( $custom_id ) ) {
+				return $custom_id;
+			}
 			return defined( 'CONSENTLY_TEST_BANNER_ID' ) ? CONSENTLY_TEST_BANNER_ID : false;
 		}
 
@@ -335,7 +340,7 @@ class Consently_Core {
 	public function get_connection_data() {
 		if ( $this->is_test_mode() ) {
 			return array(
-				'site_id'          => defined( 'CONSENTLY_TEST_BANNER_ID' ) ? CONSENTLY_TEST_BANNER_ID : '',
+				'site_id'          => $this->get_site_id(),
 				'plan'             => 'test',
 				'canonical_domain' => $this->get_normalized_home_host(),
 				'consent_model'    => 'optin',
@@ -377,6 +382,7 @@ class Consently_Core {
 		delete_option( 'consently_last_validated_home_host' );
 		delete_option( 'consently_api_key_encrypted' );
 		delete_option( 'consently_encryption_key' );
+		delete_option( 'consently_test_banner_id' );
 
 		// Clear audit transients.
 		delete_transient( 'consently_audit_results' );

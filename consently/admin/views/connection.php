@@ -16,6 +16,32 @@ $diagnostics     = $this->get_diagnostics();
 ?>
 
 <div class="consently-connection-tab">
+	<?php if ( $this->core->is_test_mode() ) : ?>
+		<!-- Test Mode Banner ID -->
+		<div class="consently-card consently-test-mode-card" style="border-left: 4px solid #dba617;">
+			<h2><?php esc_html_e( 'Test Mode', 'consently' ); ?></h2>
+			<p><?php esc_html_e( 'API validation is bypassed. Enter a banner ID to test with.', 'consently' ); ?></p>
+			<div class="consently-connect-form">
+				<label for="consently-test-banner-id"><?php esc_html_e( 'Banner ID:', 'consently' ); ?></label>
+				<div class="consently-input-group">
+					<input type="text"
+						   id="consently-test-banner-id"
+						   class="regular-text"
+						   value="<?php echo esc_attr( $this->core->get_site_id() ); ?>"
+						   placeholder="<?php esc_attr_e( 'Enter banner ID', 'consently' ); ?>"
+						   autocomplete="off" />
+					<button type="button" id="consently-save-test-id" class="button button-primary">
+						<?php esc_html_e( 'Save', 'consently' ); ?>
+					</button>
+				</div>
+				<p class="description">
+					<?php esc_html_e( 'This ID is used in the data-bannerid attribute of the injected script.', 'consently' ); ?>
+				</p>
+				<p id="consently-test-id-message" class="consently-inline-message" style="display: none;"></p>
+			</div>
+		</div>
+	<?php endif; ?>
+
 	<?php if ( ! $is_connected ) : ?>
 		<!-- Not Connected State -->
 		<div class="consently-card consently-connect-card">

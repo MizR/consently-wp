@@ -29,6 +29,9 @@
 				}
 			});
 
+			// Test mode banner ID
+			$('#consently-save-test-id').on('click', this.handleSaveTestBannerId);
+
 			// Diagnostics toggle
 			$('.consently-diagnostics-toggle').on('click', this.toggleDiagnostics);
 			$('#consently-copy-diagnostics').on('click', this.copyDiagnostics);
@@ -87,6 +90,44 @@
 				error: function() {
 					$error.text('An error occurred. Please try again.').show();
 					$button.prop('disabled', false).removeClass('consently-loading').text('Connect');
+				}
+			});
+		},
+
+		/**
+		 * Handle save test banner ID.
+		 */
+		handleSaveTestBannerId: function(e) {
+			e.preventDefault();
+
+			var $button = $(this);
+			var $input = $('#consently-test-banner-id');
+			var $message = $('#consently-test-id-message');
+			var bannerId = $input.val().trim();
+
+			$button.prop('disabled', true).addClass('consently-loading');
+			$message.hide();
+
+			$.ajax({
+				url: consentlyAdmin.ajaxUrl,
+				method: 'POST',
+				data: {
+					action: 'consently_save_test_banner_id',
+					nonce: consentlyAdmin.nonce,
+					banner_id: bannerId
+				},
+				success: function(response) {
+					if (response.success) {
+						$message.text(response.data.message).removeClass('error').addClass('success').show();
+						$input.val(response.data.banner_id);
+					} else {
+						$message.text(response.data.message).removeClass('success').addClass('error').show();
+					}
+					$button.prop('disabled', false).removeClass('consently-loading');
+				},
+				error: function() {
+					$message.text('An error occurred.').removeClass('success').addClass('error').show();
+					$button.prop('disabled', false).removeClass('consently-loading');
 				}
 			});
 		},

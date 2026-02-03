@@ -71,6 +71,7 @@ class Consently_Admin {
 		add_action( 'wp_ajax_consently_run_audit', array( $this, 'ajax_run_audit' ) );
 		add_action( 'wp_ajax_consently_save_settings', array( $this, 'ajax_save_settings' ) );
 		add_action( 'wp_ajax_consently_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
+		add_action( 'wp_ajax_consently_save_test_banner_id', array( $this, 'ajax_save_test_banner_id' ) );
 
 		// Settings registration.
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -381,6 +382,42 @@ class Consently_Admin {
 		}
 
 		wp_send_json_success();
+	}
+
+	/**
+	 * AJAX handler for saving test banner ID.
+	 */
+	public function ajax_save_test_banner_id() {
+		// Verify nonce.
+		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
+			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'consently' ) ) );
+		}
+
+		// Check capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
+		}
+
+		// Only allow in test mode.
+		if ( ! $this->core->is_test_mode() ) {
+			wp_send_json_error( array( 'message' => __( 'Test mode is not active.', 'consently' ) ) );
+		}
+
+		$banner_id = isset( $_POST['banner_id'] ) ? sanitize_text_field( wp_unslash( $_POST['banner_id'] ) ) : '';
+
+		if ( empty( $banner_id ) ) {
+			// Clear custom ID, fall back to constant.
+			delete_option( 'consently_test_banner_id' );
+		} else {
+			update_option( 'consently_test_banner_id', $banner_id, false );
+		}
+
+		wp_send_json_success(
+			array(
+				'message'   => __( 'Banner ID saved.', 'consently' ),
+				'banner_id' => $this->core->get_site_id(),
+			)
+		);
 	}
 
 	/**
