@@ -90,7 +90,8 @@ $diagnostics     = $this->get_diagnostics();
 			</div>
 		</div>
 
-		<!-- Dashboard Links -->
+		<!-- Dashboard Links (hidden in test mode) -->
+		<?php if ( ! $this->core->is_test_mode() ) : ?>
 		<div class="consently-card consently-dashboard-links">
 			<h3><?php esc_html_e( 'Consently Dashboard', 'consently' ); ?></h3>
 			<div class="consently-links-grid">
@@ -127,6 +128,7 @@ $diagnostics     = $this->get_diagnostics();
 				</a>
 			</div>
 		</div>
+		<?php endif; ?>
 
 		<!-- Disconnect Button -->
 		<div class="consently-disconnect-section">

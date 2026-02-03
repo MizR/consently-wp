@@ -317,12 +317,9 @@ class Consently_Admin {
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
 		}
 
-		// Run audit.
+		// Run audit (always fresh, no caching).
 		$audit   = $this->core->audit;
 		$results = $audit->run_audit();
-
-		// Cache results.
-		set_transient( 'consently_audit_results', $results, DAY_IN_SECONDS );
 
 		wp_send_json_success(
 			array(
