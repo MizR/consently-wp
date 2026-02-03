@@ -103,14 +103,28 @@ class Consently_Core {
 	 * Display admin notices.
 	 */
 	public function admin_notices() {
+		// Show test mode warning.
+		if ( $this->is_test_mode() ) {
+			?>
+			<div class="notice notice-warning">
+				<p>
+					<strong><?php esc_html_e( 'Consently:', 'consently' ); ?></strong>
+					<?php esc_html_e( 'Test mode is active. API validation is bypassed and a hardcoded banner ID is used. Disable CONSENTLY_TEST_MODE before going to production.', 'consently' ); ?>
+				</p>
+			</div>
+			<?php
+		}
+
 		// Check if connected.
 		if ( ! $this->is_connected() ) {
 			$this->show_setup_notice();
 			return;
 		}
 
-		// Check for domain change.
-		$this->check_domain_change();
+		// Check for domain change (skip in test mode).
+		if ( ! $this->is_test_mode() ) {
+			$this->check_domain_change();
+		}
 
 		// Check if banner is disabled.
 		if ( ! $this->is_banner_enabled() ) {
@@ -214,11 +228,24 @@ class Consently_Core {
 	}
 
 	/**
+	 * Check if test mode is enabled.
+	 *
+	 * @return bool True if test mode is active.
+	 */
+	public function is_test_mode() {
+		return defined( 'CONSENTLY_TEST_MODE' ) && CONSENTLY_TEST_MODE;
+	}
+
+	/**
 	 * Check if plugin is connected to Consently.
 	 *
 	 * @return bool True if connected.
 	 */
 	public function is_connected() {
+		if ( $this->is_test_mode() ) {
+			return true;
+		}
+
 		$site_id = get_option( 'consently_site_id' );
 		return ! empty( $site_id );
 	}
@@ -262,6 +289,10 @@ class Consently_Core {
 	 * @return string|false Site ID or false if not connected.
 	 */
 	public function get_site_id() {
+		if ( $this->is_test_mode() ) {
+			return defined( 'CONSENTLY_TEST_BANNER_ID' ) ? CONSENTLY_TEST_BANNER_ID : false;
+		}
+
 		return get_option( 'consently_site_id' );
 	}
 
@@ -302,6 +333,15 @@ class Consently_Core {
 	 * @return array Connection data.
 	 */
 	public function get_connection_data() {
+		if ( $this->is_test_mode() ) {
+			return array(
+				'site_id'          => defined( 'CONSENTLY_TEST_BANNER_ID' ) ? CONSENTLY_TEST_BANNER_ID : '',
+				'plan'             => 'test',
+				'canonical_domain' => $this->get_normalized_home_host(),
+				'consent_model'    => 'optin',
+			);
+		}
+
 		return array(
 			'site_id'          => get_option( 'consently_site_id', '' ),
 			'plan'             => get_option( 'consently_plan', '' ),

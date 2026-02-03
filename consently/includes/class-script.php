@@ -79,12 +79,12 @@ class Consently_Script {
 			false // Load in head.
 		);
 
-		// Add data-siteid attribute.
-		wp_script_add_data( 'consently-cmp', 'data-siteid', esc_attr( $site_id ) );
+		// Add data-bannerid attribute.
+		wp_script_add_data( 'consently-cmp', 'data-bannerid', esc_attr( $site_id ) );
 
 		wp_enqueue_script( 'consently-cmp' );
 
-		// Add the data-siteid attribute via filter.
+		// Add the data-bannerid attribute via filter.
 		add_filter( 'script_loader_tag', array( $this, 'add_script_attributes' ), 10, 2 );
 
 		$this->script_output = true;
@@ -104,8 +104,8 @@ class Consently_Script {
 
 		$site_id = $this->core->get_site_id();
 
-		// Add data-siteid attribute.
-		$tag = str_replace( ' src=', ' data-siteid="' . esc_attr( $site_id ) . '" src=', $tag );
+		// Add data-bannerid attribute.
+		$tag = str_replace( ' src=', ' data-bannerid="' . esc_attr( $site_id ) . '" src=', $tag );
 
 		// Remove defer/async if present (CMP needs to run synchronously).
 		$tag = str_replace( array( ' defer', ' async' ), '', $tag );
@@ -135,7 +135,7 @@ class Consently_Script {
 
 		// Output script directly.
 		printf(
-			'<script src="%s" data-siteid="%s"></script>' . "\n",
+			'<script src="%s" data-bannerid="%s"></script>' . "\n",
 			esc_url( CONSENTLY_CDN_SCRIPT ),
 			esc_attr( $site_id )
 		);

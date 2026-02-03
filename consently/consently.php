@@ -36,6 +36,11 @@ define( 'CONSENTLY_API_URL', 'https://api.consently.net/v1' );
 define( 'CONSENTLY_APP_URL', 'https://app.consently.net' );
 define( 'CONSENTLY_CDN_SCRIPT', 'https://app.consently.net/consently.js' );
 
+// Test mode: bypasses API validation and uses a hardcoded banner ID.
+// TODO: Remove before production release.
+define( 'CONSENTLY_TEST_MODE', true );
+define( 'CONSENTLY_TEST_BANNER_ID', '6981c589faa5693ee3072986' );
+
 /**
  * Minimum requirements check.
  *
