@@ -170,7 +170,6 @@ class Consently_Audit {
 	 *
 	 * @return array {
 	 *     @type array  $known_plugins      Plugins matched in the known DB.
-	 *     @type array  $source_cookies      Cookies found via PHP source scan.
 	 *     @type array  $enqueued_scripts    Scripts captured by the hook (may be empty on first call).
 	 *     @type array  $options_tracking    Tracking-related option detections.
 	 *     @type array  $theme_tracking      Theme file tracking detections.
@@ -178,7 +177,6 @@ class Consently_Audit {
 	 *     @type array  $clean_plugins       Known plugins with tracking === false.
 	 *     @type array  $not_in_database     Unknown plugins where no tracking was found.
 	 *     @type float  $scan_time           Wall-clock seconds elapsed.
-	 *     @type bool   $partial_scan        True if limits were hit.
 	 *     @type string $plugin_hash         MD5 of active_plugins for staleness.
 	 * }
 	 */
@@ -189,16 +187,13 @@ class Consently_Audit {
 		// 1 – Known plugins.
 		$known_result = $this->detect_known_plugins();
 
-		// 2 – PHP source scan (only for plugins NOT in known DB).
-		$source_cookies = $this->scan_php_sources( $known_result['known_files'] );
-
-		// 3 – Enqueued scripts (read from transient; hook writes it).
+		// 2 – Enqueued scripts (read from transient; hook writes it).
 		$enqueued_scripts = $this->inspect_enqueued_scripts();
 
-		// 4 – Options table.
+		// 3 – Options table.
 		$options_tracking = $this->scan_options_table();
 
-		// 5 – Theme files.
+		// 4 – Theme files.
 		$theme_tracking = $this->scan_theme();
 
 		// WordPress core cookies from the JSON database.
@@ -209,7 +204,6 @@ class Consently_Audit {
 
 		$results = array(
 			'known_plugins'      => $known_result['known_plugins'],
-			'source_cookies'     => $source_cookies,
 			'enqueued_scripts'   => $enqueued_scripts,
 			'options_tracking'   => $options_tracking,
 			'theme_tracking'     => $theme_tracking,
@@ -217,7 +211,6 @@ class Consently_Audit {
 			'clean_plugins'      => $known_result['clean_plugins'],
 			'not_in_database'    => $known_result['not_in_database'],
 			'scan_time'          => round( microtime( true ) - $this->scan_start_time, 3 ),
-			'partial_scan'       => $this->partial_scan,
 			'plugin_hash'        => $plugin_hash,
 		);
 
