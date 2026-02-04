@@ -3,7 +3,7 @@
  * Plugin Name: Consently - Cookie Consent & GDPR Compliance
  * Plugin URI: https://consently.net
  * Description: Connect your WordPress site to Consently.net for cookie consent management, GDPR/CCPA compliance, and privacy banner display.
- * Version: 0.0.2
+ * Version: 0.0.3
  * Author: Consently
  * Author URI: https://consently.net
  * License: GPL v2 or later
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'CONSENTLY_VERSION', '0.0.2' );
+define( 'CONSENTLY_VERSION', '0.0.3' );
 define( 'CONSENTLY_PLUGIN_FILE', __FILE__ );
 define( 'CONSENTLY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CONSENTLY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
