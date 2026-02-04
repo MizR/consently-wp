@@ -2,54 +2,97 @@
  * Consently Scan Cookies Collector
  *
  * Injected into iframe pages during live scan.
- * Waits for page load + scripts to execute, then captures
- * cookies, localStorage, and sessionStorage.
+ * Uses adaptive polling to wait for third-party scripts to initialize,
+ * then captures cookies, localStorage, and sessionStorage.
  *
  * @package Consently
  */
 (function() {
 	'use strict';
 
-	var SCAN_DELAY = 3000; // 3 seconds after load for third-party scripts
+	var INITIAL_DELAY = 2000;  // Minimum wait after page load
+	var MAX_DELAY     = 8000;  // Maximum total wait time
+	var POLL_INTERVAL = 500;   // Check interval for stability
+	var STABLE_COUNT  = 2;     // Require N consecutive stable readings
 
 	window.addEventListener('load', function() {
-		setTimeout(function() {
-			var data = {
-				cookies:        getCookies(),
-				localStorage:   getLocalStorageItems(),
-				sessionStorage: getSessionStorageItems(),
-				scanId:         getScanId(),
-				token:          getScanToken()
-			};
+		var lastCookieCount = 0;
+		var lastStorageCount = 0;
+		var stableReads = 0;
+		var startTime = Date.now();
 
-			// POST to REST endpoint
-			var xhr = new XMLHttpRequest();
-			xhr.open('POST', consentlyScanConfig.restUrl + 'consently/v1/store-scan-cookies');
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.setRequestHeader('X-WP-Nonce', consentlyScanConfig.nonce);
-			xhr.send(JSON.stringify(data));
+		function countCookies() {
+			return document.cookie ? document.cookie.split(';').length : 0;
+		}
 
-			// Signal parent window that scan is complete for this page
-			xhr.onload = function() {
-				if (window.parent && window.parent !== window) {
-					window.parent.postMessage({
-						type: 'consently_scan_complete',
-						scanId: data.scanId
-					}, '*');
-				}
-			};
+		function countStorage() {
+			try {
+				return localStorage.length + sessionStorage.length;
+			} catch (e) {
+				return 0;
+			}
+		}
 
-			// Timeout fallback in case REST call hangs
-			xhr.onerror = function() {
-				if (window.parent && window.parent !== window) {
-					window.parent.postMessage({
-						type: 'consently_scan_complete',
-						scanId: data.scanId
-					}, '*');
-				}
-			};
-		}, SCAN_DELAY);
+		// Wait initial delay, then start polling for stability
+		setTimeout(function pollCheck() {
+			var elapsed = Date.now() - startTime;
+			var cookieCount = countCookies();
+			var storageCount = countStorage();
+
+			if (cookieCount === lastCookieCount && storageCount === lastStorageCount) {
+				stableReads++;
+			} else {
+				stableReads = 0;
+				lastCookieCount = cookieCount;
+				lastStorageCount = storageCount;
+			}
+
+			// Collect when stable or max time reached
+			if (stableReads >= STABLE_COUNT || elapsed >= MAX_DELAY) {
+				collectAndSend();
+				return;
+			}
+
+			setTimeout(pollCheck, POLL_INTERVAL);
+		}, INITIAL_DELAY);
 	});
+
+	function collectAndSend() {
+		var data = {
+			cookies:        getCookies(),
+			localStorage:   getLocalStorageItems(),
+			sessionStorage: getSessionStorageItems(),
+			scanId:         getScanId(),
+			token:          getScanToken()
+		};
+
+		// POST to REST endpoint
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', consentlyScanConfig.restUrl + 'consently/v1/store-scan-cookies');
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.setRequestHeader('X-WP-Nonce', consentlyScanConfig.nonce);
+		xhr.send(JSON.stringify(data));
+
+		// Signal parent window that scan is complete for this page
+		xhr.onload = function() {
+			if (window.parent && window.parent !== window) {
+				window.parent.postMessage({
+					type: 'consently_scan_complete',
+					scanId: data.scanId
+				}, '*');
+			}
+		};
+
+		// Timeout fallback in case REST call hangs
+		xhr.onerror = function() {
+			if (window.parent && window.parent !== window) {
+				window.parent.postMessage({
+					type: 'consently_scan_complete',
+					scanId: data.scanId
+				}, '*');
+			}
+		};
+	}
 
 	function getCookies() {
 		var cookies = [];
