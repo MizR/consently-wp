@@ -102,6 +102,9 @@ function consently_init() {
 	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-admin.php';
 	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-script.php';
 	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-audit.php';
+	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-page-crawler.php';
+	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-html-parser.php';
+	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-live-scan.php';
 	require_once CONSENTLY_PLUGIN_DIR . 'includes/class-wp-consent.php';
 
 	// Initialize core.
@@ -135,6 +138,11 @@ register_activation_hook( __FILE__, 'consently_activate' );
 function consently_deactivate() {
 	// Clear transients.
 	delete_transient( 'consently_audit_results' );
+	delete_transient( 'consently_audit_phase1' );
+	delete_transient( 'consently_audit_phase2' );
+	delete_transient( 'consently_live_scan_results' );
+	delete_transient( 'consently_enqueued_scripts' );
+	delete_transient( 'consently_plugin_hash' );
 	delete_transient( 'consently_rate_limit' );
 
 	// Flush rewrite rules.

@@ -4,588 +4,1331 @@
 			"name": "Jetpack",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["stats.wp.com", "pixel.wp.com"]
+			"domains": ["stats.wp.com", "pixel.wp.com"],
+			"cookies": [
+				{"name": "tk_ai", "category": "analytics", "duration": "session", "purpose": "Stores user agent for analytics"},
+				{"name": "tk_lr", "category": "analytics", "duration": "1 year", "purpose": "Stores last referrer for analytics"},
+				{"name": "tk_or", "category": "analytics", "duration": "1 year", "purpose": "Stores original referrer for analytics"},
+				{"name": "tk_qs", "category": "analytics", "duration": "30 minutes", "purpose": "Stores query string data"},
+				{"name": "tk_tc", "category": "analytics", "duration": "session", "purpose": "Stores click tracking data"}
+			],
+			"localStorage": ["tk_ai", "tk_tc"]
 		},
 		"google-site-kit/google-site-kit.php": {
 			"name": "Site Kit by Google",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com", "googletagmanager.com"]
+			"domains": ["google-analytics.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID", "pattern": "exact"},
+				{"name": "_ga_*", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics session data", "pattern": "prefix"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"},
+				{"name": "_gat", "category": "analytics", "duration": "1 minute", "purpose": "Google Analytics rate throttle"},
+				{"name": "_gat_*", "category": "analytics", "duration": "1 minute", "purpose": "Google Analytics rate throttle per property", "pattern": "prefix"}
+			]
 		},
 		"google-analytics-for-wordpress/googleanalytics.php": {
 			"name": "MonsterInsights",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com", "googletagmanager.com"]
+			"domains": ["google-analytics.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_ga_*", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics session data", "pattern": "prefix"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"},
+				{"name": "_gat", "category": "analytics", "duration": "1 minute", "purpose": "Google Analytics rate throttle"}
+			]
 		},
 		"google-analytics-dashboard-for-wp/gadwp.php": {
 			"name": "ExactMetrics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com", "googletagmanager.com"]
+			"domains": ["google-analytics.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_ga_*", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics session data", "pattern": "prefix"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"}
+			]
 		},
 		"analytify/analytify.php": {
 			"name": "Analytify",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com"]
+			"domains": ["google-analytics.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"}
+			]
 		},
 		"wp-google-analytics-events/wp-google-analytics-events.php": {
 			"name": "WP Google Analytics Events",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com"]
+			"domains": ["google-analytics.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"}
+			]
 		},
 		"pixelyoursite/pixelyoursite.php": {
 			"name": "PixelYourSite",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["facebook.net", "google-analytics.com", "googleadservices.com"]
+			"domains": ["facebook.net", "google-analytics.com", "googleadservices.com"],
+			"cookies": [
+				{"name": "_fbp", "category": "marketing", "duration": "3 months", "purpose": "Facebook Pixel browser ID"},
+				{"name": "_fbc", "category": "marketing", "duration": "2 years", "purpose": "Facebook click identifier"},
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_gcl_au", "category": "marketing", "duration": "90 days", "purpose": "Google Ads conversion linker"}
+			]
 		},
 		"pixel-caffeine/pixel-caffeine.php": {
 			"name": "Pixel Caffeine",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["facebook.net"]
+			"domains": ["facebook.net"],
+			"cookies": [
+				{"name": "_fbp", "category": "marketing", "duration": "3 months", "purpose": "Facebook Pixel browser ID"},
+				{"name": "_fbc", "category": "marketing", "duration": "2 years", "purpose": "Facebook click identifier"}
+			]
 		},
 		"facebook-for-woocommerce/facebook-for-woocommerce.php": {
 			"name": "Facebook for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["facebook.net", "connect.facebook.net"]
+			"domains": ["facebook.net", "connect.facebook.net"],
+			"cookies": [
+				{"name": "_fbp", "category": "marketing", "duration": "3 months", "purpose": "Facebook Pixel browser ID"},
+				{"name": "_fbc", "category": "marketing", "duration": "2 years", "purpose": "Facebook click identifier"},
+				{"name": "fr", "category": "marketing", "duration": "3 months", "purpose": "Facebook advertising cookie"}
+			]
 		},
 		"official-facebook-pixel/facebook-for-wordpress.php": {
 			"name": "Meta Pixel",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["facebook.net", "connect.facebook.net"]
+			"domains": ["facebook.net", "connect.facebook.net"],
+			"cookies": [
+				{"name": "_fbp", "category": "marketing", "duration": "3 months", "purpose": "Facebook Pixel browser ID"},
+				{"name": "_fbc", "category": "marketing", "duration": "2 years", "purpose": "Facebook click identifier"}
+			]
 		},
 		"woocommerce-google-analytics-integration/woocommerce-google-analytics-integration.php": {
 			"name": "WooCommerce Google Analytics Integration",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["google-analytics.com", "googletagmanager.com"]
-		},
-		"woo-google-analytics-pro/woo-google-analytics-pro.php": {
-			"name": "WooCommerce Google Analytics Pro",
-			"tracking": true,
-			"category": "analytics",
-			"domains": ["google-analytics.com", "googletagmanager.com"]
+			"domains": ["google-analytics.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_ga_*", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics session data", "pattern": "prefix"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"}
+			]
 		},
 		"hotjar/hotjar.php": {
 			"name": "Hotjar",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["hotjar.com", "static.hotjar.com"]
+			"domains": ["hotjar.com", "static.hotjar.com"],
+			"cookies": [
+				{"name": "_hjSessionUser_*", "category": "analytics", "duration": "1 year", "purpose": "Hotjar unique user identifier", "pattern": "prefix"},
+				{"name": "_hjSession_*", "category": "analytics", "duration": "30 minutes", "purpose": "Hotjar session data", "pattern": "prefix"},
+				{"name": "_hjAbsoluteSessionInProgress", "category": "analytics", "duration": "30 minutes", "purpose": "Hotjar session detection"},
+				{"name": "_hjIncludedInSessionSample_*", "category": "analytics", "duration": "2 minutes", "purpose": "Hotjar session sampling", "pattern": "prefix"},
+				{"name": "_hjFirstSeen", "category": "analytics", "duration": "session", "purpose": "Hotjar first visit detection"},
+				{"name": "_hjid", "category": "analytics", "duration": "1 year", "purpose": "Hotjar user ID"}
+			],
+			"localStorage": ["_hjTLDTest", "_hjMinimizedPolls", "_hjDonePolls"]
 		},
 		"clarity/clarity.php": {
 			"name": "Microsoft Clarity",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["clarity.ms"]
+			"domains": ["clarity.ms"],
+			"cookies": [
+				{"name": "_clck", "category": "analytics", "duration": "1 year", "purpose": "Clarity unique user identifier"},
+				{"name": "_clsk", "category": "analytics", "duration": "1 day", "purpose": "Clarity session data"},
+				{"name": "CLID", "category": "analytics", "duration": "1 year", "purpose": "Clarity device identifier"}
+			]
 		},
 		"google-tag-manager/google-tag-manager.php": {
 			"name": "Google Tag Manager",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["googletagmanager.com"]
+			"domains": ["googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_gcl_au", "category": "marketing", "duration": "90 days", "purpose": "Google Ads conversion linker"}
+			]
 		},
 		"duracelltomi-google-tag-manager/duracelltomi-google-tag-manager-for-wordpress.php": {
 			"name": "GTM4WP",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["googletagmanager.com"]
+			"domains": ["googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"}
+			]
 		},
 		"insert-headers-and-footers/ihaf.php": {
 			"name": "WPCode",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"header-footer-code-manager/developer-developer.php": {
 			"name": "Header Footer Code Manager",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"matomo/matomo.php": {
 			"name": "Matomo Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["matomo.cloud"]
+			"domains": ["matomo.cloud"],
+			"cookies": [
+				{"name": "_pk_id.*", "category": "analytics", "duration": "13 months", "purpose": "Matomo unique visitor ID", "pattern": "prefix"},
+				{"name": "_pk_ses.*", "category": "analytics", "duration": "30 minutes", "purpose": "Matomo session data", "pattern": "prefix"},
+				{"name": "_pk_ref.*", "category": "analytics", "duration": "6 months", "purpose": "Matomo referrer data", "pattern": "prefix"}
+			]
 		},
 		"wp-statistics/wp-statistics.php": {
 			"name": "WP Statistics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": []
+			"domains": [],
+			"cookies": [
+				{"name": "wp_statistics_*", "category": "analytics", "duration": "1 year", "purpose": "WP Statistics visitor tracking", "pattern": "prefix"}
+			]
 		},
 		"statify/statify.php": {
 			"name": "Statify",
 			"tracking": true,
 			"category": "analytics",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"koko-analytics/koko-analytics.php": {
 			"name": "Koko Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"independent-analytics/independent-analytics.php": {
 			"name": "Independent Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": []
+			"domains": [],
+			"cookies": [
+				{"name": "iawp_visit", "category": "analytics", "duration": "30 minutes", "purpose": "Independent Analytics visit tracking"}
+			]
 		},
 		"plausible-analytics/plausible-analytics.php": {
 			"name": "Plausible Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["plausible.io"]
+			"domains": ["plausible.io"],
+			"cookies": []
 		},
 		"fathom-analytics-wordpress-plugin/fathom-analytics-wordpress-plugin.php": {
 			"name": "Fathom Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["usefathom.com"]
+			"domains": ["usefathom.com"],
+			"cookies": []
 		},
 		"simple-analytics/simple-analytics.php": {
 			"name": "Simple Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["simpleanalytics.com"]
+			"domains": ["simpleanalytics.com"],
+			"cookies": []
 		},
 		"mailchimp-for-wp/mailchimp-for-wp.php": {
 			"name": "MC4WP: Mailchimp for WordPress",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"mailchimp-for-woocommerce/mailchimp-woocommerce.php": {
 			"name": "Mailchimp for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["mailchimp.com"]
+			"domains": ["mailchimp.com"],
+			"cookies": [
+				{"name": "mailchimp_landing_site", "category": "marketing", "duration": "30 days", "purpose": "Mailchimp landing page tracking"}
+			]
 		},
 		"klaviyo/klaviyo.php": {
 			"name": "Klaviyo",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["klaviyo.com", "static.klaviyo.com"]
+			"domains": ["klaviyo.com", "static.klaviyo.com"],
+			"cookies": [
+				{"name": "__kla_id", "category": "marketing", "duration": "2 years", "purpose": "Klaviyo visitor identifier"},
+				{"name": "_kx", "category": "marketing", "duration": "1 year", "purpose": "Klaviyo cross-site tracking"}
+			],
+			"localStorage": ["__kla_id"]
 		},
 		"hubspot-all-in-one-marketing/leadin.php": {
 			"name": "HubSpot",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["hubspot.com", "js.hs-scripts.com", "js.hsforms.net"]
+			"domains": ["hubspot.com", "js.hs-scripts.com", "js.hsforms.net"],
+			"cookies": [
+				{"name": "__hssc", "category": "marketing", "duration": "30 minutes", "purpose": "HubSpot session cookie"},
+				{"name": "__hssrc", "category": "marketing", "duration": "session", "purpose": "HubSpot session reset"},
+				{"name": "__hstc", "category": "marketing", "duration": "13 months", "purpose": "HubSpot tracking cookie"},
+				{"name": "hubspotutk", "category": "marketing", "duration": "13 months", "purpose": "HubSpot visitor identifier"},
+				{"name": "__hs_opt_out", "category": "marketing", "duration": "13 months", "purpose": "HubSpot opt-out status"},
+				{"name": "__hs_do_not_track", "category": "marketing", "duration": "13 months", "purpose": "HubSpot do-not-track preference"},
+				{"name": "messagesUtk", "category": "marketing", "duration": "13 months", "purpose": "HubSpot messages visitor identity"}
+			]
 		},
 		"leadin/leadin.php": {
 			"name": "HubSpot All-In-One Marketing",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["hubspot.com", "js.hs-scripts.com"]
-		},
-		"salesforce-for-woocommerce/salesforce-for-woocommerce.php": {
-			"name": "Salesforce for WooCommerce",
-			"tracking": true,
-			"category": "marketing",
-			"domains": ["salesforce.com"]
+			"domains": ["hubspot.com", "js.hs-scripts.com"],
+			"cookies": [
+				{"name": "__hssc", "category": "marketing", "duration": "30 minutes", "purpose": "HubSpot session cookie"},
+				{"name": "__hstc", "category": "marketing", "duration": "13 months", "purpose": "HubSpot tracking cookie"},
+				{"name": "hubspotutk", "category": "marketing", "duration": "13 months", "purpose": "HubSpot visitor identifier"}
+			]
 		},
 		"intercom/intercom.php": {
 			"name": "Intercom",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["intercom.io", "widget.intercom.io"]
+			"domains": ["intercom.io", "widget.intercom.io"],
+			"cookies": [
+				{"name": "intercom-id-*", "category": "marketing", "duration": "9 months", "purpose": "Intercom visitor identifier", "pattern": "prefix"},
+				{"name": "intercom-session-*", "category": "marketing", "duration": "1 week", "purpose": "Intercom session data", "pattern": "prefix"},
+				{"name": "intercom-device-id-*", "category": "marketing", "duration": "9 months", "purpose": "Intercom device identifier", "pattern": "prefix"}
+			],
+			"localStorage": ["intercom.intercom-state"]
 		},
 		"crisp/crisp.php": {
 			"name": "Crisp Live Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["crisp.chat"]
+			"domains": ["crisp.chat"],
+			"cookies": [
+				{"name": "crisp-client/*", "category": "marketing", "duration": "6 months", "purpose": "Crisp chat session data", "pattern": "prefix"}
+			]
 		},
 		"tidio-live-chat/tidio-live-chat.php": {
 			"name": "Tidio Live Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["tidio.co", "widget-v4.tidiochat.com"]
+			"domains": ["tidio.co", "widget-v4.tidiochat.com"],
+			"cookies": [
+				{"name": "tidio_state_*", "category": "marketing", "duration": "session", "purpose": "Tidio chat state", "pattern": "prefix"}
+			],
+			"localStorage": ["tidio_state"]
 		},
 		"zendesk-chat/zendesk-chat.php": {
 			"name": "Zendesk Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["zendesk.com", "zopim.com"]
+			"domains": ["zendesk.com", "zopim.com"],
+			"cookies": [
+				{"name": "__zlcmid", "category": "marketing", "duration": "1 year", "purpose": "Zendesk Chat visitor identifier"},
+				{"name": "__zldp", "category": "marketing", "duration": "1 year", "purpose": "Zendesk Chat device data"},
+				{"name": "__zlcid", "category": "marketing", "duration": "1 year", "purpose": "Zendesk Chat conversation ID"}
+			]
 		},
 		"drift/drift.php": {
 			"name": "Drift",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["drift.com", "js.driftt.com"]
-		},
-		"freshdesk/freshdesk.php": {
-			"name": "Freshdesk",
-			"tracking": true,
-			"category": "marketing",
-			"domains": ["freshdesk.com"]
+			"domains": ["drift.com", "js.driftt.com"],
+			"cookies": [
+				{"name": "driftt_aid", "category": "marketing", "duration": "2 years", "purpose": "Drift anonymous visitor ID"},
+				{"name": "drift_aid", "category": "marketing", "duration": "2 years", "purpose": "Drift anonymous ID"},
+				{"name": "drift_auid", "category": "marketing", "duration": "2 years", "purpose": "Drift authenticated user ID"}
+			]
 		},
 		"tawk-to-live-chat/tawkto.php": {
 			"name": "Tawk.to Live Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["tawk.to", "embed.tawk.to"]
+			"domains": ["tawk.to", "embed.tawk.to"],
+			"cookies": [
+				{"name": "tawkUUID", "category": "marketing", "duration": "6 months", "purpose": "Tawk.to unique user identifier"},
+				{"name": "TawkConnectionTime", "category": "marketing", "duration": "session", "purpose": "Tawk.to connection timestamp"},
+				{"name": "__tawkuuid", "category": "marketing", "duration": "6 months", "purpose": "Tawk.to visitor identifier"}
+			],
+			"localStorage": ["TawkWindowName"]
 		},
 		"livechat/livechat.php": {
 			"name": "LiveChat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["livechatinc.com"]
+			"domains": ["livechatinc.com"],
+			"cookies": [
+				{"name": "__lc_cid", "category": "marketing", "duration": "3 years", "purpose": "LiveChat customer ID"},
+				{"name": "__lc_cst", "category": "marketing", "duration": "3 years", "purpose": "LiveChat customer state"}
+			]
 		},
 		"smartsupp-live-chat/smartsupp.php": {
 			"name": "Smartsupp Live Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["smartsupp.com"]
+			"domains": ["smartsupp.com"],
+			"cookies": [
+				{"name": "ssupp.vid", "category": "marketing", "duration": "6 months", "purpose": "Smartsupp visitor ID"},
+				{"name": "ssupp.visits", "category": "marketing", "duration": "6 months", "purpose": "Smartsupp visit count"}
+			]
 		},
 		"olark-live-chat/developer-developer.php": {
 			"name": "Olark Live Chat",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["olark.com"]
+			"domains": ["olark.com"],
+			"cookies": [
+				{"name": "hblid", "category": "marketing", "duration": "2 years", "purpose": "Olark visitor identifier"},
+				{"name": "olfsk", "category": "marketing", "duration": "2 years", "purpose": "Olark storage key"}
+			]
 		},
 		"twitter-pixel/twitter-pixel.php": {
 			"name": "Twitter Pixel",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["twitter.com", "ads-twitter.com", "static.ads-twitter.com"]
+			"domains": ["twitter.com", "ads-twitter.com", "static.ads-twitter.com"],
+			"cookies": [
+				{"name": "muc_ads", "category": "marketing", "duration": "2 years", "purpose": "Twitter advertising cookie"},
+				{"name": "personalization_id", "category": "marketing", "duration": "2 years", "purpose": "Twitter personalization identifier"}
+			]
 		},
 		"linkedin-insight-tag/linkedin-insight-tag.php": {
 			"name": "LinkedIn Insight Tag",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["linkedin.com", "snap.licdn.com"]
+			"domains": ["linkedin.com", "snap.licdn.com"],
+			"cookies": [
+				{"name": "li_sugr", "category": "marketing", "duration": "3 months", "purpose": "LinkedIn browser identifier"},
+				{"name": "bcookie", "category": "marketing", "duration": "1 year", "purpose": "LinkedIn browser cookie"},
+				{"name": "lidc", "category": "marketing", "duration": "24 hours", "purpose": "LinkedIn data centre routing"},
+				{"name": "UserMatchHistory", "category": "marketing", "duration": "30 days", "purpose": "LinkedIn ad matching"},
+				{"name": "AnalyticsSyncHistory", "category": "marketing", "duration": "30 days", "purpose": "LinkedIn analytics sync"},
+				{"name": "li_fat_id", "category": "marketing", "duration": "30 days", "purpose": "LinkedIn first-party ad tracking"}
+			]
 		},
 		"pinterest-for-woocommerce/pinterest-for-woocommerce.php": {
 			"name": "Pinterest for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["pinterest.com", "pinimg.com"]
+			"domains": ["pinterest.com", "pinimg.com"],
+			"cookies": [
+				{"name": "_pinterest_ct_ua", "category": "marketing", "duration": "1 year", "purpose": "Pinterest conversion tracking"},
+				{"name": "_pin_unauth", "category": "marketing", "duration": "1 year", "purpose": "Pinterest unauthenticated user data"},
+				{"name": "_epik", "category": "marketing", "duration": "1 year", "purpose": "Pinterest enhanced match"}
+			]
 		},
 		"tiktok-for-business/tiktok-for-woocommerce.php": {
 			"name": "TikTok for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["tiktok.com", "analytics.tiktok.com"]
+			"domains": ["tiktok.com", "analytics.tiktok.com"],
+			"cookies": [
+				{"name": "_ttp", "category": "marketing", "duration": "13 months", "purpose": "TikTok Pixel unique ID"},
+				{"name": "_tt_enable_cookie", "category": "marketing", "duration": "13 months", "purpose": "TikTok cookie consent flag"},
+				{"name": "tt_csrf_token", "category": "necessary", "duration": "session", "purpose": "TikTok CSRF protection"}
+			]
 		},
 		"snapchat-for-woocommerce/snapchat-for-woocommerce.php": {
 			"name": "Snapchat for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["snapchat.com", "sc-static.net"]
+			"domains": ["snapchat.com", "sc-static.net"],
+			"cookies": [
+				{"name": "_scid", "category": "marketing", "duration": "13 months", "purpose": "Snap Pixel unique identifier"},
+				{"name": "_scid_r", "category": "marketing", "duration": "13 months", "purpose": "Snap Pixel session data"}
+			]
 		},
 		"google-ads-conversions/google-ads-conversions.php": {
 			"name": "Google Ads Conversion Tracking",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["googleadservices.com", "googlesyndication.com"]
+			"domains": ["googleadservices.com", "googlesyndication.com"],
+			"cookies": [
+				{"name": "_gcl_au", "category": "marketing", "duration": "90 days", "purpose": "Google Ads conversion linker"},
+				{"name": "_gcl_aw", "category": "marketing", "duration": "90 days", "purpose": "Google Ads click data"},
+				{"name": "_gcl_dc", "category": "marketing", "duration": "90 days", "purpose": "DoubleClick click data"}
+			]
 		},
 		"ad-inserter/ad-inserter.php": {
 			"name": "Ad Inserter",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"advanced-ads/advanced-ads.php": {
 			"name": "Advanced Ads",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"google-adsense-plugin/google-adsense-plugin.php": {
 			"name": "Google AdSense Plugin",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["googlesyndication.com", "googleadservices.com"]
+			"domains": ["googlesyndication.com", "googleadservices.com"],
+			"cookies": [
+				{"name": "__gads", "category": "marketing", "duration": "13 months", "purpose": "Google AdSense ad serving"},
+				{"name": "__gpi", "category": "marketing", "duration": "13 months", "purpose": "Google Publisher Identifier"}
+			]
 		},
 		"optinmonster/optin-monster-wp-api.php": {
 			"name": "OptinMonster",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["optinmonster.com", "optmnstr.com"]
+			"domains": ["optinmonster.com", "optmnstr.com"],
+			"cookies": [
+				{"name": "om-*", "category": "marketing", "duration": "30 days", "purpose": "OptinMonster campaign state", "pattern": "prefix"},
+				{"name": "omVisitor", "category": "marketing", "duration": "11 months", "purpose": "OptinMonster visitor identifier"},
+				{"name": "omSeen-*", "category": "marketing", "duration": "30 days", "purpose": "OptinMonster campaign viewed state", "pattern": "prefix"}
+			]
 		},
 		"sumo/developer.php": {
 			"name": "Sumo",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["sumo.com", "load.sumo.com"]
+			"domains": ["sumo.com", "load.sumo.com"],
+			"cookies": [
+				{"name": "__smToken", "category": "marketing", "duration": "session", "purpose": "Sumo visitor token"},
+				{"name": "__smSessionId", "category": "marketing", "duration": "session", "purpose": "Sumo session identifier"}
+			]
 		},
 		"popup-maker/popup-maker.php": {
 			"name": "Popup Maker",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": [
+				{"name": "pum-*", "category": "functional", "duration": "30 days", "purpose": "Popup Maker display state", "pattern": "prefix"}
+			]
 		},
 		"convertkit/developer.php": {
 			"name": "ConvertKit",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["convertkit.com"]
+			"domains": ["convertkit.com"],
+			"cookies": [
+				{"name": "_ck_visitor", "category": "marketing", "duration": "10 years", "purpose": "ConvertKit visitor identifier"}
+			]
 		},
 		"activecampaign-for-woocommerce/activecampaign-for-woocommerce.php": {
 			"name": "ActiveCampaign for WooCommerce",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["activehosted.com"]
+			"domains": ["activehosted.com"],
+			"cookies": []
 		},
 		"drip/drip.php": {
 			"name": "Drip",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["getdrip.com"]
+			"domains": ["getdrip.com"],
+			"cookies": [
+				{"name": "_drip_client_*", "category": "marketing", "duration": "1 year", "purpose": "Drip visitor identifier", "pattern": "prefix"}
+			]
 		},
 		"google-captcha/google-captcha.php": {
 			"name": "Google Captcha (reCAPTCHA)",
 			"tracking": true,
-			"category": "analytics",
-			"domains": ["google.com/recaptcha", "gstatic.com"]
+			"category": "functional",
+			"domains": ["google.com/recaptcha", "gstatic.com"],
+			"cookies": [
+				{"name": "_GRECAPTCHA", "category": "functional", "duration": "6 months", "purpose": "Google reCAPTCHA challenge data"}
+			]
 		},
 		"advanced-nocaptcha-recaptcha/developer.php": {
 			"name": "Advanced noCaptcha & invisible Captcha",
 			"tracking": true,
-			"category": "analytics",
-			"domains": ["google.com/recaptcha", "gstatic.com"]
+			"category": "functional",
+			"domains": ["google.com/recaptcha", "gstatic.com"],
+			"cookies": [
+				{"name": "_GRECAPTCHA", "category": "functional", "duration": "6 months", "purpose": "Google reCAPTCHA challenge data"}
+			]
 		},
 		"woocommerce/woocommerce.php": {
 			"name": "WooCommerce",
 			"tracking": false,
-			"category": "",
-			"domains": []
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "woocommerce_cart_hash", "category": "necessary", "duration": "session", "purpose": "Cart contents hash for caching"},
+				{"name": "woocommerce_items_in_cart", "category": "necessary", "duration": "session", "purpose": "Cart item count indicator"},
+				{"name": "wp_woocommerce_session_*", "category": "necessary", "duration": "2 days", "purpose": "WooCommerce session token", "pattern": "prefix"},
+				{"name": "woocommerce_recently_viewed", "category": "functional", "duration": "session", "purpose": "Recently viewed products list"},
+				{"name": "store_notice[notice id]", "category": "necessary", "duration": "session", "purpose": "Store notice dismissal state"}
+			],
+			"localStorage": ["wc_cart_created", "wc_cart_hash", "wc_fragments"]
 		},
 		"easy-digital-downloads/easy-digital-downloads.php": {
 			"name": "Easy Digital Downloads",
 			"tracking": false,
-			"category": "",
-			"domains": []
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "edd_cart", "category": "necessary", "duration": "session", "purpose": "EDD shopping cart contents"},
+				{"name": "edd_items_in_cart", "category": "necessary", "duration": "session", "purpose": "EDD cart item count"}
+			]
 		},
 		"contact-form-7/wp-contact-form-7.php": {
 			"name": "Contact Form 7",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"wpforms-lite/wpforms.php": {
 			"name": "WPForms",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"formidable/formidable.php": {
 			"name": "Formidable Forms",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"ninja-forms/ninja-forms.php": {
 			"name": "Ninja Forms",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"gravity-forms/gravityforms.php": {
 			"name": "Gravity Forms",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"elementor/elementor.php": {
 			"name": "Elementor",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"wp-rocket/wp-rocket.php": {
 			"name": "WP Rocket",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"w3-total-cache/w3-total-cache.php": {
 			"name": "W3 Total Cache",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"autoptimize/autoptimize.php": {
 			"name": "Autoptimize",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"litespeed-cache/litespeed-cache.php": {
 			"name": "LiteSpeed Cache",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"yoast-seo/wp-seo.php": {
 			"name": "Yoast SEO",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"all-in-one-seo-pack/all_in_one_seo_pack.php": {
 			"name": "All in One SEO",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"rank-math/rank-math.php": {
 			"name": "Rank Math SEO",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"wordpress-seo-premium/wp-seo-premium.php": {
 			"name": "Yoast SEO Premium",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"updraftplus/updraftplus.php": {
 			"name": "UpdraftPlus",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"wordfence/wordfence.php": {
 			"name": "Wordfence Security",
 			"tracking": false,
-			"category": "",
-			"domains": []
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "wfwaf-authcookie-*", "category": "necessary", "duration": "session", "purpose": "Wordfence authentication state", "pattern": "prefix"},
+				{"name": "wf_loginalerted_*", "category": "necessary", "duration": "session", "purpose": "Wordfence login alert state", "pattern": "prefix"}
+			]
 		},
 		"sucuri-scanner/sucuri.php": {
 			"name": "Sucuri Security",
 			"tracking": false,
-			"category": "",
-			"domains": []
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "sucuri_cloudproxy_uuid_*", "category": "necessary", "duration": "session", "purpose": "Sucuri firewall verification", "pattern": "prefix"}
+			]
 		},
 		"ithemes-security/developer.php": {
 			"name": "Solid Security",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"akismet/akismet.php": {
 			"name": "Akismet",
 			"tracking": false,
 			"category": "",
-			"domains": []
+			"domains": [],
+			"cookies": []
 		},
 		"youtube-embed-plus/youtube.php": {
 			"name": "Jetrail YouTube Embed",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["youtube.com", "youtube-nocookie.com"]
+			"domains": ["youtube.com", "youtube-nocookie.com"],
+			"cookies": [
+				{"name": "YSC", "category": "marketing", "duration": "session", "purpose": "YouTube session identifier"},
+				{"name": "VISITOR_INFO1_LIVE", "category": "marketing", "duration": "6 months", "purpose": "YouTube video player preferences"},
+				{"name": "CONSENT", "category": "necessary", "duration": "2 years", "purpose": "YouTube consent state"}
+			]
 		},
 		"embed-videos/developer.php": {
 			"name": "Video Embed",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["youtube.com", "vimeo.com"]
+			"domains": ["youtube.com", "vimeo.com"],
+			"cookies": []
 		},
 		"vimeo-embed/developer.php": {
 			"name": "Vimeo Embed",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["vimeo.com", "player.vimeo.com"]
+			"domains": ["vimeo.com", "player.vimeo.com"],
+			"cookies": [
+				{"name": "vuid", "category": "marketing", "duration": "2 years", "purpose": "Vimeo viewer identifier"},
+				{"name": "player", "category": "functional", "duration": "1 year", "purpose": "Vimeo player preferences"}
+			]
 		},
 		"google-maps-widget/developer.php": {
 			"name": "Google Maps Widget",
 			"tracking": true,
-			"category": "analytics",
-			"domains": ["maps.google.com", "maps.googleapis.com"]
+			"category": "functional",
+			"domains": ["maps.google.com", "maps.googleapis.com"],
+			"cookies": [
+				{"name": "NID", "category": "functional", "duration": "6 months", "purpose": "Google Maps preferences"},
+				{"name": "OGPC", "category": "functional", "duration": "1 month", "purpose": "Google Maps cache"}
+			]
 		},
 		"wp-google-maps/wpGoogleMaps.php": {
 			"name": "WP Go Maps",
 			"tracking": true,
-			"category": "analytics",
-			"domains": ["maps.google.com", "maps.googleapis.com"]
+			"category": "functional",
+			"domains": ["maps.google.com", "maps.googleapis.com"],
+			"cookies": [
+				{"name": "NID", "category": "functional", "duration": "6 months", "purpose": "Google Maps preferences"}
+			]
 		},
 		"pushowl-web-push-notifications/developer.php": {
 			"name": "PushOwl",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["pushowl.com"]
+			"domains": ["pushowl.com"],
+			"cookies": []
 		},
 		"onesignal-free-web-push-notifications/onesignal.php": {
 			"name": "OneSignal Push Notifications",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["onesignal.com"]
+			"domains": ["onesignal.com"],
+			"cookies": [],
+			"localStorage": ["onesignal-pageview-count", "onesignal-notification-prompt"]
 		},
 		"pushengage/developer.php": {
 			"name": "PushEngage",
 			"tracking": true,
 			"category": "marketing",
-			"domains": ["pushengage.com"]
+			"domains": ["pushengage.com"],
+			"cookies": []
 		},
 		"fullstory/fullstory.php": {
 			"name": "FullStory",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["fullstory.com"]
+			"domains": ["fullstory.com"],
+			"cookies": [
+				{"name": "fs_uid", "category": "analytics", "duration": "1 year", "purpose": "FullStory user identifier"},
+				{"name": "fs_lua", "category": "analytics", "duration": "1 year", "purpose": "FullStory last user activity"}
+			],
+			"localStorage": ["fs_uid", "fs_lua"]
 		},
 		"logrocket/developer.php": {
 			"name": "LogRocket",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["logrocket.com", "lr-ingest.io"]
+			"domains": ["logrocket.com", "lr-ingest.io"],
+			"cookies": [
+				{"name": "_lr_tabs_*", "category": "analytics", "duration": "session", "purpose": "LogRocket tab tracking", "pattern": "prefix"},
+				{"name": "_lr_hb_*", "category": "analytics", "duration": "session", "purpose": "LogRocket heartbeat", "pattern": "prefix"}
+			]
 		},
 		"heap-analytics/heap-analytics.php": {
 			"name": "Heap Analytics",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["heap-api.com", "heapanalytics.com"]
+			"domains": ["heap-api.com", "heapanalytics.com"],
+			"cookies": [
+				{"name": "_hp2_id.*", "category": "analytics", "duration": "13 months", "purpose": "Heap visitor identifier", "pattern": "prefix"},
+				{"name": "_hp2_ses_props.*", "category": "analytics", "duration": "30 minutes", "purpose": "Heap session properties", "pattern": "prefix"}
+			]
 		},
 		"mixpanel/mixpanel.php": {
 			"name": "Mixpanel",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["mixpanel.com", "api.mixpanel.com"]
+			"domains": ["mixpanel.com", "api.mixpanel.com"],
+			"cookies": [
+				{"name": "mp_*_mixpanel", "category": "analytics", "duration": "1 year", "purpose": "Mixpanel visitor identifier", "pattern": "prefix"}
+			]
 		},
 		"segment/segment.php": {
 			"name": "Segment",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["segment.com", "segment.io", "cdn.segment.com"]
+			"domains": ["segment.com", "segment.io", "cdn.segment.com"],
+			"cookies": [
+				{"name": "ajs_anonymous_id", "category": "analytics", "duration": "1 year", "purpose": "Segment anonymous visitor ID"},
+				{"name": "ajs_user_id", "category": "analytics", "duration": "1 year", "purpose": "Segment user identifier"},
+				{"name": "ajs_group_id", "category": "analytics", "duration": "1 year", "purpose": "Segment group identifier"}
+			]
 		},
 		"amplitude/amplitude.php": {
 			"name": "Amplitude",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["amplitude.com", "api.amplitude.com"]
+			"domains": ["amplitude.com", "api.amplitude.com"],
+			"cookies": [
+				{"name": "amp_*", "category": "analytics", "duration": "10 years", "purpose": "Amplitude user identifier", "pattern": "prefix"}
+			],
+			"localStorage": ["amplitude_deviceId", "amplitude_lastEventTime"]
 		},
 		"crazy-egg/developer.php": {
 			"name": "Crazy Egg",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["crazyegg.com"]
+			"domains": ["crazyegg.com"],
+			"cookies": [
+				{"name": "is_returning", "category": "analytics", "duration": "5 years", "purpose": "Crazy Egg returning visitor flag"},
+				{"name": "_ceir", "category": "analytics", "duration": "5 years", "purpose": "Crazy Egg referrer tracking"}
+			]
 		},
 		"lucky-orange/lucky-orange.php": {
 			"name": "Lucky Orange",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["luckyorange.com"]
+			"domains": ["luckyorange.com"],
+			"cookies": [
+				{"name": "_lo_uid", "category": "analytics", "duration": "2 years", "purpose": "Lucky Orange unique visitor ID"},
+				{"name": "_lo_v", "category": "analytics", "duration": "2 years", "purpose": "Lucky Orange visit tracking"}
+			]
 		},
 		"mouseflow/mouseflow.php": {
 			"name": "Mouseflow",
 			"tracking": true,
 			"category": "analytics",
-			"domains": ["mouseflow.com"]
+			"domains": ["mouseflow.com"],
+			"cookies": [
+				{"name": "mf_*", "category": "analytics", "duration": "90 days", "purpose": "Mouseflow session recording data", "pattern": "prefix"}
+			]
+		},
+		"salesforce-for-woocommerce/salesforce-for-woocommerce.php": {
+			"name": "Salesforce for WooCommerce",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["salesforce.com"],
+			"cookies": []
+		},
+		"freshdesk/freshdesk.php": {
+			"name": "Freshdesk",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["freshdesk.com"],
+			"cookies": []
+		},
+		"woo-google-analytics-pro/woo-google-analytics-pro.php": {
+			"name": "WooCommerce Google Analytics Pro",
+			"tracking": true,
+			"category": "analytics",
+			"domains": ["google-analytics.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics unique visitor ID"},
+				{"name": "_gid", "category": "analytics", "duration": "24 hours", "purpose": "Google Analytics session identifier"}
+			]
+		},
+		"polylang/polylang.php": {
+			"name": "Polylang",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "pll_language", "category": "functional", "duration": "1 year", "purpose": "Stores preferred language"}
+			]
+		},
+		"sitepress-multilingual-cms/sitepress.php": {
+			"name": "WPML",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "wp-wpml_current_language", "category": "functional", "duration": "1 day", "purpose": "Stores current WPML language"},
+				{"name": "_icl_current_language", "category": "functional", "duration": "1 day", "purpose": "WPML language preference"}
+			]
+		},
+		"translatepress-multilingual/index.php": {
+			"name": "TranslatePress",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "trp_language", "category": "functional", "duration": "1 year", "purpose": "TranslatePress language preference"}
+			]
+		},
+		"wp-super-cache/wp-cache.php": {
+			"name": "WP Super Cache",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"sg-cachepress/sg-cachepress.php": {
+			"name": "SG Optimizer",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wp-fastest-cache/wpFastestCache.php": {
+			"name": "WP Fastest Cache",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"cache-enabler/cache-enabler.php": {
+			"name": "Cache Enabler",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"hummingbird-performance/wp-hummingbird.php": {
+			"name": "Hummingbird",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"nitropack/main.php": {
+			"name": "NitroPack",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"redirection/redirection.php": {
+			"name": "Redirection",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wp-mail-smtp/wp_mail_smtp.php": {
+			"name": "WP Mail SMTP",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"duplicate-post/duplicate-post.php": {
+			"name": "Yoast Duplicate Post",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"classic-editor/classic-editor.php": {
+			"name": "Classic Editor",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"regenerate-thumbnails/regenerate-thumbnails.php": {
+			"name": "Regenerate Thumbnails",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"tablepress/tablepress.php": {
+			"name": "TablePress",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"shortcodes-ultimate/developer.php": {
+			"name": "Shortcodes Ultimate",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"really-simple-ssl/developer.php": {
+			"name": "Really Simple SSL",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"limit-login-attempts-reloaded/limit-login-attempts-reloaded.php": {
+			"name": "Limit Login Attempts Reloaded",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"loginizer/loginizer.php": {
+			"name": "Loginizer",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"two-factor/two-factor.php": {
+			"name": "Two Factor Authentication",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wps-hide-login/wps-hide-login.php": {
+			"name": "WPS Hide Login",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"all-in-one-wp-migration/all-in-one-wp-migration.php": {
+			"name": "All-in-One WP Migration",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"google-listings-and-ads/google-listings-and-ads.php": {
+			"name": "Google Listings & Ads",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["googleadservices.com", "googletagmanager.com"],
+			"cookies": [
+				{"name": "_gcl_au", "category": "marketing", "duration": "90 days", "purpose": "Google Ads conversion linker"},
+				{"name": "_ga", "category": "analytics", "duration": "2 years", "purpose": "Google Analytics visitor ID"}
+			]
+		},
+		"woocommerce-payments/woocommerce-payments.php": {
+			"name": "WooCommerce Payments",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "wcpay_*", "category": "necessary", "duration": "session", "purpose": "WooCommerce Payments processing", "pattern": "prefix"}
+			]
+		},
+		"woocommerce-gateway-stripe/woocommerce-gateway-stripe.php": {
+			"name": "WooCommerce Stripe Gateway",
+			"tracking": false,
+			"category": "necessary",
+			"domains": ["js.stripe.com"],
+			"cookies": [
+				{"name": "__stripe_mid", "category": "necessary", "duration": "1 year", "purpose": "Stripe fraud prevention"},
+				{"name": "__stripe_sid", "category": "necessary", "duration": "30 minutes", "purpose": "Stripe session identifier"}
+			]
+		},
+		"woocommerce-paypal-payments/woocommerce-paypal-payments.php": {
+			"name": "WooCommerce PayPal Payments",
+			"tracking": false,
+			"category": "necessary",
+			"domains": ["paypal.com", "paypalobjects.com"],
+			"cookies": [
+				{"name": "ts_c", "category": "necessary", "duration": "3 years", "purpose": "PayPal security cookie"},
+				{"name": "ts", "category": "necessary", "duration": "3 years", "purpose": "PayPal fraud prevention"}
+			]
+		},
+		"the-events-calendar/the-events-calendar.php": {
+			"name": "The Events Calendar",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"buddypress/bp-loader.php": {
+			"name": "BuddyPress",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "bp-activity-oldestpage", "category": "functional", "duration": "session", "purpose": "BuddyPress activity pagination"}
+			]
+		},
+		"bbpress/bbpress.php": {
+			"name": "bbPress",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"memberpress/memberpress.php": {
+			"name": "MemberPress",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "mepr_*", "category": "necessary", "duration": "session", "purpose": "MemberPress session data", "pattern": "prefix"}
+			]
+		},
+		"lifterlms/lifterlms.php": {
+			"name": "LifterLMS",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "llms_*", "category": "necessary", "duration": "session", "purpose": "LifterLMS session data", "pattern": "prefix"}
+			]
+		},
+		"learndash/learndash.php": {
+			"name": "LearnDash",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"addthis/addthis_social_widget.php": {
+			"name": "AddThis",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["addthis.com", "s7.addthis.com"],
+			"cookies": [
+				{"name": "__atuvc", "category": "marketing", "duration": "13 months", "purpose": "AddThis share count tracking"},
+				{"name": "__atuvs", "category": "marketing", "duration": "30 minutes", "purpose": "AddThis session share data"}
+			]
+		},
+		"addtoany/addtoany.php": {
+			"name": "AddToAny Share Buttons",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["static.addtoany.com"],
+			"cookies": []
+		},
+		"sharethis-share-buttons/developer.php": {
+			"name": "ShareThis",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["sharethis.com"],
+			"cookies": [
+				{"name": "__stid", "category": "marketing", "duration": "1 year", "purpose": "ShareThis visitor identifier"}
+			]
+		},
+		"disqus-comment-system/disqus.php": {
+			"name": "Disqus Comment System",
+			"tracking": true,
+			"category": "marketing",
+			"domains": ["disqus.com"],
+			"cookies": [
+				{"name": "disqus_unique", "category": "marketing", "duration": "1 year", "purpose": "Disqus unique visitor identifier"},
+				{"name": "__jid", "category": "marketing", "duration": "session", "purpose": "Disqus session tracking"}
+			]
+		},
+		"fluentform/fluentform.php": {
+			"name": "Fluent Forms",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wp-smushit/wp-smush.php": {
+			"name": "Smush",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"imagify/imagify.php": {
+			"name": "Imagify",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"shortpixel-image-optimiser/wp-shortpixel.php": {
+			"name": "ShortPixel",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"ewww-image-optimizer/ewww-image-optimizer.php": {
+			"name": "EWWW Image Optimizer",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"broken-link-checker/developer.php": {
+			"name": "Broken Link Checker",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"beaver-builder-lite-version/fl-builder.php": {
+			"name": "Beaver Builder",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"divi-builder/divi-builder.php": {
+			"name": "Divi Builder",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wpbakery/js_composer.php": {
+			"name": "WPBakery Page Builder",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"megamenu/developer.php": {
+			"name": "Max Mega Menu",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"seo-by-rank-math/rank-math.php": {
+			"name": "Rank Math SEO",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"the-seo-framework/developer.php": {
+			"name": "The SEO Framework",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"wordpress-popular-posts/developer.php": {
+			"name": "WordPress Popular Posts",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "wpp_*", "category": "functional", "duration": "session", "purpose": "Popular posts visitor tracking", "pattern": "prefix"}
+			]
+		},
+		"wp-postviews/wp-postviews.php": {
+			"name": "WP-PostViews",
+			"tracking": false,
+			"category": "",
+			"domains": [],
+			"cookies": []
+		},
+		"cookie-notice/cookie-notice.php": {
+			"name": "Cookie Notice",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "cookie_notice_accepted", "category": "necessary", "duration": "1 month", "purpose": "Cookie notice acceptance state"}
+			]
+		},
+		"wc-aelia-foundation-classes/wc-aelia-foundation-classes.php": {
+			"name": "Aelia Foundation Classes",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "aelia_cs_selected_currency", "category": "necessary", "duration": "6 months", "purpose": "Selected currency preference"}
+			]
+		},
+		"woo-multi-currency/woo-multi-currency.php": {
+			"name": "Multi Currency for WooCommerce",
+			"tracking": false,
+			"category": "necessary",
+			"domains": [],
+			"cookies": [
+				{"name": "wmc_current_currency", "category": "necessary", "duration": "30 days", "purpose": "Selected currency code"}
+			]
+		},
+		"weglot/weglot.php": {
+			"name": "Weglot",
+			"tracking": false,
+			"category": "functional",
+			"domains": [],
+			"cookies": [
+				{"name": "wg_default_language", "category": "functional", "duration": "session", "purpose": "Weglot default language"},
+				{"name": "wg_language", "category": "functional", "duration": "session", "purpose": "Weglot current language"}
+			]
 		}
 	},
 	"tracking_domains": [
 		"google-analytics.com",
 		"googletagmanager.com",
+		"analytics.google.com",
 		"googleadservices.com",
 		"googlesyndication.com",
 		"doubleclick.net",
@@ -594,32 +1337,39 @@
 		"facebook.com",
 		"fbcdn.net",
 		"twitter.com",
+		"platform.twitter.com",
 		"ads-twitter.com",
 		"static.ads-twitter.com",
 		"linkedin.com",
+		"platform.linkedin.com",
 		"snap.licdn.com",
 		"px.ads.linkedin.com",
 		"pinterest.com",
 		"pinimg.com",
 		"ct.pinterest.com",
+		"assets.pinterest.com",
 		"tiktok.com",
 		"analytics.tiktok.com",
 		"snapchat.com",
 		"sc-static.net",
 		"hotjar.com",
 		"static.hotjar.com",
+		"script.hotjar.com",
 		"clarity.ms",
 		"fullstory.com",
 		"logrocket.com",
 		"lr-ingest.io",
 		"heapanalytics.com",
+		"cdn.heapanalytics.com",
 		"heap-api.com",
 		"mixpanel.com",
+		"cdn.mxpnl.com",
 		"api.mixpanel.com",
 		"segment.com",
 		"segment.io",
 		"cdn.segment.com",
 		"amplitude.com",
+		"cdn.amplitude.com",
 		"api.amplitude.com",
 		"crazyegg.com",
 		"luckyorange.com",
@@ -627,10 +1377,15 @@
 		"hubspot.com",
 		"js.hs-scripts.com",
 		"js.hsforms.net",
+		"js.hs-analytics.net",
+		"track.hubspot.com",
 		"intercom.io",
 		"widget.intercom.io",
+		"js.intercomcdn.com",
 		"crisp.chat",
+		"client.crisp.chat",
 		"tidio.co",
+		"code.tidio.co",
 		"widget-v4.tidiochat.com",
 		"zendesk.com",
 		"zopim.com",
@@ -639,6 +1394,7 @@
 		"tawk.to",
 		"embed.tawk.to",
 		"livechatinc.com",
+		"cdn.livechatinc.com",
 		"smartsupp.com",
 		"olark.com",
 		"freshdesk.com",
@@ -659,13 +1415,103 @@
 		"pixel.wp.com",
 		"plausible.io",
 		"usefathom.com",
+		"cdn.usefathom.com",
 		"simpleanalytics.com",
 		"matomo.cloud",
 		"youtube.com",
 		"youtube-nocookie.com",
 		"vimeo.com",
 		"player.vimeo.com",
+		"i.vimeocdn.com",
 		"maps.google.com",
-		"maps.googleapis.com"
-	]
+		"maps.googleapis.com",
+		"fonts.googleapis.com",
+		"fonts.gstatic.com",
+		"addthis.com",
+		"s7.addthis.com",
+		"static.addtoany.com",
+		"sharethis.com",
+		"disqus.com",
+		"bat.bing.com",
+		"p.typekit.net",
+		"use.typekit.net"
+	],
+	"option_keys": {
+		"ga_tracking_id": {"service": "Google Analytics", "category": "analytics"},
+		"monsterinsights_site_profile": {"service": "MonsterInsights", "category": "analytics"},
+		"exactmetrics_site_profile": {"service": "ExactMetrics", "category": "analytics"},
+		"googlesitekit_analytics_settings": {"service": "Site Kit GA", "category": "analytics"},
+		"googlesitekit_analytics-4_settings": {"service": "Site Kit GA4", "category": "analytics"},
+		"gtm4wp-options": {"service": "GTM4WP", "category": "analytics"},
+		"woocommerce_google_analytics_settings": {"service": "WooCommerce GA", "category": "analytics"},
+		"facebook_config": {"service": "Facebook Pixel", "category": "marketing"},
+		"pixelyoursite_ids": {"service": "PixelYourSite", "category": "marketing"},
+		"hotjar_settings": {"service": "Hotjar", "category": "analytics"},
+		"clarity_project_id": {"service": "Microsoft Clarity", "category": "analytics"},
+		"matomo_site_id": {"service": "Matomo", "category": "analytics"},
+		"klaviyo_settings": {"service": "Klaviyo", "category": "marketing"},
+		"hubspot_portal_id": {"service": "HubSpot", "category": "marketing"},
+		"intercom_app_id": {"service": "Intercom", "category": "marketing"},
+		"tawk_to_account": {"service": "Tawk.to", "category": "marketing"},
+		"livechat_license_id": {"service": "LiveChat", "category": "marketing"},
+		"crisp_website_id": {"service": "Crisp", "category": "marketing"},
+		"tidio_public_key": {"service": "Tidio", "category": "marketing"},
+		"drift_widget_code": {"service": "Drift", "category": "marketing"},
+		"smartsupp_widget_key": {"service": "Smartsupp", "category": "marketing"},
+		"optinmonster_api_key": {"service": "OptinMonster", "category": "marketing"},
+		"sumo_site_id": {"service": "Sumo", "category": "marketing"},
+		"onesignal_app_id": {"service": "OneSignal", "category": "marketing"},
+		"pushengage_api_key": {"service": "PushEngage", "category": "marketing"},
+		"plausible_analytics_settings": {"service": "Plausible", "category": "analytics"},
+		"fathom_site_id": {"service": "Fathom", "category": "analytics"},
+		"fullstory_org_id": {"service": "FullStory", "category": "analytics"},
+		"logrocket_app_id": {"service": "LogRocket", "category": "analytics"},
+		"segment_write_key": {"service": "Segment", "category": "analytics"}
+	},
+	"wordpress_core_cookies": [
+		{"name": "wordpress_test_cookie", "category": "necessary", "duration": "session", "purpose": "Tests if cookies are enabled"},
+		{"name": "wordpress_logged_in_*", "category": "necessary", "duration": "14 days", "purpose": "WordPress logged-in authentication", "pattern": "prefix"},
+		{"name": "wordpress_sec_*", "category": "necessary", "duration": "14 days", "purpose": "WordPress secure authentication", "pattern": "prefix"},
+		{"name": "wp-settings-*", "category": "functional", "duration": "1 year", "purpose": "WordPress admin UI preferences", "pattern": "prefix"},
+		{"name": "wp-settings-time-*", "category": "functional", "duration": "1 year", "purpose": "WordPress settings time stamp", "pattern": "prefix"},
+		{"name": "comment_author_*", "category": "functional", "duration": "1 year", "purpose": "Stores comment author name", "pattern": "prefix"},
+		{"name": "comment_author_email_*", "category": "functional", "duration": "1 year", "purpose": "Stores comment author email", "pattern": "prefix"},
+		{"name": "comment_author_url_*", "category": "functional", "duration": "1 year", "purpose": "Stores comment author URL", "pattern": "prefix"},
+		{"name": "PHPSESSID", "category": "necessary", "duration": "session", "purpose": "PHP session identifier"}
+	],
+	"cookie_heuristics": {
+		"_ga": {"category": "analytics", "service": "Google Analytics"},
+		"_gid": {"category": "analytics", "service": "Google Analytics"},
+		"_gat": {"category": "analytics", "service": "Google Analytics"},
+		"_gcl_": {"category": "marketing", "service": "Google Ads"},
+		"_fbp": {"category": "marketing", "service": "Facebook"},
+		"_fbc": {"category": "marketing", "service": "Facebook"},
+		"_hj": {"category": "analytics", "service": "Hotjar"},
+		"_pk_": {"category": "analytics", "service": "Matomo"},
+		"_clck": {"category": "analytics", "service": "Microsoft Clarity"},
+		"_clsk": {"category": "analytics", "service": "Microsoft Clarity"},
+		"__hs": {"category": "marketing", "service": "HubSpot"},
+		"hubspotutk": {"category": "marketing", "service": "HubSpot"},
+		"_tt_": {"category": "marketing", "service": "TikTok"},
+		"tk_": {"category": "analytics", "service": "WordPress.com Stats"},
+		"__stripe_": {"category": "necessary", "service": "Stripe"},
+		"woocommerce_": {"category": "necessary", "service": "WooCommerce"},
+		"wp_woocommerce_": {"category": "necessary", "service": "WooCommerce"},
+		"wordpress_": {"category": "necessary", "service": "WordPress"},
+		"wp-settings": {"category": "functional", "service": "WordPress"},
+		"comment_author": {"category": "functional", "service": "WordPress"},
+		"_scid": {"category": "marketing", "service": "Snapchat"},
+		"_ttp": {"category": "marketing", "service": "TikTok"},
+		"intercom-": {"category": "marketing", "service": "Intercom"},
+		"drift_": {"category": "marketing", "service": "Drift"},
+		"driftt_": {"category": "marketing", "service": "Drift"},
+		"ajs_": {"category": "analytics", "service": "Segment"},
+		"amp_": {"category": "analytics", "service": "Amplitude"},
+		"mp_": {"category": "analytics", "service": "Mixpanel"},
+		"_lr_": {"category": "analytics", "service": "LogRocket"},
+		"fs_": {"category": "analytics", "service": "FullStory"},
+		"om": {"category": "marketing", "service": "OptinMonster"},
+		"pll_language": {"category": "functional", "service": "Polylang"},
+		"PHPSESSID": {"category": "necessary", "service": "PHP"}
+	}
 }
