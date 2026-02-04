@@ -455,6 +455,10 @@
 }
 
 /* Progress Bar */
+.consently-scan-progress {
+	margin-top: 20px;
+}
+
 .consently-progress-wrapper {
 	display: flex;
 	align-items: center;

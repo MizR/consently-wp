@@ -12,10 +12,15 @@
 	function ConsentlyScanOrchestrator(pages, token, config) {
 		this.pages = pages;
 		this.token = token;
-		this.config = config; // { restUrl, nonce, ajaxUrl, adminNonce }
+		this.config = config; // { restUrl, nonce }
 		this.currentIndex = 0;
 		this.pageTimeout = null;
 		this.iframe = null;
+
+		// Callbacks
+		this.onProgress = null; // function(current, total, pageLabel)
+		this.onComplete = null; // function(data)
+		this.onError = null;    // function(errorMessage)
 
 		var self = this;
 		window.addEventListener('message', function(event) {
@@ -26,8 +31,9 @@
 	}
 
 	ConsentlyScanOrchestrator.prototype.start = function() {
-		this.updateProgress(0, this.pages.length);
-		this.updateStatus('Starting live scan...');
+		if (typeof this.onProgress === 'function') {
+			this.onProgress(0, this.pages.length, '');
+		}
 		this.scanNextPage();
 	};
 
@@ -44,7 +50,9 @@
 			+ 'consently_scan_token=' + encodeURIComponent(this.token)
 			+ '&consently_scan_id=' + encodeURIComponent(page.id);
 
-		this.updateStatus('Scanning: ' + page.label + '...');
+		if (typeof this.onProgress === 'function') {
+			this.onProgress(this.currentIndex, this.pages.length, page.label);
+		}
 
 		// Create or reuse iframe
 		if (!this.iframe) {
@@ -71,13 +79,10 @@
 		}
 
 		this.currentIndex++;
-		this.updateProgress(this.currentIndex, this.pages.length);
 		this.scanNextPage();
 	};
 
 	ConsentlyScanOrchestrator.prototype.onAllPagesComplete = function() {
-		this.updateStatus('Parsing page content...');
-
 		// Clean up iframe
 		if (this.iframe) {
 			this.iframe.parentNode.removeChild(this.iframe);
@@ -95,27 +100,21 @@
 			if (xhr.status >= 200 && xhr.status < 300) {
 				try {
 					var data = JSON.parse(xhr.responseText);
-					self.updateStatus('Live scan complete!');
-					self.updateProgress(self.pages.length, self.pages.length);
-
 					if (typeof self.onComplete === 'function') {
 						self.onComplete(data);
 					}
 				} catch (e) {
-					self.updateStatus('Error parsing results.');
 					if (typeof self.onError === 'function') {
 						self.onError('Failed to parse scan results');
 					}
 				}
 			} else {
-				self.updateStatus('Error during HTML parsing.');
 				if (typeof self.onError === 'function') {
 					self.onError('Server returned status ' + xhr.status);
 				}
 			}
 		};
 		xhr.onerror = function() {
-			self.updateStatus('Network error during scan.');
 			if (typeof self.onError === 'function') {
 				self.onError('Network error');
 			}
@@ -124,25 +123,6 @@
 			pages: this.pages,
 			token: this.token
 		}));
-	};
-
-	ConsentlyScanOrchestrator.prototype.updateProgress = function(current, total) {
-		var pct = total > 0 ? Math.round((current / total) * 100) : 0;
-		var bar = document.getElementById('consently-scan-progress-bar');
-		if (bar) {
-			bar.style.width = pct + '%';
-		}
-		var text = document.getElementById('consently-scan-progress-text');
-		if (text) {
-			text.textContent = current + ' / ' + total + ' pages scanned';
-		}
-	};
-
-	ConsentlyScanOrchestrator.prototype.updateStatus = function(message) {
-		var el = document.getElementById('consently-scan-status');
-		if (el) {
-			el.textContent = message;
-		}
 	};
 
 	// Export

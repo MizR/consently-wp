@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Audit v2 tab view.
+ * Plugin Audit tab view.
  *
  * @package Consently
  */
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<h2><?php esc_html_e( 'Plugin Audit', 'consently' ); ?></h2>
 
 		<p class="consently-audit-description">
-			<?php esc_html_e( 'Analyze your site to identify cookies, tracking scripts, and third-party services. Phase 1 runs instant static analysis. Phase 2 performs a live scan of your pages to capture actual cookies set at runtime.', 'consently' ); ?>
+			<?php esc_html_e( 'Scans your site to detect cookies, tracking scripts, and third-party services.', 'consently' ); ?>
 		</p>
 
 		<div class="consently-audit-disclaimer">
@@ -34,29 +34,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="consently-audit-actions">
 			<button type="button" id="consently-run-audit" class="button button-primary">
-				<?php esc_html_e( 'Run Static Analysis', 'consently' ); ?>
-			</button>
-			<button type="button" id="consently-run-live-scan" class="button button-secondary" style="display: none;">
-				<?php esc_html_e( 'Run Live Scan', 'consently' ); ?>
+				<?php esc_html_e( 'Run Audit', 'consently' ); ?>
 			</button>
 		</div>
-	</div>
 
-	<!-- Phase 1 Results Container -->
-	<div id="consently-phase1-results" class="consently-audit-results" style="display: none;"></div>
-
-	<!-- Live Scan Progress -->
-	<div id="consently-live-scan-progress" class="consently-card" style="display: none;">
-		<h3><?php esc_html_e( 'Live Scan Progress', 'consently' ); ?></h3>
-		<div class="consently-progress-wrapper">
-			<div class="consently-progress-bar">
-				<div id="consently-scan-progress-bar" class="consently-progress-fill" style="width: 0%;"></div>
+		<!-- Progress section (shown during scan) -->
+		<div id="consently-scan-progress" class="consently-scan-progress" style="display: none;">
+			<div class="consently-progress-wrapper">
+				<div class="consently-progress-bar">
+					<div id="consently-progress-fill" class="consently-progress-fill" style="width: 0%;"></div>
+				</div>
+				<span id="consently-progress-percent" class="consently-progress-text">0%</span>
 			</div>
-			<span id="consently-scan-progress-text" class="consently-progress-text">0 / 0 pages scanned</span>
+			<p id="consently-progress-status" class="consently-scan-status-text"></p>
 		</div>
-		<p id="consently-scan-status" class="consently-scan-status-text"></p>
 	</div>
 
-	<!-- Phase 2 Results Container -->
-	<div id="consently-phase2-results" class="consently-audit-results" style="display: none;"></div>
+	<!-- Results Container (both phases render here progressively) -->
+	<div id="consently-audit-results" class="consently-audit-results" style="display: none;"></div>
 </div>
