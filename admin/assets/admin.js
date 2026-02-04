@@ -257,10 +257,9 @@
 						return;
 					}
 
-					// Render Phase 1 results immediately
+					// Store Phase 1 results — render later when everything is done
+					Consently.phase1Results = response.data.results;
 					Consently.setProgress(5, 'Analyzing installed plugins... done');
-					Consently.renderPhase1Results(response.data.results);
-					$results.show();
 
 					// Start Phase 2 automatically
 					Consently.startLiveScan($button);
@@ -287,7 +286,9 @@
 				},
 				success: function(response) {
 					if (!response.success) {
-						Consently.setProgress(8, 'Could not start live scan.');
+						Consently.renderPhase1Results(Consently.phase1Results);
+						$('#consently-audit-results').show();
+						Consently.setProgress(100, 'Scan complete.');
 						Consently.finishAudit($button);
 						return;
 					}
@@ -296,7 +297,9 @@
 					var token = response.data.token;
 
 					if (!pages || pages.length === 0) {
-						Consently.setProgress(100, 'Scan complete. No pages to scan.');
+						Consently.renderPhase1Results(Consently.phase1Results);
+						$('#consently-audit-results').show();
+						Consently.setProgress(100, 'Scan complete.');
 						Consently.finishAudit($button);
 						return;
 					}
@@ -323,13 +326,16 @@
 					orchestrator.onComplete = function(data) {
 						Consently.setProgress(95, 'Finalizing results...');
 
+						// Render all results now that both phases are done
+						Consently.renderPhase1Results(Consently.phase1Results);
+						Consently.renderPhase2Results(data);
+						$('#consently-audit-results').show();
+
 						// Count total cookies found
 						var cookieCount = 0;
 						if (data.live_cookies) {
 							cookieCount = data.live_cookies.length;
 						}
-
-						Consently.renderPhase2Results(data);
 
 						var summary = 'Scan complete.';
 						if (cookieCount > 0) {
@@ -346,6 +352,9 @@
 					};
 
 					orchestrator.onError = function(error) {
+						// Still show Phase 1 results even if live scan failed
+						Consently.renderPhase1Results(Consently.phase1Results);
+						$('#consently-audit-results').show();
 						Consently.setProgress(100, 'Live scan completed with errors.');
 						Consently.finishAudit($button);
 					};
@@ -353,7 +362,9 @@
 					orchestrator.start();
 				},
 				error: function() {
-					Consently.setProgress(100, 'Could not start live scan.');
+					Consently.renderPhase1Results(Consently.phase1Results);
+					$('#consently-audit-results').show();
+					Consently.setProgress(100, 'Scan complete.');
 					Consently.finishAudit($button);
 				}
 			});
@@ -374,14 +385,6 @@
 		renderPhase1Results: function(results) {
 			var html = '';
 
-			// Partial scan warning
-			if (results.partial_scan) {
-				html += '<div class="consently-notice consently-notice-warning">';
-				html += '<span class="dashicons dashicons-warning"></span>';
-				html += '<p>Partial scan completed. Some plugins may not have been fully analyzed due to time limits.</p>';
-				html += '</div>';
-			}
-
 			// Known plugins with tracking
 			if (results.known_plugins && results.known_plugins.length > 0) {
 				html += '<div class="consently-card consently-tracking-plugins">';
@@ -400,25 +403,6 @@
 					html += '</td>';
 					html += '<td>' + Consently.renderCookieList(plugin.cookies) + '</td>';
 					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(plugin.category) + '">' + Consently.escapeHtml(Consently.capitalize(plugin.category)) + '</span></td>';
-					html += '</tr>';
-				});
-
-				html += '</tbody></table></div>';
-			}
-
-			// Source cookies found by PHP scan
-			if (results.source_cookies && results.source_cookies.length > 0) {
-				html += '<div class="consently-card">';
-				html += '<h3><span class="dashicons dashicons-search"></span> Cookies found in PHP source code</h3>';
-				html += '<table class="consently-audit-table widefat">';
-				html += '<thead><tr><th>Cookie Name</th><th>Plugin</th><th>Found In</th></tr></thead>';
-				html += '<tbody>';
-
-				results.source_cookies.forEach(function(item) {
-					html += '<tr>';
-					html += '<td><code>' + Consently.escapeHtml(item.cookie_name) + '</code></td>';
-					html += '<td>' + Consently.escapeHtml(item.plugin_name) + '</td>';
-					html += '<td><small>' + Consently.escapeHtml(item.found_in) + ':' + item.line + ' (' + item.method + ')</small></td>';
 					html += '</tr>';
 				});
 
