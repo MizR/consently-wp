@@ -615,6 +615,100 @@
 	color: #1d2327;
 }
 
+/* Services requiring consent */
+.consently-services-card h3 {
+	color: #d63638;
+}
+
+.consently-services-card h3 .dashicons {
+	color: #d63638;
+}
+
+.consently-services-table .consently-service-row {
+	cursor: pointer;
+}
+
+.consently-services-table .consently-service-row:hover {
+	background: #f6f7f7;
+}
+
+/* Status indicators */
+.consently-status-confirmed {
+	color: #00a32a;
+	font-weight: 500;
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+.consently-status-potential {
+	color: #dba617;
+	font-weight: 500;
+	font-size: 13px;
+	white-space: nowrap;
+}
+
+/* Service toggle button */
+.consently-service-toggle {
+	color: #2271b1;
+	font-size: 13px;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.consently-service-toggle:hover {
+	color: #135e96;
+}
+
+/* Service details expandable row */
+.consently-service-details {
+	padding: 12px 16px;
+	background: #f6f7f7;
+	border-top: 1px solid #f0f0f1;
+}
+
+.consently-service-details-row td {
+	padding: 0 !important;
+}
+
+.consently-detail-group {
+	margin-bottom: 12px;
+}
+
+.consently-detail-group:last-child {
+	margin-bottom: 0;
+}
+
+.consently-detail-group h4 {
+	margin: 0 0 6px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	color: #50575e;
+}
+
+.consently-detail-confirmed {
+	border-left: 3px solid #00a32a;
+	padding-left: 10px;
+}
+
+.consently-detail-potential {
+	border-left: 3px solid #dba617;
+	padding-left: 10px;
+}
+
+.consently-detail-item {
+	margin-bottom: 4px;
+	line-height: 1.6;
+}
+
+.consently-detail-item code {
+	font-size: 11px;
+	padding: 1px 5px;
+	background: #fff;
+	border-radius: 3px;
+}
+
 /* Responsive */
 @media screen and (max-width: 782px) {
 	.consently-input-group {

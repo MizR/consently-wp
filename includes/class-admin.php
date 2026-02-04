@@ -209,7 +209,7 @@ class Consently_Admin {
 
 		?>
 		<div class="wrap consently-admin-wrap">
-			<h1><?php esc_html_e( 'Consently Settings', 'consently' ); ?></h1>
+			<h1><?php echo esc_html( sprintf( __( 'Consently Settings %s', 'consently' ), 'v' . CONSENTLY_VERSION ) ); ?></h1>
 
 			<p class="consently-disclosure">
 				<?php

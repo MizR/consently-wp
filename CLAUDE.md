@@ -52,7 +52,7 @@ data/
 ## Key Constants
 
 ```php
-CONSENTLY_VERSION          = '0.0.4'
+CONSENTLY_VERSION          = '0.0.5'
 CONSENTLY_API_URL          = 'https://api.consently.net/v1'
 CONSENTLY_APP_URL          = 'https://app.consently.net'
 CONSENTLY_CDN_SCRIPT       = 'https://app.consently.net/consently.js'
