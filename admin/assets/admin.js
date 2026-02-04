@@ -1,5 +1,5 @@
 /**
- * Consently Admin JavaScript v2
+ * Consently Admin JavaScript
  *
  * @package Consently
  */
@@ -37,11 +37,8 @@
 			$('.consently-diagnostics-toggle').on('click', this.toggleDiagnostics);
 			$('#consently-copy-diagnostics').on('click', this.copyDiagnostics);
 
-			// Audit - Phase 1
+			// Audit - single button
 			$('#consently-run-audit').on('click', this.handleRunAudit);
-
-			// Audit - Phase 2 Live Scan
-			$('#consently-run-live-scan').on('click', this.handleRunLiveScan);
 
 			// Settings
 			$('#consently-settings-form').on('submit', this.handleSaveSettings);
@@ -212,17 +209,40 @@
 			});
 		},
 
+		// ─── Progress helpers ────────────────────────────────────────
+
 		/**
-		 * Handle run audit (Phase 1 - static analysis).
+		 * Update progress bar and status text.
+		 */
+		setProgress: function(percent, statusText) {
+			$('#consently-progress-fill').css('width', percent + '%');
+			$('#consently-progress-percent').text(Math.round(percent) + '%');
+			if (statusText) {
+				$('#consently-progress-status').text(statusText);
+			}
+		},
+
+		// ─── Audit flow ──────────────────────────────────────────────
+
+		/**
+		 * Handle "Run Audit" click.
+		 * Chains Phase 1 (static) then Phase 2 (live scan) automatically.
 		 */
 		handleRunAudit: function(e) {
 			e.preventDefault();
 
 			var $button = $(this);
-			var $results = $('#consently-phase1-results');
+			var $progress = $('#consently-scan-progress');
+			var $results = $('#consently-audit-results');
 
-			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.analyzing);
+			// Reset UI
+			$button.prop('disabled', true).addClass('consently-loading');
+			$results.hide().empty();
+			$progress.show();
 
+			Consently.setProgress(0, 'Analyzing installed plugins...');
+
+			// Phase 1: static analysis
 			$.ajax({
 				url: consentlyAdmin.ajaxUrl,
 				method: 'POST',
@@ -231,36 +251,32 @@
 					nonce: consentlyAdmin.nonce
 				},
 				success: function(response) {
-					if (response.success) {
-						Consently.renderPhase1Results(response.data.results);
-						$results.show();
-
-						// Show live scan button
-						$('#consently-run-live-scan').show();
-					} else {
-						alert(response.data.message);
+					if (!response.success) {
+						Consently.setProgress(0, 'Static analysis failed.');
+						$button.prop('disabled', false).removeClass('consently-loading');
+						return;
 					}
-					$button.prop('disabled', false).removeClass('consently-loading').text('Run Static Analysis');
+
+					// Render Phase 1 results immediately
+					Consently.setProgress(5, 'Analyzing installed plugins... done');
+					Consently.renderPhase1Results(response.data.results);
+					$results.show();
+
+					// Start Phase 2 automatically
+					Consently.startLiveScan($button);
 				},
 				error: function() {
-					alert('An error occurred. Please try again.');
-					$button.prop('disabled', false).removeClass('consently-loading').text('Run Static Analysis');
+					Consently.setProgress(0, 'An error occurred during analysis.');
+					$button.prop('disabled', false).removeClass('consently-loading');
 				}
 			});
 		},
 
 		/**
-		 * Handle run live scan (Phase 2).
+		 * Start Phase 2 live scan.
 		 */
-		handleRunLiveScan: function(e) {
-			e.preventDefault();
-
-			var $button = $(this);
-			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.startingLiveScan);
-
-			// Show progress section
-			$('#consently-live-scan-progress').show();
-			$('#consently-phase2-results').hide();
+		startLiveScan: function($button) {
+			Consently.setProgress(8, 'Preparing live scan...');
 
 			$.ajax({
 				url: consentlyAdmin.ajaxUrl,
@@ -270,41 +286,87 @@
 					nonce: consentlyAdmin.nonce
 				},
 				success: function(response) {
-					if (response.success) {
-						var orchestrator = new window.ConsentlyScanOrchestrator(
-							response.data.pages,
-							response.data.token,
-							{
-								restUrl: consentlyAdmin.restUrl,
-								nonce: consentlyAdmin.restNonce,
-								ajaxUrl: consentlyAdmin.ajaxUrl,
-								adminNonce: consentlyAdmin.nonce
-							}
-						);
-
-						orchestrator.onComplete = function(data) {
-							Consently.renderPhase2Results(data);
-							$('#consently-phase2-results').show();
-							$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
-						};
-
-						orchestrator.onError = function(error) {
-							alert('Live scan error: ' + error);
-							$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
-						};
-
-						orchestrator.start();
-					} else {
-						alert(response.data.message);
-						$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+					if (!response.success) {
+						Consently.setProgress(8, 'Could not start live scan.');
+						Consently.finishAudit($button);
+						return;
 					}
+
+					var pages = response.data.pages;
+					var token = response.data.token;
+
+					if (!pages || pages.length === 0) {
+						Consently.setProgress(100, 'Scan complete. No pages to scan.');
+						Consently.finishAudit($button);
+						return;
+					}
+
+					var orchestrator = new window.ConsentlyScanOrchestrator(
+						pages,
+						token,
+						{
+							restUrl: consentlyAdmin.restUrl,
+							nonce: consentlyAdmin.restNonce
+						}
+					);
+
+					// Progress: Phase 1 takes ~10%, page scanning takes 10-90%, finalization 90-100%
+					orchestrator.onProgress = function(current, total, pageLabel) {
+						var pct = 10 + (current / total) * 80;
+						var label = 'Scanning pages: ' + (current + 1) + ' / ' + total;
+						if (pageLabel) {
+							label += ' \u2014 ' + pageLabel;
+						}
+						Consently.setProgress(pct, label);
+					};
+
+					orchestrator.onComplete = function(data) {
+						Consently.setProgress(95, 'Finalizing results...');
+
+						// Count total cookies found
+						var cookieCount = 0;
+						if (data.live_cookies) {
+							cookieCount = data.live_cookies.length;
+						}
+
+						Consently.renderPhase2Results(data);
+
+						var summary = 'Scan complete.';
+						if (cookieCount > 0) {
+							summary += ' ' + cookieCount + ' cookie' + (cookieCount !== 1 ? 's' : '') + ' found';
+							if (data.pages_scanned) {
+								summary += ' across ' + data.pages_scanned + ' page' + (data.pages_scanned !== 1 ? 's' : '') + '.';
+							} else {
+								summary += '.';
+							}
+						}
+
+						Consently.setProgress(100, summary);
+						Consently.finishAudit($button);
+					};
+
+					orchestrator.onError = function(error) {
+						Consently.setProgress(100, 'Live scan completed with errors.');
+						Consently.finishAudit($button);
+					};
+
+					orchestrator.start();
 				},
 				error: function() {
-					alert('An error occurred starting the live scan.');
-					$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+					Consently.setProgress(100, 'Could not start live scan.');
+					Consently.finishAudit($button);
 				}
 			});
 		},
+
+		/**
+		 * Re-enable the audit button when everything is done.
+		 */
+		finishAudit: function($button) {
+			$button.prop('disabled', false).removeClass('consently-loading');
+		},
+
+		// ─── Result rendering ────────────────────────────────────────
 
 		/**
 		 * Render Phase 1 (static analysis) results.
@@ -458,24 +520,19 @@
 				html += '</ul></details></div>';
 			}
 
-			// Scan time
-			html += '<p class="consently-scan-time">Static analysis completed in ' + results.scan_time + ' seconds.</p>';
-
-			$('#consently-phase1-results').html(html);
+			$('#consently-audit-results').html(html);
 		},
 
 		/**
-		 * Render Phase 2 (live scan) results.
+		 * Render Phase 2 (live scan) results — appended below Phase 1.
 		 */
 		renderPhase2Results: function(results) {
 			var html = '';
 
-			html += '<div class="consently-card">';
-			html += '<h3><span class="dashicons dashicons-visibility"></span> Live Scan Results</h3>';
-
 			// Confirmed cookies
 			if (results.live_cookies && results.live_cookies.length > 0) {
-				html += '<h4>Confirmed Cookies (' + results.live_cookies.length + ')</h4>';
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-visibility"></span> Confirmed Cookies (' + results.live_cookies.length + ')</h3>';
 				html += '<table class="consently-audit-table widefat">';
 				html += '<thead><tr><th>Cookie</th><th>Category</th><th>Service</th><th>Pages</th></tr></thead>';
 				html += '<tbody>';
@@ -493,12 +550,13 @@
 					html += '</tr>';
 				});
 
-				html += '</tbody></table>';
+				html += '</tbody></table></div>';
 			}
 
 			// Storage items
 			if (results.live_storage && results.live_storage.length > 0) {
-				html += '<h4>Local/Session Storage (' + results.live_storage.length + ')</h4>';
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-database"></span> Local/Session Storage (' + results.live_storage.length + ')</h3>';
 				html += '<table class="consently-audit-table widefat">';
 				html += '<thead><tr><th>Key</th><th>Type</th><th>Category</th><th>Service</th></tr></thead>';
 				html += '<tbody>';
@@ -512,10 +570,8 @@
 					html += '</tr>';
 				});
 
-				html += '</tbody></table>';
+				html += '</tbody></table></div>';
 			}
-
-			html += '</div>';
 
 			// HTML parsing results
 			var hasHtmlResults = (results.social_media && results.social_media.length > 0)
@@ -579,12 +635,8 @@
 				html += '</div>';
 			}
 
-			// Pages scanned info
-			if (results.pages_scanned) {
-				html += '<p class="consently-scan-time">Live scan completed across ' + results.pages_scanned + ' pages.</p>';
-			}
-
-			$('#consently-phase2-results').html(html);
+			// Append Phase 2 results below Phase 1
+			$('#consently-audit-results').append(html);
 		},
 
 		/**
@@ -615,6 +667,8 @@
 			html += '</div>';
 			return html;
 		},
+
+		// ─── Settings ────────────────────────────────────────────────
 
 		/**
 		 * Handle save settings form submit.
@@ -655,6 +709,8 @@
 				}
 			});
 		},
+
+		// ─── Utilities ───────────────────────────────────────────────
 
 		/**
 		 * Handle copy text click.
