@@ -454,6 +454,163 @@
 	100% { transform: translateY(-50%) rotate(360deg); }
 }
 
+/* Progress Bar */
+.consently-progress-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 10px;
+}
+
+.consently-progress-bar {
+	flex: 1;
+	height: 20px;
+	background: #f0f0f1;
+	border: 1px solid #c3c4c7;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.consently-progress-fill {
+	height: 100%;
+	background: #2271b1;
+	border-radius: 10px;
+	transition: width 0.3s ease;
+}
+
+.consently-progress-text {
+	font-size: 13px;
+	color: #666;
+	white-space: nowrap;
+}
+
+.consently-scan-status-text {
+	font-size: 13px;
+	color: #50575e;
+	font-style: italic;
+	margin: 5px 0 0;
+}
+
+/* Tag List */
+.consently-tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin: 8px 0 16px;
+}
+
+.consently-tag {
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 12px;
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.consently-tag-thirdparty {
+	background: #f0f6fc;
+	color: #2271b1;
+	border: 1px solid #c5d9ed;
+}
+
+.consently-tag-social {
+	background: #fef0f5;
+	color: #b32d6b;
+	border: 1px solid #e8b4cc;
+}
+
+.consently-tag-analytics {
+	background: #e7f5ff;
+	color: #1971c2;
+	border: 1px solid #b6d4fe;
+}
+
+/* Category Badges - Additional */
+.consently-category-functional {
+	background: #ebfbee;
+	color: #2b8a3e;
+}
+
+.consently-category-necessary {
+	background: #f3f0ff;
+	color: #6741d9;
+}
+
+.consently-category-unclassified {
+	background: #f1f3f5;
+	color: #495057;
+}
+
+/* Cookie List (compact) */
+.consently-cookie-list {
+	line-height: 1.6;
+}
+
+.consently-cookie-list code {
+	font-size: 11px;
+	padding: 1px 5px;
+	background: #f6f7f7;
+	border-radius: 3px;
+}
+
+/* Muted helper text */
+.consently-muted {
+	color: #888;
+	font-size: 12px;
+}
+
+/* Options list */
+.consently-options-list {
+	margin: 10px 0 0 20px;
+}
+
+.consently-options-list li {
+	margin-bottom: 8px;
+	line-height: 1.6;
+}
+
+/* Theme list */
+.consently-theme-list {
+	margin: 10px 0 0 20px;
+}
+
+.consently-theme-list li {
+	margin-bottom: 8px;
+	line-height: 1.6;
+}
+
+/* Tracking IDs list */
+.consently-tracking-ids-list {
+	margin: 8px 0 16px 20px;
+}
+
+.consently-tracking-ids-list li {
+	margin-bottom: 5px;
+}
+
+/* WP cookies card */
+.consently-wp-cookies details summary {
+	cursor: pointer;
+	color: #2271b1;
+	font-size: 13px;
+	margin-bottom: 10px;
+}
+
+.consently-wp-cookies details summary:hover {
+	color: #135e96;
+}
+
+/* Audit results spacing */
+.consently-audit-results .consently-card {
+	margin-top: 15px;
+}
+
+.consently-audit-results h4 {
+	margin: 16px 0 8px;
+	font-size: 13px;
+	color: #1d2327;
+}
+
 /* Responsive */
 @media screen and (max-width: 782px) {
 	.consently-input-group {

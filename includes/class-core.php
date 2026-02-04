@@ -51,6 +51,13 @@ class Consently_Core {
 	public $audit;
 
 	/**
+	 * Live Scan instance.
+	 *
+	 * @var Consently_Live_Scan
+	 */
+	public $live_scan;
+
+	/**
 	 * WP Consent instance.
 	 *
 	 * @var Consently_WP_Consent
@@ -82,10 +89,14 @@ class Consently_Core {
 	 */
 	private function init_components() {
 		$this->api        = new Consently_API();
+		$this->audit      = new Consently_Audit();
+		$this->live_scan  = new Consently_Live_Scan( $this->audit );
 		$this->admin      = new Consently_Admin( $this );
 		$this->script     = new Consently_Script( $this );
-		$this->audit      = new Consently_Audit();
 		$this->wp_consent = new Consently_WP_Consent( $this );
+
+		// Initialize live scan REST routes.
+		$this->live_scan->init();
 	}
 
 	/**

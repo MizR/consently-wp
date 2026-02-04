@@ -69,6 +69,7 @@ class Consently_Admin {
 		add_action( 'wp_ajax_consently_connect', array( $this, 'ajax_connect' ) );
 		add_action( 'wp_ajax_consently_disconnect', array( $this, 'ajax_disconnect' ) );
 		add_action( 'wp_ajax_consently_run_audit', array( $this, 'ajax_run_audit' ) );
+		add_action( 'wp_ajax_consently_start_live_scan', array( $this, 'ajax_start_live_scan' ) );
 		add_action( 'wp_ajax_consently_save_settings', array( $this, 'ajax_save_settings' ) );
 		add_action( 'wp_ajax_consently_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
 		add_action( 'wp_ajax_consently_save_test_banner_id', array( $this, 'ajax_save_test_banner_id' ) );
@@ -115,20 +116,42 @@ class Consently_Admin {
 			true
 		);
 
+		// Ad blocker detection script.
+		wp_enqueue_script(
+			'consently-ads',
+			CONSENTLY_PLUGIN_URL . 'assets/js/ads.js',
+			array(),
+			CONSENTLY_VERSION,
+			true
+		);
+
+		// Live scan orchestrator (only on audit tab).
+		wp_enqueue_script(
+			'consently-admin-scan',
+			CONSENTLY_PLUGIN_URL . 'assets/js/admin-scan.js',
+			array(),
+			CONSENTLY_VERSION,
+			true
+		);
+
 		wp_localize_script(
 			'consently-admin',
 			'consentlyAdmin',
 			array(
 				'ajaxUrl'   => admin_url( 'admin-ajax.php' ),
+				'restUrl'   => esc_url_raw( rest_url() ),
 				'nonce'     => wp_create_nonce( 'consently_admin' ),
+				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'strings'   => array(
-					'connecting'       => __( 'Connecting...', 'consently' ),
-					'disconnecting'    => __( 'Disconnecting...', 'consently' ),
-					'analyzing'        => __( 'Analyzing plugins...', 'consently' ),
-					'saving'           => __( 'Saving...', 'consently' ),
+					'connecting'        => __( 'Connecting...', 'consently' ),
+					'disconnecting'     => __( 'Disconnecting...', 'consently' ),
+					'analyzing'         => __( 'Analyzing plugins...', 'consently' ),
+					'saving'            => __( 'Saving...', 'consently' ),
 					'confirmDisconnect' => __( 'This will disable the consent banner on your site. Are you sure you want to disconnect?', 'consently' ),
-					'copied'           => __( 'Copied to clipboard!', 'consently' ),
-					'copyFailed'       => __( 'Failed to copy. Please select and copy manually.', 'consently' ),
+					'copied'            => __( 'Copied to clipboard!', 'consently' ),
+					'copyFailed'        => __( 'Failed to copy. Please select and copy manually.', 'consently' ),
+					'startingLiveScan'  => __( 'Starting live scan...', 'consently' ),
+					'scanComplete'      => __( 'Scan complete!', 'consently' ),
 				),
 			)
 		);
@@ -304,7 +327,7 @@ class Consently_Admin {
 	}
 
 	/**
-	 * AJAX handler for plugin audit.
+	 * AJAX handler for plugin audit (Phase 1 - static analysis).
 	 */
 	public function ajax_run_audit() {
 		// Verify nonce.
@@ -317,14 +340,50 @@ class Consently_Admin {
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
 		}
 
-		// Run audit (always fresh, no caching).
+		// Run Phase 1 static analysis.
 		$audit   = $this->core->audit;
-		$results = $audit->run_audit();
+		$results = $audit->run_static();
+
+		// Cache Phase 1 results.
+		set_transient( 'consently_audit_phase1', $results, 7 * DAY_IN_SECONDS );
 
 		wp_send_json_success(
 			array(
-				'message' => __( 'Audit completed.', 'consently' ),
+				'message' => __( 'Static analysis completed.', 'consently' ),
 				'results' => $results,
+			)
+		);
+	}
+
+	/**
+	 * AJAX handler for starting live scan (Phase 2).
+	 */
+	public function ajax_start_live_scan() {
+		// Verify nonce.
+		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
+			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'consently' ) ) );
+		}
+
+		// Check capabilities.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
+		}
+
+		// Clear previous live scan results.
+		$this->core->live_scan->clear_results();
+
+		// Build page list.
+		$crawler = new Consently_Page_Crawler();
+		$pages   = $crawler->build_page_list();
+
+		// Create scan token.
+		$token = $this->core->audit->create_scan_token();
+
+		wp_send_json_success(
+			array(
+				'message' => __( 'Live scan initialized.', 'consently' ),
+				'pages'   => $pages,
+				'token'   => $token,
 			)
 		);
 	}

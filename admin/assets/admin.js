@@ -1,5 +1,5 @@
 /**
- * Consently Admin JavaScript
+ * Consently Admin JavaScript v2
  *
  * @package Consently
  */
@@ -13,6 +13,7 @@
 		 */
 		init: function() {
 			this.bindEvents();
+			this.checkAdBlocker();
 		},
 
 		/**
@@ -36,8 +37,11 @@
 			$('.consently-diagnostics-toggle').on('click', this.toggleDiagnostics);
 			$('#consently-copy-diagnostics').on('click', this.copyDiagnostics);
 
-			// Audit
+			// Audit - Phase 1
 			$('#consently-run-audit').on('click', this.handleRunAudit);
+
+			// Audit - Phase 2 Live Scan
+			$('#consently-run-live-scan').on('click', this.handleRunLiveScan);
 
 			// Settings
 			$('#consently-settings-form').on('submit', this.handleSaveSettings);
@@ -47,6 +51,17 @@
 
 			// Dismiss notices
 			$(document).on('click', '[data-consently-notice] .notice-dismiss', this.handleDismissNotice);
+		},
+
+		/**
+		 * Check for ad blocker.
+		 */
+		checkAdBlocker: function() {
+			setTimeout(function() {
+				if (typeof window.consentlyCanRunAds === 'undefined') {
+					$('#consently-adblocker-warning').show();
+				}
+			}, 500);
 		},
 
 		/**
@@ -66,7 +81,6 @@
 				return;
 			}
 
-			// Show loading state
 			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.connecting);
 			$error.hide();
 
@@ -80,7 +94,6 @@
 				},
 				success: function(response) {
 					if (response.success) {
-						// Reload page to show connected state
 						window.location.reload();
 					} else {
 						$error.text(response.data.message).show();
@@ -143,8 +156,6 @@
 			}
 
 			var $button = $(this);
-
-			// Show loading state
 			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.disconnecting);
 
 			$.ajax({
@@ -156,7 +167,6 @@
 				},
 				success: function(response) {
 					if (response.success) {
-						// Reload page to show disconnected state
 						window.location.reload();
 					} else {
 						alert(response.data.message);
@@ -203,15 +213,14 @@
 		},
 
 		/**
-		 * Handle run audit button click.
+		 * Handle run audit (Phase 1 - static analysis).
 		 */
 		handleRunAudit: function(e) {
 			e.preventDefault();
 
 			var $button = $(this);
-			var $results = $('#consently-audit-results');
+			var $results = $('#consently-phase1-results');
 
-			// Show loading state
 			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.analyzing);
 
 			$.ajax({
@@ -223,52 +232,211 @@
 				},
 				success: function(response) {
 					if (response.success) {
-						Consently.renderAuditResults(response.data.results);
+						Consently.renderPhase1Results(response.data.results);
 						$results.show();
+
+						// Show live scan button
+						$('#consently-run-live-scan').show();
 					} else {
 						alert(response.data.message);
 					}
-					$button.prop('disabled', false).removeClass('consently-loading').text('Analyze Plugins');
+					$button.prop('disabled', false).removeClass('consently-loading').text('Run Static Analysis');
 				},
 				error: function() {
 					alert('An error occurred. Please try again.');
-					$button.prop('disabled', false).removeClass('consently-loading').text('Analyze Plugins');
+					$button.prop('disabled', false).removeClass('consently-loading').text('Run Static Analysis');
 				}
 			});
 		},
 
 		/**
-		 * Render audit results.
+		 * Handle run live scan (Phase 2).
 		 */
-		renderAuditResults: function(results) {
+		handleRunLiveScan: function(e) {
+			e.preventDefault();
+
+			var $button = $(this);
+			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.startingLiveScan);
+
+			// Show progress section
+			$('#consently-live-scan-progress').show();
+			$('#consently-phase2-results').hide();
+
+			$.ajax({
+				url: consentlyAdmin.ajaxUrl,
+				method: 'POST',
+				data: {
+					action: 'consently_start_live_scan',
+					nonce: consentlyAdmin.nonce
+				},
+				success: function(response) {
+					if (response.success) {
+						var orchestrator = new window.ConsentlyScanOrchestrator(
+							response.data.pages,
+							response.data.token,
+							{
+								restUrl: consentlyAdmin.restUrl,
+								nonce: consentlyAdmin.restNonce,
+								ajaxUrl: consentlyAdmin.ajaxUrl,
+								adminNonce: consentlyAdmin.nonce
+							}
+						);
+
+						orchestrator.onComplete = function(data) {
+							Consently.renderPhase2Results(data);
+							$('#consently-phase2-results').show();
+							$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+						};
+
+						orchestrator.onError = function(error) {
+							alert('Live scan error: ' + error);
+							$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+						};
+
+						orchestrator.start();
+					} else {
+						alert(response.data.message);
+						$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+					}
+				},
+				error: function() {
+					alert('An error occurred starting the live scan.');
+					$button.prop('disabled', false).removeClass('consently-loading').text('Run Live Scan');
+				}
+			});
+		},
+
+		/**
+		 * Render Phase 1 (static analysis) results.
+		 */
+		renderPhase1Results: function(results) {
 			var html = '';
 
 			// Partial scan warning
 			if (results.partial_scan) {
 				html += '<div class="consently-notice consently-notice-warning">';
 				html += '<span class="dashicons dashicons-warning"></span>';
-				html += 'Partial scan completed. Some plugins may not have been fully analyzed due to time or file limits.';
+				html += '<p>Partial scan completed. Some plugins may not have been fully analyzed due to time limits.</p>';
 				html += '</div>';
 			}
 
-			// Tracking plugins
-			if (results.tracking_plugins && results.tracking_plugins.length > 0) {
+			// Known plugins with tracking
+			if (results.known_plugins && results.known_plugins.length > 0) {
 				html += '<div class="consently-card consently-tracking-plugins">';
 				html += '<h3><span class="dashicons dashicons-warning"></span> ';
-				html += results.tracking_plugins.length + ' plugin' + (results.tracking_plugins.length !== 1 ? 's' : '') + ' may set tracking cookies</h3>';
+				html += results.known_plugins.length + ' known tracking plugin' + (results.known_plugins.length !== 1 ? 's' : '') + ' detected</h3>';
 				html += '<table class="consently-audit-table widefat">';
-				html += '<thead><tr><th>Plugin</th><th>Detected Trackers</th><th>Category</th></tr></thead>';
+				html += '<thead><tr><th>Plugin</th><th>Cookies</th><th>Category</th></tr></thead>';
 				html += '<tbody>';
 
-				results.tracking_plugins.forEach(function(plugin) {
+				results.known_plugins.forEach(function(plugin) {
 					html += '<tr>';
-					html += '<td>' + Consently.escapeHtml(plugin.name) + '</td>';
-					html += '<td>' + (plugin.domains && plugin.domains.length ? Consently.escapeHtml(plugin.domains.join(', ')) : '<em>Pattern detected</em>') + '</td>';
-					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(plugin.category) + '">' + Consently.escapeHtml(plugin.category.charAt(0).toUpperCase() + plugin.category.slice(1)) + '</span></td>';
+					html += '<td><strong>' + Consently.escapeHtml(plugin.name) + '</strong>';
+					if (plugin.domains && plugin.domains.length) {
+						html += '<br><small class="consently-muted">' + Consently.escapeHtml(plugin.domains.join(', ')) + '</small>';
+					}
+					html += '</td>';
+					html += '<td>' + Consently.renderCookieList(plugin.cookies) + '</td>';
+					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(plugin.category) + '">' + Consently.escapeHtml(Consently.capitalize(plugin.category)) + '</span></td>';
 					html += '</tr>';
 				});
 
 				html += '</tbody></table></div>';
+			}
+
+			// Source cookies found by PHP scan
+			if (results.source_cookies && results.source_cookies.length > 0) {
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-search"></span> Cookies found in PHP source code</h3>';
+				html += '<table class="consently-audit-table widefat">';
+				html += '<thead><tr><th>Cookie Name</th><th>Plugin</th><th>Found In</th></tr></thead>';
+				html += '<tbody>';
+
+				results.source_cookies.forEach(function(item) {
+					html += '<tr>';
+					html += '<td><code>' + Consently.escapeHtml(item.cookie_name) + '</code></td>';
+					html += '<td>' + Consently.escapeHtml(item.plugin_name) + '</td>';
+					html += '<td><small>' + Consently.escapeHtml(item.found_in) + ':' + item.line + ' (' + item.method + ')</small></td>';
+					html += '</tr>';
+				});
+
+				html += '</tbody></table></div>';
+			}
+
+			// Enqueued tracking scripts
+			if (results.enqueued_scripts && results.enqueued_scripts.length > 0) {
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-media-code"></span> Tracking scripts detected in page output</h3>';
+				html += '<table class="consently-audit-table widefat">';
+				html += '<thead><tr><th>Handle</th><th>Domain</th></tr></thead>';
+				html += '<tbody>';
+
+				results.enqueued_scripts.forEach(function(script) {
+					html += '<tr>';
+					html += '<td><code>' + Consently.escapeHtml(script.handle) + '</code></td>';
+					html += '<td>' + Consently.escapeHtml(script.domain) + '</td>';
+					html += '</tr>';
+				});
+
+				html += '</tbody></table></div>';
+			}
+
+			// Options table tracking
+			if (results.options_tracking && results.options_tracking.length > 0) {
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-admin-settings"></span> Tracking configurations in options</h3>';
+				html += '<ul class="consently-options-list">';
+
+				results.options_tracking.forEach(function(item) {
+					html += '<li><strong>' + Consently.escapeHtml(item.service) + '</strong>';
+					html += ' <span class="consently-category consently-category-' + Consently.escapeHtml(item.category) + '">' + Consently.escapeHtml(Consently.capitalize(item.category)) + '</span>';
+					if (item.tracking_ids && item.tracking_ids.length) {
+						html += ' <small class="consently-muted">(' + Consently.escapeHtml(item.tracking_ids.join(', ')) + ')</small>';
+					}
+					html += '</li>';
+				});
+
+				html += '</ul></div>';
+			}
+
+			// Theme tracking
+			if (results.theme_tracking && results.theme_tracking.length > 0) {
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-admin-appearance"></span> Tracking found in theme files</h3>';
+				html += '<ul class="consently-theme-list">';
+
+				results.theme_tracking.forEach(function(item) {
+					html += '<li>';
+					html += '<strong>' + Consently.escapeHtml(item.domain || item.tracking_id || 'Unknown') + '</strong>';
+					html += ' in <code>' + Consently.escapeHtml(item.file) + '</code>';
+					if (item.category) {
+						html += ' <span class="consently-category consently-category-' + Consently.escapeHtml(item.category) + '">' + Consently.escapeHtml(Consently.capitalize(item.category)) + '</span>';
+					}
+					html += '</li>';
+				});
+
+				html += '</ul></div>';
+			}
+
+			// WordPress core cookies
+			if (results.wordpress_cookies && results.wordpress_cookies.length > 0) {
+				html += '<div class="consently-card consently-wp-cookies">';
+				html += '<h3><span class="dashicons dashicons-wordpress"></span> WordPress core cookies</h3>';
+				html += '<details><summary>' + results.wordpress_cookies.length + ' WordPress cookies identified</summary>';
+				html += '<table class="consently-audit-table widefat">';
+				html += '<thead><tr><th>Cookie</th><th>Category</th><th>Duration</th><th>Purpose</th></tr></thead>';
+				html += '<tbody>';
+
+				results.wordpress_cookies.forEach(function(cookie) {
+					html += '<tr>';
+					html += '<td><code>' + Consently.escapeHtml(cookie.name) + '</code></td>';
+					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(cookie.category) + '">' + Consently.escapeHtml(Consently.capitalize(cookie.category)) + '</span></td>';
+					html += '<td>' + Consently.escapeHtml(cookie.duration) + '</td>';
+					html += '<td><small>' + Consently.escapeHtml(cookie.purpose) + '</small></td>';
+					html += '</tr>';
+				});
+
+				html += '</tbody></table></details></div>';
 			}
 
 			// Clean plugins
@@ -280,22 +448,172 @@
 				html += '<ul class="consently-clean-list">';
 
 				results.clean_plugins.forEach(function(plugin) {
-					html += '<li>' + Consently.escapeHtml(plugin.name) + '</li>';
+					html += '<li>' + Consently.escapeHtml(plugin.name);
+					if (plugin.cookies && plugin.cookies.length) {
+						html += ' <small class="consently-muted">(' + plugin.cookies.length + ' functional cookies)</small>';
+					}
+					html += '</li>';
 				});
 
 				html += '</ul></details></div>';
 			}
 
-			// No plugins
-			if ((!results.tracking_plugins || results.tracking_plugins.length === 0) &&
-				(!results.clean_plugins || results.clean_plugins.length === 0)) {
-				html += '<div class="consently-card"><p>No active plugins found to analyze.</p></div>';
+			// Scan time
+			html += '<p class="consently-scan-time">Static analysis completed in ' + results.scan_time + ' seconds.</p>';
+
+			$('#consently-phase1-results').html(html);
+		},
+
+		/**
+		 * Render Phase 2 (live scan) results.
+		 */
+		renderPhase2Results: function(results) {
+			var html = '';
+
+			html += '<div class="consently-card">';
+			html += '<h3><span class="dashicons dashicons-visibility"></span> Live Scan Results</h3>';
+
+			// Confirmed cookies
+			if (results.live_cookies && results.live_cookies.length > 0) {
+				html += '<h4>Confirmed Cookies (' + results.live_cookies.length + ')</h4>';
+				html += '<table class="consently-audit-table widefat">';
+				html += '<thead><tr><th>Cookie</th><th>Category</th><th>Service</th><th>Pages</th></tr></thead>';
+				html += '<tbody>';
+
+				results.live_cookies.forEach(function(cookie) {
+					html += '<tr>';
+					html += '<td><code>' + Consently.escapeHtml(cookie.name) + '</code>';
+					if (cookie.duration) {
+						html += '<br><small class="consently-muted">' + Consently.escapeHtml(cookie.duration) + '</small>';
+					}
+					html += '</td>';
+					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(cookie.category) + '">' + Consently.escapeHtml(Consently.capitalize(cookie.category)) + '</span></td>';
+					html += '<td>' + Consently.escapeHtml(cookie.service || 'Unknown') + '</td>';
+					html += '<td><small>' + (cookie.page ? cookie.page.join(', ') : '') + '</small></td>';
+					html += '</tr>';
+				});
+
+				html += '</tbody></table>';
 			}
 
-			// Scan time
-			html += '<p class="consently-scan-time">Scan completed in ' + results.scan_time + ' seconds.</p>';
+			// Storage items
+			if (results.live_storage && results.live_storage.length > 0) {
+				html += '<h4>Local/Session Storage (' + results.live_storage.length + ')</h4>';
+				html += '<table class="consently-audit-table widefat">';
+				html += '<thead><tr><th>Key</th><th>Type</th><th>Category</th><th>Service</th></tr></thead>';
+				html += '<tbody>';
 
-			$('#consently-audit-results').html(html);
+				results.live_storage.forEach(function(item) {
+					html += '<tr>';
+					html += '<td><code>' + Consently.escapeHtml(item.name) + '</code></td>';
+					html += '<td>' + Consently.escapeHtml(item.type) + '</td>';
+					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(item.category || 'other') + '">' + Consently.escapeHtml(Consently.capitalize(item.category || 'other')) + '</span></td>';
+					html += '<td>' + Consently.escapeHtml(item.service || 'Unknown') + '</td>';
+					html += '</tr>';
+				});
+
+				html += '</tbody></table>';
+			}
+
+			html += '</div>';
+
+			// HTML parsing results
+			var hasHtmlResults = (results.social_media && results.social_media.length > 0)
+				|| (results.thirdparty && results.thirdparty.length > 0)
+				|| (results.statistics && results.statistics.length > 0)
+				|| (results.tracking_ids && results.tracking_ids.length > 0);
+
+			if (hasHtmlResults) {
+				html += '<div class="consently-card">';
+				html += '<h3><span class="dashicons dashicons-editor-code"></span> HTML Content Analysis</h3>';
+
+				// Third-party services
+				if (results.thirdparty && results.thirdparty.length > 0) {
+					html += '<h4>Third-Party Services</h4>';
+					html += '<div class="consently-tag-list">';
+					results.thirdparty.forEach(function(service) {
+						html += '<span class="consently-tag consently-tag-thirdparty">' + Consently.escapeHtml(service) + '</span>';
+					});
+					html += '</div>';
+				}
+
+				// Social media
+				if (results.social_media && results.social_media.length > 0) {
+					html += '<h4>Social Media</h4>';
+					html += '<div class="consently-tag-list">';
+					results.social_media.forEach(function(service) {
+						html += '<span class="consently-tag consently-tag-social">' + Consently.escapeHtml(service) + '</span>';
+					});
+					html += '</div>';
+				}
+
+				// Statistics
+				if (results.statistics && results.statistics.length > 0) {
+					html += '<h4>Statistics & Analytics</h4>';
+					html += '<div class="consently-tag-list">';
+					results.statistics.forEach(function(service) {
+						html += '<span class="consently-tag consently-tag-analytics">' + Consently.escapeHtml(service) + '</span>';
+					});
+					html += '</div>';
+				}
+
+				// Tracking IDs detected
+				if (results.tracking_ids && results.tracking_ids.length > 0) {
+					html += '<h4>Tracking IDs Detected</h4>';
+					html += '<ul class="consently-tracking-ids-list">';
+					results.tracking_ids.forEach(function(item) {
+						html += '<li><strong>' + Consently.escapeHtml(item.type) + '</strong>: ' + Consently.escapeHtml(item.service) + '</li>';
+					});
+					html += '</ul>';
+				}
+
+				// Double stats warning
+				if (results.double_stats && results.double_stats.length > 0) {
+					html += '<div class="consently-notice consently-notice-warning">';
+					html += '<span class="dashicons dashicons-warning"></span>';
+					html += '<p><strong>Duplicate statistics detected:</strong> ' + Consently.escapeHtml(results.double_stats.join(', '));
+					html += '. Multiple instances of the same analytics service may cause inaccurate data.</p>';
+					html += '</div>';
+				}
+
+				html += '</div>';
+			}
+
+			// Pages scanned info
+			if (results.pages_scanned) {
+				html += '<p class="consently-scan-time">Live scan completed across ' + results.pages_scanned + ' pages.</p>';
+			}
+
+			$('#consently-phase2-results').html(html);
+		},
+
+		/**
+		 * Render a list of cookies as compact HTML.
+		 */
+		renderCookieList: function(cookies) {
+			if (!cookies || cookies.length === 0) {
+				return '<em>No cookie data</em>';
+			}
+
+			var html = '<div class="consently-cookie-list">';
+			var shown = Math.min(cookies.length, 3);
+
+			for (var i = 0; i < shown; i++) {
+				html += '<code>' + Consently.escapeHtml(cookies[i].name) + '</code>';
+				if (cookies[i].duration) {
+					html += ' <small class="consently-muted">(' + Consently.escapeHtml(cookies[i].duration) + ')</small>';
+				}
+				if (i < shown - 1) {
+					html += '<br>';
+				}
+			}
+
+			if (cookies.length > 3) {
+				html += '<br><small class="consently-muted">+' + (cookies.length - 3) + ' more</small>';
+			}
+
+			html += '</div>';
+			return html;
 		},
 
 		/**
@@ -308,11 +626,9 @@
 			var $button = $('#consently-save-settings');
 			var $message = $('#consently-settings-message');
 
-			// Get form values
 			var bannerEnabled = $('#consently-banner-enabled').is(':checked');
 			var showToAdmins = $('#consently-show-to-admins').is(':checked');
 
-			// Show loading state
 			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.saving);
 			$message.hide();
 
@@ -387,7 +703,6 @@
 					callback(false);
 				});
 			} else {
-				// Fallback for older browsers
 				var textArea = document.createElement('textarea');
 				textArea.value = text;
 				textArea.style.position = 'fixed';
@@ -412,9 +727,18 @@
 		 * Escape HTML entities.
 		 */
 		escapeHtml: function(text) {
+			if (!text) return '';
 			var div = document.createElement('div');
 			div.textContent = text;
 			return div.innerHTML;
+		},
+
+		/**
+		 * Capitalize first letter.
+		 */
+		capitalize: function(str) {
+			if (!str) return '';
+			return str.charAt(0).toUpperCase() + str.slice(1);
 		}
 	};
 
