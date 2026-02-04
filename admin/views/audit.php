@@ -48,6 +48,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</div>
 			<p id="consently-progress-status" class="consently-scan-status-text"></p>
 		</div>
+
+		<!-- Per-page scan log (shown during live scan) -->
+		<div id="consently-scan-log" class="consently-scan-log" style="display: none;">
+			<details>
+				<summary><?php esc_html_e( 'Scan details', 'consently' ); ?></summary>
+				<ul id="consently-scan-log-list"></ul>
+			</details>
+		</div>
 	</div>
 
 	<!-- Results Container (both phases render here progressively) -->

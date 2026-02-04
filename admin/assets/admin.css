@@ -709,6 +709,67 @@
 	border-radius: 3px;
 }
 
+/* Scan log */
+.consently-scan-log {
+	margin-top: 12px;
+}
+
+.consently-scan-log details summary {
+	cursor: pointer;
+	color: #2271b1;
+	font-size: 13px;
+	font-weight: 500;
+}
+
+.consently-scan-log details summary:hover {
+	color: #135e96;
+}
+
+.consently-scan-log ul {
+	list-style: none;
+	margin: 8px 0 0;
+	padding: 0;
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #f0f0f1;
+	border-radius: 4px;
+	background: #f9f9f9;
+}
+
+.consently-scan-log li {
+	padding: 4px 12px;
+	font-size: 12px;
+	line-height: 1.6;
+	border-bottom: 1px solid #f0f0f1;
+}
+
+.consently-scan-log li:last-child {
+	border-bottom: none;
+}
+
+.consently-log-icon {
+	display: inline-block;
+	width: 16px;
+	text-align: center;
+	margin-right: 4px;
+}
+
+.consently-log-ok {
+	color: #1d2327;
+}
+
+.consently-log-ok .consently-log-icon {
+	color: #00a32a;
+}
+
+.consently-log-warn {
+	color: #1d2327;
+}
+
+.consently-log-warn .consently-log-icon {
+	color: #dba617;
+}
+
 /* Responsive */
 @media screen and (max-width: 782px) {
 	.consently-input-group {

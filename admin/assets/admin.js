@@ -313,14 +313,46 @@
 						}
 					);
 
+					// Show scan log and reset it
+					$('#consently-scan-log').show();
+					$('#consently-scan-log-list').empty();
+
 					// Progress: Phase 1 takes ~10%, page scanning takes 10-90%, finalization 90-100%
-					orchestrator.onProgress = function(current, total, pageLabel) {
-						var pct = 10 + (current / total) * 80;
-						Consently.setProgress(pct, 'Scanning page ' + (current + 1) + ' of ' + total + '...');
+					orchestrator.onProgress = function(completed, total, statusText) {
+						var pct = 10 + (completed / total) * 80;
+						var label = statusText || ('Scanning pages: ' + completed + ' of ' + total + ' complete...');
+						Consently.setProgress(pct, label);
+					};
+
+					// Per-page result callback — live scan log
+					orchestrator.onPageResult = function(pageId, status, label) {
+						var icon = status === 'ok' ? '✓' : '⚠';
+						var cls = status === 'ok' ? 'consently-log-ok' : 'consently-log-warn';
+						var $li = $('<li class="' + cls + '"><span class="consently-log-icon">' + icon + '</span> ' + Consently.escapeHtml(label || pageId) + '</li>');
+						$('#consently-scan-log-list').append($li);
 					};
 
 					orchestrator.onComplete = function(data) {
 						Consently.setProgress(95, 'Analyzing results...');
+
+						// Check for high timeout rate and show warning
+						var scanResults = data.scan_results || {};
+						var timeoutCount = 0;
+						var totalScanned = 0;
+						Object.keys(scanResults).forEach(function(key) {
+							totalScanned++;
+							if (scanResults[key].status === 'timeout') {
+								timeoutCount++;
+							}
+						});
+						if (timeoutCount > 0 && totalScanned > 0 && (timeoutCount / totalScanned) > 0.3) {
+							$('#consently-scan-log').after(
+								'<div class="consently-notice consently-notice-warning" style="margin-top:10px;">' +
+								'<span class="dashicons dashicons-warning"></span>' +
+								'<p>' + timeoutCount + ' of ' + totalScanned + ' pages timed out during scanning. ' +
+								'Your server may be slow or some pages may have issues loading.</p></div>'
+							);
+						}
 
 						// Render unified results from both phases
 						Consently.renderAuditResults(Consently.phase1Results, data);

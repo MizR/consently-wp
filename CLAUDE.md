@@ -28,7 +28,7 @@ includes/
   class-admin.php                # Admin pages, AJAX handlers, asset enqueuing
   class-audit.php                # Phase 1 static analysis (4 detection methods)
   class-live-scan.php            # Phase 2 REST endpoints for cookie/HTML data
-  class-page-crawler.php         # Builds page list for live scan (max 20 pages)
+  class-page-crawler.php         # Builds page list for live scan (max 30 pages, template/shortcode/archive-aware)
   class-html-parser.php          # Parses HTML for embeds, social, analytics
   class-script.php               # CDN script injection, scan mode detection
   class-wp-consent.php           # WP Consent API bridge
@@ -41,8 +41,8 @@ admin/
   assets/admin.css               # Admin styles
 
 assets/js/
-  scan-cookies.js                # Iframe cookie collector (3s delay after load)
-  admin-scan.js                  # Live scan orchestrator (15s timeout per page)
+  scan-cookies.js                # Iframe cookie collector (adaptive 2-8s polling delay)
+  admin-scan.js                  # Live scan orchestrator (3 parallel iframes, 20s timeout, retry logic)
   ads.js                         # Ad blocker detection
 
 data/
@@ -52,7 +52,7 @@ data/
 ## Key Constants
 
 ```php
-CONSENTLY_VERSION          = '0.0.5'
+CONSENTLY_VERSION          = '0.0.6'
 CONSENTLY_API_URL          = 'https://api.consently.net/v1'
 CONSENTLY_APP_URL          = 'https://app.consently.net'
 CONSENTLY_CDN_SCRIPT       = 'https://app.consently.net/consently.js'
