@@ -1,0 +1,2401 @@
+{
+	"url": "https://wpbeginner.com",
+	"finalUrl": "https://www.wpbeginner.com/?gclid=EAIaIQobChMI_scan_test_1770451182814",
+	"scanDuration": 116490,
+	"startedAt": "2026-02-07T07:59:08.813Z",
+	"completedAt": "2026-02-07T08:01:05.303Z",
+	"stats": {
+		"total": 47,
+		"cookies": 29,
+		"localStorage": 10,
+		"sessionStorage": 8,
+		"trackingPixels": 12,
+		"thirdPartyScripts": 36,
+		"tagManagers": 2,
+		"fonts": 5,
+		"iframes": 1,
+		"trackers": 26
+	},
+	"cookies": [
+		{
+			"name": "CLID",
+			"value": "a746502e705645f790d3ed2216a3f1cb.20260207.20270207",
+			"domain": "www.clarity.ms",
+			"path": "/",
+			"expires": "2027-02-07T07:59:24.725Z",
+			"httpOnly": true,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+			"requestUrl": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+			"isThirdParty": true,
+			"category": "analytics",
+			"vendor": "Microsoft",
+			"description": "The cookie is set by embedded Microsoft Clarity scripts. The purpose of this cookie is for heatmap and session recording.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.clarity.ms"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+						"domain": "www.clarity.ms",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+					"domain": "www.clarity.ms"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "MUID",
+			"value": "38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"domain": ".bing.com",
+			"path": "/",
+			"expires": "2027-03-04T07:59:24.833Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"requestUrl": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"isThirdParty": true,
+			"category": "marketing",
+			"vendor": "Bing / Microsoft",
+			"description": "Identifies unique web browsers visiting Microsoft sites. These cookies are used for advertising, site analytics, and other operational purposes.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "bing.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+						"domain": "c.bing.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+					"domain": "c.bing.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "MR",
+			"value": "0",
+			"domain": ".c.bing.com",
+			"path": "/",
+			"expires": "2026-02-14T07:59:24.833Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"requestUrl": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"isThirdParty": true,
+			"category": "marketing",
+			"vendor": "Bing / Microsoft",
+			"description": "Used to collect information for analytics purposes.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "c.bing.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+						"domain": "c.bing.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+					"domain": "c.bing.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "SRM_B",
+			"value": "38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"domain": ".c.bing.com",
+			"path": "/",
+			"expires": "2027-03-04T07:59:24.833Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"requestUrl": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"isThirdParty": true,
+			"category": "necessary",
+			"vendor": "Bing / Microsoft",
+			"description": "Collected user data is specifically adapted to the user or device. The usercan also be followed outside of the loaded website, creating a picture of the visitor's behavior.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "c.bing.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+						"domain": "c.bing.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+					"domain": "c.bing.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_clck",
+			"value": "fqe4ny%5E2%5Eg3d%5E0%5E2229",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2027-02-07T07:59:24.000Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "analytics",
+			"vendor": "Microsoft",
+			"description": "This cookie is installed by Microsoft Clarity to store information of how visitors use a website and help in creating an analytics report of how the website is doing. The data collected including the number visitors, the source where they have come from, and the pages visited in an anonymous form.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "bat.bing.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "SM",
+			"value": "C",
+			"domain": ".c.clarity.ms",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"requestUrl": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"isThirdParty": true,
+			"category": "analytics",
+			"vendor": "Microsoft",
+			"description": "This is a Microsoft cookie which we use to measure the use of the website for internal analytics",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "c.clarity.ms"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+						"domain": "c.clarity.ms",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+					"domain": "c.clarity.ms"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "MUID",
+			"value": "38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"domain": ".clarity.ms",
+			"path": "/",
+			"expires": "2027-03-04T07:59:24.889Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://c.clarity.ms/c.gif",
+			"requestUrl": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"isThirdParty": true,
+			"category": "marketing",
+			"vendor": "Bing / Microsoft",
+			"description": "Identifies unique web browsers visiting Microsoft sites. These cookies are used for advertising, site analytics, and other operational purposes.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "clarity.ms"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://c.clarity.ms/c.gif",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://c.clarity.ms/c.gif",
+						"domain": "c.clarity.ms",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://c.clarity.ms/c.gif",
+					"domain": "c.clarity.ms"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "MR",
+			"value": "0",
+			"domain": ".c.clarity.ms",
+			"path": "/",
+			"expires": "2026-02-14T07:59:24.889Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+			"requestUrl": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"isThirdParty": true,
+			"category": "marketing",
+			"vendor": "Bing / Microsoft",
+			"description": "Used to collect information for analytics purposes.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "c.clarity.ms"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+						"domain": "scripts.clarity.ms",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+					"domain": "scripts.clarity.ms"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "ANONCHK",
+			"value": "0",
+			"domain": ".c.clarity.ms",
+			"path": "/",
+			"expires": "2026-02-07T08:09:24.889Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+			"requestUrl": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"isThirdParty": true,
+			"category": "marketing",
+			"vendor": "Bing / Microsoft",
+			"description": "Used to store session ID for a users session to ensure that clicks from adverts on the Bing search engine are verified for reporting purposes and for personalisation",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "c.clarity.ms"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+						"domain": "scripts.clarity.ms",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+					"domain": "scripts.clarity.ms"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_omappvp",
+			"value": "L7byQIiTRsMkPsmRsNlByr3f7iee6CJf7zudaRvCeuJRLRR8qSmGL7SUcDLMkuZBJ8U77plHXPOBH6rsDwBi584rZxWAM1Pg",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2027-03-14T07:59:25.004Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "marketing",
+			"vendor": "Optinmonster",
+			"description": "Cookie is used to identify returning visitors",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_omappvs",
+			"value": "1770451165004",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-02-07T08:19:25.000Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "marketing",
+			"vendor": "Optinmonster",
+			"description": "Cookie is used to identify returning visitors",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_clsk",
+			"value": "1agj4vp%5E1770451183206%5E2%5E1%5Eq.clarity.ms%2Fcollect",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2026-02-08T07:59:43.000Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "analytics",
+			"vendor": "Microsoft",
+			"description": "This cookie is installed by Microsoft Clarity to store information of how visitors use a website and help in creating an analytics report of how the website is doing. The data collected including the number visitors, the source where they have come from, and the pages visited in an anonymous form.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "bat.bing.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_ga_YFDKLJ5Q0T",
+			"value": "GS2.1.s1770451165$o1$g1$t1770451220$j5$l0$h0",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2027-03-14T08:00:20.941Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_ga",
+			"value": "GA1.1.55254279.1770451165",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2027-03-14T07:59:25.389Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "analytics",
+			"vendor": "Google Analytics",
+			"description": "ID used to identify users",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_wpfuuid",
+			"value": "d90733e1-0ab0-4b4d-bbf1-1ec231b6df74",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2027-03-14T07:59:25.406Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "Strict",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_gcl_au",
+			"value": "1.1.2143138078.1770451166",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2026-05-08T07:59:25.000Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"requestUrl": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"isThirdParty": false,
+			"category": "marketing",
+			"vendor": "Google",
+			"description": "Used by Google AdSense for experimenting with advertisement efficiency across websites using their services.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "test_cookie",
+			"value": "CheckForPermission",
+			"domain": ".doubleclick.net",
+			"path": "/",
+			"expires": "2026-02-07T08:14:25.582Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+			"requestUrl": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/307381563/?random=1770451165499&cv=11&fst=1770451165499&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=4",
+			"isThirdParty": true,
+			"category": "necessary",
+			"vendor": "DoubleClick/Google Marketing",
+			"description": "This cookie is set by DoubleClick (which is owned by Google) to determine if the website visitor's browser supports cookies.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "doubleclick.net"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+				"scriptLoadedBy": "https://www.wpbeginner.com/",
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+						"domain": "www.googletagmanager.com",
+						"loadedBy": "https://www.wpbeginner.com/"
+					},
+					{
+						"url": "https://www.wpbeginner.com/",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": "Google Tag Manager"
+			},
+			"tagManagerAttribution": {
+				"triggeredByEvent": "gtm:gtm.dom",
+				"tagManager": "gtm",
+				"containerId": null,
+				"recentEvents": [
+					"gtm:gtm.dom",
+					"gtm:gtm.load",
+					"gtm:wpconsent_consent_processed"
+				]
+			},
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+					"domain": "www.googletagmanager.com"
+				},
+				"parentScript": {
+					"url": "https://www.wpbeginner.com/",
+					"domain": "www.wpbeginner.com"
+				},
+				"method": "http"
+			}
+		},
+		{
+			"name": "wpconsent_preferences",
+			"value": "{\"essential\":true,\"statistics\":true,\"marketing\":true}",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-03-09T07:59:31.000Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"requestUrl": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "PHPSESSID",
+			"value": "ncjg9lk2ic9obksij8o9qrpbht",
+			"domain": ".www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-02-07T08:59:33.366Z",
+			"httpOnly": true,
+			"secure": true,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"isThirdParty": false,
+			"category": "necessary",
+			"vendor": "PHP.net",
+			"description": "Cookie generated by applications based on the PHP language. This is a general purpose identifier used to maintain user session variables. It is normally a random generated number, how it is used can be specific to the site, but a good example is maintaining a logged-in status for a user between pages.",
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": "https://www.wpbeginner.com/",
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "https://www.wpbeginner.com/"
+					},
+					{
+						"url": "https://www.wpbeginner.com/",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": {
+					"url": "https://www.wpbeginner.com/",
+					"domain": "www.wpbeginner.com"
+				},
+				"method": "http"
+			}
+		},
+		{
+			"name": "wpbtsdksess",
+			"value": "7d4da152bbddcc29..Acy1LSdnysc%3D",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-02-07T10:59:33.366Z",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": null,
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": "https://www.wpbeginner.com/",
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "https://www.wpbeginner.com/"
+					},
+					{
+						"url": "https://www.wpbeginner.com/",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": {
+					"url": "https://www.wpbeginner.com/",
+					"domain": "www.wpbeginner.com"
+				},
+				"method": "http"
+			}
+		},
+		{
+			"name": "cookie_consent",
+			"value": "true",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/uploads/2023/12/how-to-start-a-blog-o.png",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/uploads/2023/12/how-to-start-a-blog-o.png",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/uploads/2023/12/how-to-start-a-blog-o.png",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/uploads/2023/12/how-to-start-a-blog-o.png",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/uploads/2023/12/how-to-start-a-blog-o.png",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "omSeen-hysqjgfyyqsckdzvdaav",
+			"value": "1770451188649",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-03-09T07:59:48.000Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+			"requestUrl": "https://www.wpbeginner.com/cdn-cgi/rum?",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": "Cloudflare Web Analytics",
+			"description": null,
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "static.cloudflareinsights.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+						"domain": "static.cloudflareinsights.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+					"domain": "static.cloudflareinsights.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_omra",
+			"value": "%7B%22hysqjgfyyqsckdzvdaav%22%3A%22view%22%7D",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "2027-02-07T07:59:53.000Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "None",
+			"source": "http-header",
+			"sourceScript": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+			"requestUrl": "https://www.wpbeginner.com/cdn-cgi/rum?",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": "Cloudflare Web Analytics",
+			"description": null,
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "static.cloudflareinsights.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+						"domain": "static.cloudflareinsights.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+					"domain": "static.cloudflareinsights.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "om-hysqjgfyyqsckdzvdaav",
+			"value": "1770451193706",
+			"domain": "www.wpbeginner.com",
+			"path": "/",
+			"expires": "2026-03-09T07:59:53.000Z",
+			"httpOnly": false,
+			"secure": true,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+			"requestUrl": "https://www.wpbeginner.com/cdn-cgi/rum?",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": "Cloudflare Web Analytics",
+			"description": null,
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "static.cloudflareinsights.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+						"domain": "static.cloudflareinsights.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+					"domain": "static.cloudflareinsights.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_ga_YFDKLJ5Q0T",
+			"value": "deleted",
+			"domain": "wpbeginner.com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": null,
+			"description": null,
+			"suggestedBlock": null,
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_ga",
+			"value": "GA1.1.55254279.1770451165",
+			"domain": "wpbeginner.com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"requestUrl": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.css?ver=c65e0450e92ea9f01145",
+			"isThirdParty": false,
+			"category": "analytics",
+			"vendor": "Google Analytics",
+			"description": "ID used to identify users",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "_gcl_au",
+			"value": "1.1.2143138078.1770451166",
+			"domain": "wpbeginner.com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": "Lax",
+			"source": "http-header",
+			"sourceScript": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"requestUrl": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+			"isThirdParty": false,
+			"category": "marketing",
+			"vendor": "Google",
+			"description": "Used by Google AdSense for experimenting with advertisement efficiency across websites using their services.",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+						"domain": "www.wpbeginner.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://www.wpbeginner.com/wp-json/wpconsent/v1/log-consent",
+					"domain": "www.wpbeginner.com"
+				},
+				"parentScript": null,
+				"method": "http"
+			}
+		},
+		{
+			"name": "temporary_get_base_domain",
+			"value": "cookie",
+			"domain": ".com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": "Lax",
+			"source": "javascript",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"requestUrl": null,
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"description": null,
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://a.omappapi.com/app/js/api.min.js:1",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://a.omappapi.com/app/js/api.min.js:1",
+						"domain": "a.omappapi.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://a.omappapi.com/app/js/api.min.js:1",
+					"domain": "a.omappapi.com"
+				},
+				"parentScript": null,
+				"method": "js"
+			}
+		},
+		{
+			"name": "temporary_get_base_domain",
+			"value": "cookie",
+			"domain": ".wpbeginner.com",
+			"path": "/",
+			"expires": "session",
+			"httpOnly": false,
+			"secure": false,
+			"sameSite": "Lax",
+			"source": "javascript",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"requestUrl": null,
+			"isThirdParty": false,
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"description": null,
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			},
+			"frameContext": "main-frame",
+			"attribution": {
+				"script": "https://a.omappapi.com/app/js/api.min.js:1",
+				"scriptLoadedBy": null,
+				"context": "main-frame",
+				"pageUrl": "https://wpbeginner.com",
+				"chain": [
+					{
+						"url": "https://a.omappapi.com/app/js/api.min.js:1",
+						"domain": "a.omappapi.com",
+						"loadedBy": "document"
+					}
+				],
+				"tagManager": null
+			},
+			"tagManagerAttribution": null,
+			"scriptAttribution": {
+				"directScript": {
+					"url": "https://a.omappapi.com/app/js/api.min.js:1",
+					"domain": "a.omappapi.com"
+				},
+				"parentScript": null,
+				"method": "js"
+			}
+		}
+	],
+	"storage": [
+		{
+			"type": "localStorage",
+			"key": "omVisitsFirst",
+			"value": "{\"path\":\"\",\"queryArgs\":{},\"timestamp\":1770451164,\"referrer\":\"\"}",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omLastSeen",
+			"value": "{\"popup\":1770451188652,\"any\":1770451188652}",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "_gcl_ls",
+			"value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"creationTimeMs\":1770451165531},\"expires\":1778227165531}}",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://www.googletagmanager.com/gtag/js",
+			"category": "unclassified",
+			"vendor": "Google Tag Manager",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omFoldersSeen",
+			"value": "{}",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omFoldersClosed",
+			"value": "{}",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omVisitsFirst",
+			"value": "{\"path\":\"\",\"queryArgs\":{},\"timestamp\":1770451164,\"referrer\":\"\"}",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omLastSeen",
+			"value": "{\"popup\":1770451188652,\"any\":1770451188652}",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "_gcl_ls",
+			"value": "{\"schema\":\"gcl\",\"version\":1,\"gcl_ctr\":{\"value\":{\"value\":0,\"timeouts\":0,\"errors\":0,\"creationTimeMs\":1770451165531},\"expires\":1778227165531}}",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://www.googletagmanager.com/gtag/js",
+			"category": "unclassified",
+			"vendor": "Google Tag Manager",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "www.googletagmanager.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omFoldersSeen",
+			"value": "{}",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "localStorage",
+			"key": "omFoldersClosed",
+			"value": "{}",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omSessionStart",
+			"value": "1770451164927",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omScrollHeight",
+			"value": "7518",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omSessionPageviews",
+			"value": "1",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "_cltk",
+			"value": "14p3t5l",
+			"origin": "www.wpbeginner.com",
+			"sourceScript": "https://scripts.clarity.ms/0.8.52-beta/clarity.js:2",
+			"category": "unclassified",
+			"vendor": "Microsoft Clarity",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "scripts.clarity.ms"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omSessionStart",
+			"value": "1770451164927",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omScrollHeight",
+			"value": "7518",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "omSessionPageviews",
+			"value": "1",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://a.omappapi.com/app/js/api.min.js:1",
+			"category": "unclassified",
+			"vendor": "OptinMonster",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "a.omappapi.com"
+			}
+		},
+		{
+			"type": "sessionStorage",
+			"key": "_cltk",
+			"value": "14p3t5l",
+			"origin": "wpbeginner.com",
+			"sourceScript": "https://scripts.clarity.ms/0.8.52-beta/clarity.js:2",
+			"category": "unclassified",
+			"vendor": "Microsoft Clarity",
+			"suggestedBlock": {
+				"type": "domain",
+				"value": "scripts.clarity.ms"
+			}
+		}
+	],
+	"trackingPixels": [
+		{
+			"url": "https://c.clarity.ms/c.gif",
+			"domain": "c.clarity.ms",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"domain": "c.bing.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "Bing / Microsoft",
+			"category": "marketing"
+		},
+		{
+			"url": "https://c.clarity.ms/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&MUID=38FEDCF68B1D62DD3C3FCA0F8AB063AF",
+			"domain": "c.clarity.ms",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://a.omappapi.com/users/ebfd10307734/images/3c4a68943bea1702297575-chris-brogan.jpg?width=117",
+			"domain": "a.omappapi.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/users/ebfd10307734/images/6567950cc27f1709097681-quote-icon.png?width=48",
+			"domain": "a.omappapi.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/users/ebfd10307734/images/a7221cbcfc041479272096-toolkitpopupv3.png?width=687",
+			"domain": "a.omappapi.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/users/ebfd10307734/images/b49f678f387d1479207739-sidebaroptinpopup.jpg?width=500",
+			"domain": "a.omappapi.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-YFDKLJ5Q0T&cid=55254279.1770451165&gtm=45je6241v881881453za200zd881881453&aip=1&dma=0&gcs=G111&gcd=13t3t3t3t5l1&npa=0&frm=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938469~116185181~116185182~116988316~117231354",
+			"domain": "stats.g.doubleclick.net",
+			"type": "beacon",
+			"sourceScript": "https://www.googletagmanager.com/gtag/js",
+			"vendor": "Google Analytics",
+			"category": "analytics"
+		},
+		{
+			"url": "https://www.google.com/pagead/1p-user-list/307381563/?random=1770451165499&cv=11&fst=1770447600000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=3&is_vtc=1&cid=CAQSfwDnonV5u0Ls54Rd1LM5Ur3Sd-QWrpbaRT2jZpC4fjA7jbGHC0dQvIn1SopEtQTtMSMrX-4KE8g28CFGv5mzslvXQqdWhiwOH4zdEzJYo2W9zBonIYASMziZZP0xiGCNUXbwo8TsyjGbd8Tc5J7J4Q6SDCK8WOXv3O-ieFONdII&random=2865697028&rmt_tld=0&ipr=y",
+			"domain": "www.google.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "Google",
+			"category": "marketing"
+		},
+		{
+			"url": "https://q.clarity.ms/collect",
+			"domain": "q.clarity.ms",
+			"type": "beacon",
+			"sourceScript": "https://scripts.clarity.ms/0.8.52-beta/clarity.js:2",
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://a.omappapi.com/users/ebfd10307734/images/2e8bca162b9c1708353736-default_graph_gray_.png?width=3840&height=3840",
+			"domain": "a.omappapi.com",
+			"type": "img",
+			"sourceScript": null,
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://www.wpbeginner.com/cdn-cgi/rum?",
+			"domain": "www.wpbeginner.com",
+			"type": "beacon",
+			"sourceScript": null,
+			"vendor": null,
+			"category": null
+		}
+	],
+	"thirdPartyScripts": [
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/perfmatters/js/lazyload.min.js?ver=2.5.3",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+			"domain": "static.cloudflareinsights.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js?ver=3.5.1",
+			"domain": "ajax.googleapis.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/am-site-security/assets/js/remove-numbers-from-comments.js?ver=1770413123",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/legacy-global.min.js?ver=70e68c1952dba879",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/global.min.js?ver=ae173fbbfda6b490",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/optinmonster/assets/dist/js/helper.min.js?ver=2.16.22",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/am-webinarjam-for-wpforms/js/schedule-field.js?ver=1.0.0",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/fields/address.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/google-analytics-premium/assets/js/frontend-gtag.js?ver=9.6.0",
+			"domain": "www.wpbeginner.com",
+			"initiator": "https://www.wpbeginner.com/"
+		},
+		{
+			"url": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+			"domain": "www.clarity.ms",
+			"initiator": null
+		},
+		{
+			"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+			"domain": "scripts.clarity.ms",
+			"initiator": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": null
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/5.feeadc62.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/4.6303bd1a.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/13.e3fdb8e5.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/19.0cf9cbf0.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/18.5c2054c5.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/26.564270cb.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/32.1dfbe809.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/9.30556e03.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/0.8a162e18.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/8.d971824c.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/10.3df31ec4.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/27.8fd4488d.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/25.f56ea0b0.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/15.933b9be1.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/1.599c5014.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/20.72c5dfe3.min.js",
+			"domain": "a.omappapi.com",
+			"initiator": "https://a.omappapi.com/app/js/api.min.js"
+		},
+		{
+			"url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/307381563/?random=1770451165499&cv=11&fst=1770451165499&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=4",
+			"domain": "googleads.g.doubleclick.net",
+			"initiator": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241"
+		}
+	],
+	"tagManagers": [
+		{
+			"url": "https://www.googletagmanager.com/gtag/js?id=G-YFDKLJ5Q0T",
+			"domain": "www.googletagmanager.com",
+			"name": "Google Tag Manager"
+		},
+		{
+			"url": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+			"domain": "www.googletagmanager.com",
+			"name": "Google Tag Manager"
+		}
+	],
+	"fonts": [
+		{
+			"url": "https://use.typekit.net/xgi6nih.css?ver=6.8.1",
+			"domain": "use.typekit.net"
+		},
+		{
+			"url": "https://use.typekit.net/af/efe4a5/00000000000000007735e609/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3",
+			"domain": "use.typekit.net"
+		},
+		{
+			"url": "https://use.typekit.net/af/78aca8/00000000000000007735e60d/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3",
+			"domain": "use.typekit.net"
+		},
+		{
+			"url": "https://use.typekit.net/af/2555e1/00000000000000007735e603/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3",
+			"domain": "use.typekit.net"
+		},
+		{
+			"url": "https://use.typekit.net/af/8738d8/00000000000000007735e611/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n8&v=3",
+			"domain": "use.typekit.net"
+		}
+	],
+	"iframes": [
+		{
+			"src": "https://www.googletagmanager.com/static/service_worker/61k0/sw_iframe.html?origin=https%3A%2F%2Fwww.wpbeginner.com",
+			"origin": "www.googletagmanager.com",
+			"vendor": "Google Tag Manager",
+			"category": "analytics"
+		}
+	],
+	"scriptCookieMap": {
+		"www.clarity.ms": [
+			"CLID"
+		],
+		"c.clarity.ms": [
+			"SM",
+			"MUID",
+			"MR",
+			"ANONCHK"
+		],
+		"c.bing.com": [
+			"MUID",
+			"MR",
+			"SRM_B"
+		],
+		"scripts.clarity.ms": [
+			"MR",
+			"ANONCHK",
+			"_clck",
+			"_clsk"
+		],
+		"www.googletagmanager.com": [
+			"test_cookie",
+			"_ga_YFDKLJ5Q0T",
+			"_ga",
+			"_gcl_au"
+		],
+		"static.cloudflareinsights.com": [
+			"omSeen-hysqjgfyyqsckdzvdaav",
+			"_omra",
+			"om-hysqjgfyyqsckdzvdaav"
+		],
+		"a.omappapi.com": [
+			"temporary_get_base_domain",
+			"_omra"
+		]
+	},
+	"cmp": {
+		"type": "unknown",
+		"name": "Unknown CMP (Shadow DOM)",
+		"consentAccepted": true,
+		"consentSource": "clicked",
+		"acceptSelector": "shadow-dom-button",
+		"detectedAt": 1770451171467,
+		"acceptDuration": 341
+	},
+	"trackers": [
+		{
+			"url": "https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015",
+			"domain": "static.cloudflareinsights.com",
+			"vendor": "Cloudflare Web Analytics",
+			"category": "analytics"
+		},
+		{
+			"url": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+			"domain": "www.clarity.ms",
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+			"domain": "scripts.clarity.ms",
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/5.feeadc62.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/4.6303bd1a.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/13.e3fdb8e5.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/19.0cf9cbf0.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/18.5c2054c5.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/26.564270cb.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/32.1dfbe809.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/9.30556e03.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/0.8a162e18.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/8.d971824c.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/10.3df31ec4.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/27.8fd4488d.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/25.f56ea0b0.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/15.933b9be1.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/1.599c5014.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/20.72c5dfe3.min.js",
+			"domain": "a.omappapi.com",
+			"vendor": "OptinMonster",
+			"category": "marketing"
+		},
+		{
+			"url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/307381563/?random=1770451165499&cv=11&fst=1770451165499&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=4",
+			"domain": "googleads.g.doubleclick.net",
+			"vendor": "Google Ads",
+			"category": "marketing"
+		},
+		{
+			"url": "https://c.clarity.ms/c.gif",
+			"domain": "c.clarity.ms",
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		},
+		{
+			"url": "https://c.bing.com/c.gif?ctsa=mr&CtsSyncId=4736C97378F043CBBE16C7174F6B061E&RedC=c.clarity.ms&MXFR=30D8973F7D7C6D04312A81C6797C6358",
+			"domain": "c.bing.com",
+			"vendor": "Bing / Microsoft",
+			"category": "marketing"
+		},
+		{
+			"url": "https://stats.g.doubleclick.net/g/collect?v=2&tid=G-YFDKLJ5Q0T&cid=55254279.1770451165&gtm=45je6241v881881453za200zd881881453&aip=1&dma=0&gcs=G111&gcd=13t3t3t3t5l1&npa=0&frm=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938469~116185181~116185182~116988316~117231354",
+			"domain": "stats.g.doubleclick.net",
+			"vendor": "Google Analytics",
+			"category": "analytics"
+		},
+		{
+			"url": "https://www.google.com/pagead/1p-user-list/307381563/?random=1770451165499&cv=11&fst=1770447600000&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=3&is_vtc=1&cid=CAQSfwDnonV5u0Ls54Rd1LM5Ur3Sd-QWrpbaRT2jZpC4fjA7jbGHC0dQvIn1SopEtQTtMSMrX-4KE8g28CFGv5mzslvXQqdWhiwOH4zdEzJYo2W9zBonIYASMziZZP0xiGCNUXbwo8TsyjGbd8Tc5J7J4Q6SDCK8WOXv3O-ieFONdII&random=2865697028&rmt_tld=0&ipr=y",
+			"domain": "www.google.com",
+			"vendor": "Google",
+			"category": "marketing"
+		},
+		{
+			"url": "https://q.clarity.ms/collect",
+			"domain": "q.clarity.ms",
+			"vendor": "Microsoft Clarity",
+			"category": "analytics"
+		}
+	],
+	"others": {
+		"scripts": [
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/perfmatters/js/lazyload.min.js?ver=2.5.3",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js?ver=3.5.1",
+				"domain": "ajax.googleapis.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/am-site-security/assets/js/remove-numbers-from-comments.js?ver=1770413123",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/legacy-global.min.js?ver=70e68c1952dba879",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/global.min.js?ver=ae173fbbfda6b490",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/optinmonster/assets/dist/js/helper.min.js?ver=2.16.22",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=1.9.9.1",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=1.9.9.1",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/am-webinarjam-for-wpforms/js/schedule-field.js?ver=1.0.0",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/fields/address.min.js?ver=1.9.9.1",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			},
+			{
+				"url": "https://www.wpbeginner.com/wp-content/plugins/google-analytics-premium/assets/js/frontend-gtag.js?ver=9.6.0",
+				"domain": "www.wpbeginner.com",
+				"initiator": "https://www.wpbeginner.com/"
+			}
+		],
+		"iframes": [],
+		"googleFonts": []
+	},
+	"consentlyFound": false,
+	"consentlyPosition": -1,
+	"consentlyLoadedFirst": false,
+	"scriptsPlacedBeforeConsently": [],
+	"asyncScripts": [
+		{
+			"url": "https://www.googletagmanager.com/gtag/js?id=AW-307381563&cx=c&gtm=4e6241",
+			"domain": "www.googletagmanager.com",
+			"async": true,
+			"defer": false,
+			"position": 0
+		},
+		{
+			"url": "https://scripts.clarity.ms/0.8.52-beta/clarity.js",
+			"domain": "scripts.clarity.ms",
+			"async": true,
+			"defer": false,
+			"position": 1
+		},
+		{
+			"url": "https://www.clarity.ms/tag/l9feqf74nf?ref=aioseo",
+			"domain": "www.clarity.ms",
+			"async": true,
+			"defer": false,
+			"position": 2
+		},
+		{
+			"url": "https://www.googletagmanager.com/gtag/js?id=G-YFDKLJ5Q0T",
+			"domain": "www.googletagmanager.com",
+			"async": true,
+			"defer": false,
+			"position": 3
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/google-analytics-premium/assets/js/frontend-gtag.js?ver=9.6.0",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 4
+		},
+		{
+			"url": "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js?ver=3.5.1",
+			"domain": "ajax.googleapis.com",
+			"async": true,
+			"defer": false,
+			"position": 5
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 6
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 7
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 8
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 9
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 10
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 11
+		},
+		{
+			"url": "https://a.omappapi.com/app/js/api.min.js",
+			"domain": "a.omappapi.com",
+			"async": true,
+			"defer": false,
+			"position": 12
+		},
+		{
+			"url": "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/307381563/?random=1770451165499&cv=11&fst=1770451165499&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6241v886399737za200zb881881453zd881881453xec&gcd=13t3t3t3t5l1&dma=0&tag_exp=103116026~103200004~104527906~104528500~104684208~104684211~115616986~115938466~115938468~116185181~116185182~116988316~117227715&u_w=1920&u_h=1080&url=https%3A%2F%2Fwww.wpbeginner.com%2F&frm=0&tiba=WPBeginner%20-%20Beginner%27s%20Guide%20for%20WordPress&did=dZGIzZG&gdid=dZGIzZG&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=2143138078.1770451166&uaa=x86&uab=64&uafvl=Not(A%253ABrand%3B8.0.0.0%7CChromium%3B144.0.7559.132%7CGoogle%2520Chrome%3B144.0.7559.132&uamb=0&uam=&uap=Windows&uapv=10.0&uaw=0&data=event%3Dgtag.config&rfmt=3&fmt=4",
+			"domain": "googleads.g.doubleclick.net",
+			"async": true,
+			"defer": false,
+			"position": 13
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpconsent-premium/build/frontend-pro.js?ver=c65e0450e92ea9f01145",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 14
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/am-site-security/assets/js/remove-numbers-from-comments.js?ver=1770413123",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 15
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/legacy-global.min.js?ver=70e68c1952dba879",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 16
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/themes/wpbv7/assets/js/global.min.js?ver=ae173fbbfda6b490",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 17
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/perfmatters/js/lazyload.min.js?ver=2.5.3",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 18
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/optinmonster/assets/dist/js/helper.min.js?ver=2.16.22",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 19
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/jquery.validate.min.js?ver=1.21.0",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 20
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/mailcheck.min.js?ver=1.1.2",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 21
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/lib/punycode.min.js?ver=1.0.0",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 22
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/share/utils.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 23
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/wpforms.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 24
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/am-webinarjam-for-wpforms/js/schedule-field.js?ver=1.0.0",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 25
+		},
+		{
+			"url": "https://www.wpbeginner.com/wp-content/plugins/wpforms/assets/js/frontend/fields/address.min.js?ver=1.9.9.1",
+			"domain": "www.wpbeginner.com",
+			"async": true,
+			"defer": false,
+			"position": 26
+		}
+	],
+	"tagManagerEvents": [
+		{
+			"type": "gtm",
+			"event": "gtm.dom",
+			"timestamp": 1770451165398
+		},
+		{
+			"type": "gtm",
+			"event": "gtm.load",
+			"timestamp": 1770451165399
+		},
+		{
+			"type": "gtm",
+			"event": "wpconsent_consent_processed",
+			"timestamp": 1770451171803
+		}
+	],
+	"redirectChain": [
+		"https://wpbeginner.com",
+		"https://www.wpbeginner.com/?gclid=EAIaIQobChMI_scan_test_1770451182814"
+	],
+	"totalRequests": 206,
+	"blockedRequests": 0,
+	"skippedUrls": [],
+	"errors": []
+}
