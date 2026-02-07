@@ -1,20 +1,21 @@
 # Consently WordPress Plugin
 
-WordPress plugin that connects sites to [Consently.net](https://consently.net) for cookie consent management, GDPR/CCPA compliance, and privacy banner display.
+WordPress scanner plugin that detects cookies, tracking scripts, and third-party services. Results can be exported as JSON matching the remote scanner schema for unified database storage.
 
 ## Architecture
 
-Singleton-based WordPress plugin with two main systems:
-
-1. **Banner System** — Injects `consently.js` CDN script with `data-bannerid` attribute
-2. **Plugin Audit** — Two-phase scanning to detect cookies, tracking scripts, and third-party services
+Singleton-based WordPress plugin with a two-phase scanning system and JSON export.
 
 ### Two-Phase Audit Architecture
 
 - **Phase 1 (Static Analysis)**: Server-side PHP, runs instantly. Scans active plugins against `data/known-plugins.json`, inspects enqueued scripts against tracking domains, scans options table for tracking IDs, and checks theme files.
 - **Phase 2 (Live Scan)**: Browser-based. Loads pages in hidden iframes via `admin-scan.js` orchestrator. Cookie collector (`scan-cookies.js`) captures cookies/localStorage/sessionStorage per page, posts to REST API. Server-side HTML parser detects social media, third-party services, analytics, and tracking IDs.
 
-Both phases triggered by single "Run Audit" button. Results shown only after both phases complete.
+Both phases triggered by single "Run Audit" button. Results shown after both phases complete. Export JSON button appears after scan completes.
+
+### JSON Export
+
+`Consently_JSON_Export` transforms Phase 1 + Phase 2 scan data into JSON matching the remote scanner schema. Includes WP-specific extension fields (`wpDetectionMethod`, `wpPluginSource`, `wpPluginSlug`, `wpMatchType`, `wpPagesFound`) and a top-level `wpMeta` block with WordPress environment details.
 
 ## File Structure
 
@@ -23,27 +24,22 @@ consently.php                    # Entry point, constants, activation/deactivati
 uninstall.php                    # Cleanup on uninstall
 
 includes/
-  class-core.php                 # Singleton core, connection state, cache detection
-  class-api.php                  # Consently API client, encrypted key storage
-  class-admin.php                # Admin pages, AJAX handlers, asset enqueuing
+  class-core.php                 # Singleton core, scan mode injection, cache detection
+  class-admin.php                # Admin page, AJAX handlers, asset enqueuing
   class-audit.php                # Phase 1 static analysis (4 detection methods)
   class-live-scan.php            # Phase 2 REST endpoints for cookie/HTML data
   class-page-crawler.php         # Builds page list for live scan (max 30 pages, template/shortcode/archive-aware)
   class-html-parser.php          # Parses HTML for embeds, social, analytics
-  class-script.php               # CDN script injection, scan mode detection
-  class-wp-consent.php           # WP Consent API bridge
+  class-json-export.php          # Transforms scan data to remote scanner schema JSON
 
 admin/
-  views/connection.php           # Connection tab (API key, status, diagnostics)
-  views/audit.php                # Audit tab (button, progress bar, results container)
-  views/settings.php             # Settings tab (banner toggle, cache compat)
-  assets/admin.js                # All admin JS (AJAX, audit rendering, progress)
+  views/audit.php                # Scanner page (button, progress bar, results, export)
+  assets/admin.js                # Admin JS (AJAX, audit rendering, progress, export)
   assets/admin.css               # Admin styles
 
 assets/js/
   scan-cookies.js                # Iframe cookie collector (adaptive 2-8s polling delay)
   admin-scan.js                  # Live scan orchestrator (3 parallel iframes, 20s timeout, retry logic)
-  ads.js                         # Ad blocker detection
 
 data/
   known-plugins.json             # 150+ plugins with cookies, domains, heuristics
@@ -52,19 +48,15 @@ data/
 ## Key Constants
 
 ```php
-CONSENTLY_VERSION          = '0.0.6'
-CONSENTLY_API_URL          = 'https://api.consently.net/v1'
-CONSENTLY_APP_URL          = 'https://app.consently.net'
-CONSENTLY_CDN_SCRIPT       = 'https://app.consently.net/consently.js'
-CONSENTLY_TEST_MODE        = true   // Bypass API validation in dev
-CONSENTLY_TEST_BANNER_ID   = '6981c589faa5693ee3072986'
+CONSENTLY_VERSION          = '0.1.0'
+CONSENTLY_PLUGIN_DIR       = plugin directory path
+CONSENTLY_PLUGIN_URL       = plugin URL
+CONSENTLY_PLUGIN_BASENAME  = plugin basename for action links
 ```
 
 ## WordPress Data
 
-**Options** (all `autoload=false`): `consently_site_id`, `consently_plan`, `consently_canonical_domain`, `consently_api_key_encrypted`, `consently_encryption_method`, `consently_banner_enabled`, `consently_show_to_admins`
-
-**Transients**: `consently_audit_results` (1h), `consently_audit_phase1` (7d), `consently_audit_phase2` (7d), `consently_live_scan_results` (1h), `consently_enqueued_scripts` (1h), `consently_plugin_hash` (1h), `consently_rate_limit` (10m)
+**Transients**: `consently_audit_phase1` (7d), `consently_audit_phase2` (7d), `consently_live_scan_results` (1h), `consently_enqueued_scripts` (1h), `consently_plugin_hash` (1h), `consently_scan_started_at` (1d)
 
 ## REST API Endpoints
 
@@ -75,10 +67,10 @@ CONSENTLY_TEST_BANNER_ID   = '6981c589faa5693ee3072986'
 ## Development Notes
 
 - Requires PHP 7.4+, WordPress 5.8+
-- No custom database tables — uses options and transients only
-- API key encrypted via libsodium → OpenSSL → XOR fallback chain
-- Rate limiting: 5 connection attempts per 10 minutes
+- No custom database tables — uses transients only
+- Single admin page under Settings > Consently Scanner (no tabs)
 - Consent plugins (CookieYes, Complianz, iubenda, etc.) are excluded from audit scanning
 - PHP source scanning (`scan_php_sources()`) exists in class-audit.php but is not surfaced in UI — too many false positives from admin-only cookies
 - Version must be bumped in both plugin header and `CONSENTLY_VERSION` constant on every commit
 - known-plugins.json includes: `plugins`, `tracking_domains`, `option_keys`, `wordpress_core_cookies`, `cookie_heuristics`
+- Export filename format: `consently-scan-{domain}-{date}.json`

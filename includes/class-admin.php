@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin class for Consently plugin.
+ * Admin class for Consently Scanner plugin.
  *
  * Handles admin pages and AJAX actions.
  *
@@ -25,27 +25,6 @@ class Consently_Admin {
 	private $core;
 
 	/**
-	 * Rate limit option name.
-	 *
-	 * @var string
-	 */
-	private $rate_limit_option = 'consently_rate_limit';
-
-	/**
-	 * Max connect attempts per window.
-	 *
-	 * @var int
-	 */
-	private $max_attempts = 5;
-
-	/**
-	 * Rate limit window in seconds.
-	 *
-	 * @var int
-	 */
-	private $rate_limit_window = 600; // 10 minutes.
-
-	/**
 	 * Constructor.
 	 *
 	 * @param Consently_Core $core Core instance.
@@ -66,16 +45,9 @@ class Consently_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
 
 		// AJAX handlers.
-		add_action( 'wp_ajax_consently_connect', array( $this, 'ajax_connect' ) );
-		add_action( 'wp_ajax_consently_disconnect', array( $this, 'ajax_disconnect' ) );
 		add_action( 'wp_ajax_consently_run_audit', array( $this, 'ajax_run_audit' ) );
 		add_action( 'wp_ajax_consently_start_live_scan', array( $this, 'ajax_start_live_scan' ) );
-		add_action( 'wp_ajax_consently_save_settings', array( $this, 'ajax_save_settings' ) );
-		add_action( 'wp_ajax_consently_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
-		add_action( 'wp_ajax_consently_save_test_banner_id', array( $this, 'ajax_save_test_banner_id' ) );
-
-		// Settings registration.
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
+		add_action( 'wp_ajax_consently_export_json', array( $this, 'ajax_export_json' ) );
 	}
 
 	/**
@@ -83,8 +55,8 @@ class Consently_Admin {
 	 */
 	public function add_admin_menu() {
 		add_options_page(
-			__( 'Consently Settings', 'consently' ),
-			__( 'Consently', 'consently' ),
+			__( 'Consently Scanner', 'consently' ),
+			__( 'Consently Scanner', 'consently' ),
 			'manage_options',
 			'consently',
 			array( $this, 'render_admin_page' )
@@ -116,16 +88,7 @@ class Consently_Admin {
 			true
 		);
 
-		// Ad blocker detection script.
-		wp_enqueue_script(
-			'consently-ads',
-			CONSENTLY_PLUGIN_URL . 'assets/js/ads.js',
-			array(),
-			CONSENTLY_VERSION,
-			true
-		);
-
-		// Live scan orchestrator (only on audit tab).
+		// Live scan orchestrator.
 		wp_enqueue_script(
 			'consently-admin-scan',
 			CONSENTLY_PLUGIN_URL . 'assets/js/admin-scan.js',
@@ -143,41 +106,13 @@ class Consently_Admin {
 				'nonce'     => wp_create_nonce( 'consently_admin' ),
 				'restNonce' => wp_create_nonce( 'wp_rest' ),
 				'strings'   => array(
-					'connecting'        => __( 'Connecting...', 'consently' ),
-					'disconnecting'     => __( 'Disconnecting...', 'consently' ),
-					'analyzing'         => __( 'Analyzing plugins...', 'consently' ),
-					'saving'            => __( 'Saving...', 'consently' ),
-					'confirmDisconnect' => __( 'This will disable the consent banner on your site. Are you sure you want to disconnect?', 'consently' ),
-					'copied'            => __( 'Copied to clipboard!', 'consently' ),
-					'copyFailed'        => __( 'Failed to copy. Please select and copy manually.', 'consently' ),
-					'startingLiveScan'  => __( 'Starting live scan...', 'consently' ),
-					'scanComplete'      => __( 'Scan complete!', 'consently' ),
+					'analyzing'        => __( 'Analyzing plugins...', 'consently' ),
+					'startingLiveScan' => __( 'Starting live scan...', 'consently' ),
+					'scanComplete'     => __( 'Scan complete!', 'consently' ),
+					'exporting'        => __( 'Exporting...', 'consently' ),
+					'exportFailed'     => __( 'Export failed. Please try again.', 'consently' ),
+					'noResults'        => __( 'No scan results available. Please run an audit first.', 'consently' ),
 				),
-			)
-		);
-	}
-
-	/**
-	 * Register settings.
-	 */
-	public function register_settings() {
-		register_setting(
-			'consently_settings',
-			'consently_banner_enabled',
-			array(
-				'type'              => 'boolean',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'default'           => true,
-			)
-		);
-
-		register_setting(
-			'consently_settings',
-			'consently_show_to_admins',
-			array(
-				'type'              => 'boolean',
-				'sanitize_callback' => 'rest_sanitize_boolean',
-				'default'           => true,
 			)
 		);
 	}
@@ -191,139 +126,15 @@ class Consently_Admin {
 			wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'consently' ) );
 		}
 
-		// Get current tab.
-		$current_tab = isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'connection';
-		$tabs        = array(
-			'connection' => __( 'Connection', 'consently' ),
-			'audit'      => __( 'Plugin Audit', 'consently' ),
-			'settings'   => __( 'Settings', 'consently' ),
-		);
-
-		// Check domain change.
-		$domain_changed = false;
-		$stored_home    = get_option( 'consently_last_validated_home_host' );
-		$current_home   = $this->core->get_normalized_home_host();
-		if ( $stored_home && $stored_home !== $current_home ) {
-			$domain_changed = true;
-		}
-
 		?>
 		<div class="wrap consently-admin-wrap">
-			<h1><?php echo esc_html( sprintf( __( 'Consently Settings %s', 'consently' ), 'v' . CONSENTLY_VERSION ) ); ?></h1>
-
-			<p class="consently-disclosure">
-				<?php
-				printf(
-					/* translators: %s: Privacy policy URL */
-					esc_html__( 'This plugin connects to consently.net to provide consent management. By using this plugin, you agree to the %s.', 'consently' ),
-					'<a href="https://consently.net/privacy" target="_blank" rel="noopener">' . esc_html__( 'Consently Privacy Policy', 'consently' ) . '</a>'
-				);
-				?>
-			</p>
-
-			<nav class="nav-tab-wrapper">
-				<?php foreach ( $tabs as $tab_key => $tab_label ) : ?>
-					<a href="<?php echo esc_url( admin_url( 'options-general.php?page=consently&tab=' . $tab_key ) ); ?>"
-					   class="nav-tab <?php echo $current_tab === $tab_key ? 'nav-tab-active' : ''; ?>">
-						<?php echo esc_html( $tab_label ); ?>
-					</a>
-				<?php endforeach; ?>
-			</nav>
+			<h1><?php echo esc_html( sprintf( __( 'Consently Scanner %s', 'consently' ), 'v' . CONSENTLY_VERSION ) ); ?></h1>
 
 			<div class="consently-tab-content">
-				<?php
-				switch ( $current_tab ) {
-					case 'audit':
-						include CONSENTLY_PLUGIN_DIR . 'admin/views/audit.php';
-						break;
-					case 'settings':
-						include CONSENTLY_PLUGIN_DIR . 'admin/views/settings.php';
-						break;
-					default:
-						include CONSENTLY_PLUGIN_DIR . 'admin/views/connection.php';
-						break;
-				}
-				?>
+				<?php include CONSENTLY_PLUGIN_DIR . 'admin/views/audit.php'; ?>
 			</div>
 		</div>
 		<?php
-	}
-
-	/**
-	 * AJAX handler for connection.
-	 */
-	public function ajax_connect() {
-		// Verify nonce.
-		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Security check failed. Please refresh the page and try again.', 'consently' ) ) );
-		}
-
-		// Check capabilities.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
-		}
-
-		// Check rate limit.
-		if ( $this->is_rate_limited() ) {
-			wp_send_json_error( array( 'message' => __( 'Too many connection attempts. Please wait 10 minutes before trying again.', 'consently' ) ) );
-		}
-
-		// Get and validate API key.
-		$api_key = isset( $_POST['api_key'] ) ? sanitize_text_field( wp_unslash( $_POST['api_key'] ) ) : '';
-
-		if ( empty( $api_key ) ) {
-			$this->record_rate_limit_attempt();
-			wp_send_json_error( array( 'message' => __( 'Please enter an API key.', 'consently' ) ) );
-		}
-
-		// Attempt connection.
-		$response = $this->core->api->connect( $api_key );
-
-		if ( is_wp_error( $response ) ) {
-			$this->record_rate_limit_attempt();
-			wp_send_json_error( array( 'message' => $response->get_error_message() ) );
-		}
-
-		// Store connection data.
-		$this->core->store_connection_data( $response );
-
-		// Clear rate limit on success.
-		delete_transient( $this->rate_limit_option );
-
-		wp_send_json_success(
-			array(
-				'message' => __( 'Successfully connected to Consently!', 'consently' ),
-				'data'    => array(
-					'site_id'          => $response['site_id'],
-					'plan'             => $response['plan'],
-					'canonical_domain' => $response['canonical_domain'],
-				),
-			)
-		);
-	}
-
-	/**
-	 * AJAX handler for disconnection.
-	 */
-	public function ajax_disconnect() {
-		// Verify nonce.
-		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Security check failed. Please refresh the page and try again.', 'consently' ) ) );
-		}
-
-		// Check capabilities.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
-		}
-
-		// Clear connection data.
-		$this->core->clear_connection_data();
-
-		wp_send_json_success(
-			array(
-				'message' => __( 'Successfully disconnected from Consently.', 'consently' ),
-			)
-		);
 	}
 
 	/**
@@ -339,6 +150,9 @@ class Consently_Admin {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
 		}
+
+		// Record scan start time.
+		set_transient( 'consently_scan_started_at', gmdate( 'c' ), DAY_IN_SECONDS );
 
 		// Run Phase 1 static analysis.
 		$audit   = $this->core->audit;
@@ -389,61 +203,9 @@ class Consently_Admin {
 	}
 
 	/**
-	 * AJAX handler for saving settings.
+	 * AJAX handler for JSON export.
 	 */
-	public function ajax_save_settings() {
-		// Verify nonce.
-		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Security check failed. Please refresh the page and try again.', 'consently' ) ) );
-		}
-
-		// Check capabilities.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
-		}
-
-		// Get and sanitize settings.
-		$banner_enabled  = isset( $_POST['banner_enabled'] ) ? rest_sanitize_boolean( wp_unslash( $_POST['banner_enabled'] ) ) : true;
-		$show_to_admins  = isset( $_POST['show_to_admins'] ) ? rest_sanitize_boolean( wp_unslash( $_POST['show_to_admins'] ) ) : true;
-
-		// Update settings.
-		update_option( 'consently_banner_enabled', $banner_enabled );
-		update_option( 'consently_show_to_admins', $show_to_admins );
-
-		wp_send_json_success(
-			array(
-				'message' => __( 'Settings saved successfully.', 'consently' ),
-			)
-		);
-	}
-
-	/**
-	 * AJAX handler for dismissing notices.
-	 */
-	public function ajax_dismiss_notice() {
-		// Verify nonce.
-		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
-			wp_send_json_error();
-		}
-
-		// Check capabilities.
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error();
-		}
-
-		$notice = isset( $_POST['notice'] ) ? sanitize_key( $_POST['notice'] ) : '';
-
-		if ( 'setup' === $notice ) {
-			update_option( 'consently_setup_notice_dismissed', true );
-		}
-
-		wp_send_json_success();
-	}
-
-	/**
-	 * AJAX handler for saving test banner ID.
-	 */
-	public function ajax_save_test_banner_id() {
+	public function ajax_export_json() {
 		// Verify nonce.
 		if ( ! check_ajax_referer( 'consently_admin', 'nonce', false ) ) {
 			wp_send_json_error( array( 'message' => __( 'Security check failed.', 'consently' ) ) );
@@ -454,83 +216,26 @@ class Consently_Admin {
 			wp_send_json_error( array( 'message' => __( 'You do not have permission to perform this action.', 'consently' ) ) );
 		}
 
-		// Only allow in test mode.
-		if ( ! $this->core->is_test_mode() ) {
-			wp_send_json_error( array( 'message' => __( 'Test mode is not active.', 'consently' ) ) );
+		$phase1 = get_transient( 'consently_audit_phase1' );
+		$phase2 = get_transient( 'consently_audit_phase2' );
+
+		if ( false === $phase1 && false === $phase2 ) {
+			wp_send_json_error( array( 'message' => __( 'No scan results available. Please run an audit first.', 'consently' ) ) );
 		}
 
-		$banner_id = isset( $_POST['banner_id'] ) ? sanitize_text_field( wp_unslash( $_POST['banner_id'] ) ) : '';
+		$exporter = new Consently_JSON_Export( $this->core->audit );
+		$json     = $exporter->generate();
 
-		if ( empty( $banner_id ) ) {
-			// Clear custom ID, fall back to constant.
-			delete_option( 'consently_test_banner_id' );
-		} else {
-			update_option( 'consently_test_banner_id', $banner_id, false );
-		}
+		$domain   = $this->core->get_normalized_home_host();
+		$date     = gmdate( 'Y-m-d' );
+		$filename = 'consently-scan-' . sanitize_file_name( $domain ) . '-' . $date . '.json';
 
 		wp_send_json_success(
 			array(
-				'message'   => __( 'Banner ID saved.', 'consently' ),
-				'banner_id' => $this->core->get_site_id(),
+				'json'     => $json,
+				'filename' => $filename,
 			)
 		);
-	}
-
-	/**
-	 * Check if rate limited.
-	 *
-	 * @return bool True if rate limited.
-	 */
-	private function is_rate_limited() {
-		$attempts = get_transient( $this->rate_limit_option );
-
-		if ( false === $attempts ) {
-			return false;
-		}
-
-		return $attempts >= $this->max_attempts;
-	}
-
-	/**
-	 * Record rate limit attempt.
-	 */
-	private function record_rate_limit_attempt() {
-		$attempts = get_transient( $this->rate_limit_option );
-
-		if ( false === $attempts ) {
-			$attempts = 0;
-		}
-
-		$attempts++;
-
-		set_transient( $this->rate_limit_option, $attempts, $this->rate_limit_window );
-	}
-
-	/**
-	 * Get deep link URL for Consently dashboard.
-	 *
-	 * @param string $page Dashboard page.
-	 * @return string URL.
-	 */
-	public function get_deep_link( $page ) {
-		$site_id = $this->core->get_site_id();
-
-		if ( ! $site_id ) {
-			return CONSENTLY_APP_URL;
-		}
-
-		$pages = array(
-			'banner'   => '/sites/%s/banner',
-			'scanner'  => '/sites/%s/scanner',
-			'logs'     => '/sites/%s/logs',
-			'settings' => '/sites/%s/settings',
-		);
-
-		if ( ! isset( $pages[ $page ] ) ) {
-			return CONSENTLY_APP_URL;
-		}
-
-		return CONSENTLY_APP_URL . sprintf( $pages[ $page ], $site_id );
 	}
 
 	/**
@@ -541,42 +246,15 @@ class Consently_Admin {
 	public function get_diagnostics() {
 		global $wp_version;
 
-		$connection_data = $this->core->get_connection_data();
-		$cache_plugins   = $this->core->detect_cache_plugins();
+		$cache_plugins = $this->core->detect_cache_plugins();
 
 		return array(
-			'wordpress_version'  => $wp_version,
-			'php_version'        => PHP_VERSION,
-			'home_url'           => $this->core->get_normalized_home_host(),
-			'canonical_domain'   => $connection_data['canonical_domain'],
-			'script_injected'    => $this->core->should_show_banner() ? __( 'Yes', 'consently' ) : __( 'No', 'consently' ),
-			'cache_plugins'      => ! empty( $cache_plugins ) ? implode( ', ', $cache_plugins ) : __( 'None detected', 'consently' ),
-			'plugin_version'     => CONSENTLY_VERSION,
-			'multisite'          => is_multisite() ? __( 'Yes', 'consently' ) : __( 'No', 'consently' ),
-			'wp_consent_api'     => class_exists( 'WP_CONSENT_API' ) ? __( 'Active', 'consently' ) : __( 'Not installed', 'consently' ),
+			'wordpress_version' => $wp_version,
+			'php_version'       => PHP_VERSION,
+			'home_url'          => $this->core->get_normalized_home_host(),
+			'cache_plugins'     => ! empty( $cache_plugins ) ? implode( ', ', $cache_plugins ) : __( 'None detected', 'consently' ),
+			'plugin_version'    => CONSENTLY_VERSION,
+			'multisite'         => is_multisite() ? __( 'Yes', 'consently' ) : __( 'No', 'consently' ),
 		);
-	}
-
-	/**
-	 * Format diagnostics for clipboard.
-	 *
-	 * @return string Formatted diagnostics.
-	 */
-	public function format_diagnostics_for_clipboard() {
-		$diagnostics = $this->get_diagnostics();
-
-		$output = "Consently Diagnostics\n";
-		$output .= "=====================\n";
-		$output .= "WordPress: {$diagnostics['wordpress_version']}\n";
-		$output .= "PHP: {$diagnostics['php_version']}\n";
-		$output .= "Home URL: {$diagnostics['home_url']}\n";
-		$output .= "Canonical Domain: {$diagnostics['canonical_domain']}\n";
-		$output .= "Script Injected: {$diagnostics['script_injected']}\n";
-		$output .= "Cache Plugins: {$diagnostics['cache_plugins']}\n";
-		$output .= "Plugin Version: {$diagnostics['plugin_version']}\n";
-		$output .= "Multisite: {$diagnostics['multisite']}\n";
-		$output .= "WP Consent API: {$diagnostics['wp_consent_api']}\n";
-
-		return $output;
 	}
 }
