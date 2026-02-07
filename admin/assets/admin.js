@@ -1,5 +1,5 @@
 /**
- * Consently Admin JavaScript
+ * Consently Scanner Admin JavaScript
  *
  * @package Consently
  */
@@ -13,200 +13,17 @@
 		 */
 		init: function() {
 			this.bindEvents();
-			this.checkAdBlocker();
 		},
 
 		/**
 		 * Bind event handlers.
 		 */
 		bindEvents: function() {
-			// Connection
-			$('#consently-connect-btn').on('click', this.handleConnect);
-			$('#consently-disconnect-btn').on('click', this.handleDisconnect);
-			$('#consently-api-key').on('keypress', function(e) {
-				if (e.which === 13) {
-					e.preventDefault();
-					$('#consently-connect-btn').click();
-				}
-			});
-
-			// Test mode banner ID
-			$('#consently-save-test-id').on('click', this.handleSaveTestBannerId);
-
-			// Diagnostics toggle
-			$('.consently-diagnostics-toggle').on('click', this.toggleDiagnostics);
-			$('#consently-copy-diagnostics').on('click', this.copyDiagnostics);
-
-			// Audit - single button
+			// Audit
 			$('#consently-run-audit').on('click', this.handleRunAudit);
 
-			// Settings
-			$('#consently-settings-form').on('submit', this.handleSaveSettings);
-
-			// Copy text elements
-			$('.consently-copy-text').on('click', this.handleCopyText);
-
-			// Dismiss notices
-			$(document).on('click', '[data-consently-notice] .notice-dismiss', this.handleDismissNotice);
-		},
-
-		/**
-		 * Check for ad blocker.
-		 */
-		checkAdBlocker: function() {
-			setTimeout(function() {
-				if (typeof window.consentlyCanRunAds === 'undefined') {
-					$('#consently-adblocker-warning').show();
-				}
-			}, 500);
-		},
-
-		/**
-		 * Handle connect button click.
-		 */
-		handleConnect: function(e) {
-			e.preventDefault();
-
-			var $button = $(this);
-			var $input = $('#consently-api-key');
-			var $error = $('#consently-connect-error');
-			var apiKey = $input.val().trim();
-
-			if (!apiKey) {
-				$error.text(consentlyAdmin.strings.enterApiKey || 'Please enter an API key.').show();
-				$input.focus();
-				return;
-			}
-
-			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.connecting);
-			$error.hide();
-
-			$.ajax({
-				url: consentlyAdmin.ajaxUrl,
-				method: 'POST',
-				data: {
-					action: 'consently_connect',
-					nonce: consentlyAdmin.nonce,
-					api_key: apiKey
-				},
-				success: function(response) {
-					if (response.success) {
-						window.location.reload();
-					} else {
-						$error.text(response.data.message).show();
-						$button.prop('disabled', false).removeClass('consently-loading').text('Connect');
-					}
-				},
-				error: function() {
-					$error.text('An error occurred. Please try again.').show();
-					$button.prop('disabled', false).removeClass('consently-loading').text('Connect');
-				}
-			});
-		},
-
-		/**
-		 * Handle save test banner ID.
-		 */
-		handleSaveTestBannerId: function(e) {
-			e.preventDefault();
-
-			var $button = $(this);
-			var $input = $('#consently-test-banner-id');
-			var $message = $('#consently-test-id-message');
-			var bannerId = $input.val().trim();
-
-			$button.prop('disabled', true).addClass('consently-loading');
-			$message.hide();
-
-			$.ajax({
-				url: consentlyAdmin.ajaxUrl,
-				method: 'POST',
-				data: {
-					action: 'consently_save_test_banner_id',
-					nonce: consentlyAdmin.nonce,
-					banner_id: bannerId
-				},
-				success: function(response) {
-					if (response.success) {
-						$message.text(response.data.message).removeClass('error').addClass('success').show();
-						$input.val(response.data.banner_id);
-					} else {
-						$message.text(response.data.message).removeClass('success').addClass('error').show();
-					}
-					$button.prop('disabled', false).removeClass('consently-loading');
-				},
-				error: function() {
-					$message.text('An error occurred.').removeClass('success').addClass('error').show();
-					$button.prop('disabled', false).removeClass('consently-loading');
-				}
-			});
-		},
-
-		/**
-		 * Handle disconnect button click.
-		 */
-		handleDisconnect: function(e) {
-			e.preventDefault();
-
-			if (!confirm(consentlyAdmin.strings.confirmDisconnect)) {
-				return;
-			}
-
-			var $button = $(this);
-			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.disconnecting);
-
-			$.ajax({
-				url: consentlyAdmin.ajaxUrl,
-				method: 'POST',
-				data: {
-					action: 'consently_disconnect',
-					nonce: consentlyAdmin.nonce
-				},
-				success: function(response) {
-					if (response.success) {
-						window.location.reload();
-					} else {
-						alert(response.data.message);
-						$button.prop('disabled', false).removeClass('consently-loading').text('Disconnect');
-					}
-				},
-				error: function() {
-					alert('An error occurred. Please try again.');
-					$button.prop('disabled', false).removeClass('consently-loading').text('Disconnect');
-				}
-			});
-		},
-
-		/**
-		 * Toggle diagnostics section.
-		 */
-		toggleDiagnostics: function() {
-			var $toggle = $(this);
-			var $content = $toggle.next('.consently-diagnostics-content');
-			var isExpanded = $toggle.attr('aria-expanded') === 'true';
-
-			$toggle.attr('aria-expanded', !isExpanded);
-			$content.slideToggle(200);
-		},
-
-		/**
-		 * Copy diagnostics to clipboard.
-		 */
-		copyDiagnostics: function() {
-			var text = $('#consently-diagnostics-text').val();
-
-			Consently.copyToClipboard(text, function(success) {
-				if (success) {
-					var $button = $('#consently-copy-diagnostics');
-					var originalText = $button.text();
-					$button.text(consentlyAdmin.strings.copied);
-					setTimeout(function() {
-						$button.text(originalText);
-					}, 2000);
-				} else {
-					alert(consentlyAdmin.strings.copyFailed);
-				}
-			});
+			// Export JSON
+			$('#consently-export-json').on('click', this.handleExportJson);
 		},
 
 		// ─── Progress helpers ────────────────────────────────────────
@@ -237,6 +54,7 @@
 
 			// Reset UI
 			$button.prop('disabled', true).addClass('consently-loading');
+			$('#consently-export-json').hide();
 			$results.hide().empty();
 			$progress.show();
 
@@ -382,10 +200,52 @@
 		},
 
 		/**
-		 * Re-enable the audit button when everything is done.
+		 * Re-enable the audit button and show export button when done.
 		 */
 		finishAudit: function($button) {
 			$button.prop('disabled', false).removeClass('consently-loading');
+			$('#consently-export-json').show();
+		},
+
+		// ─── Export ──────────────────────────────────────────────────
+
+		/**
+		 * Handle Export JSON button click.
+		 */
+		handleExportJson: function(e) {
+			e.preventDefault();
+
+			var $button = $(this);
+			$button.prop('disabled', true).addClass('consently-loading');
+
+			$.ajax({
+				url: consentlyAdmin.ajaxUrl,
+				method: 'POST',
+				data: {
+					action: 'consently_export_json',
+					nonce: consentlyAdmin.nonce
+				},
+				success: function(response) {
+					if (response.success) {
+						var blob = new Blob([JSON.stringify(response.data.json, null, 2)], { type: 'application/json' });
+						var url = URL.createObjectURL(blob);
+						var a = document.createElement('a');
+						a.href = url;
+						a.download = response.data.filename || 'consently-scan.json';
+						document.body.appendChild(a);
+						a.click();
+						document.body.removeChild(a);
+						URL.revokeObjectURL(url);
+					} else {
+						alert(response.data.message || consentlyAdmin.strings.exportFailed);
+					}
+					$button.prop('disabled', false).removeClass('consently-loading');
+				},
+				error: function() {
+					alert(consentlyAdmin.strings.exportFailed);
+					$button.prop('disabled', false).removeClass('consently-loading');
+				}
+			});
 		},
 
 		// ─── Result rendering ────────────────────────────────────────
@@ -516,15 +376,11 @@
 				);
 				htmlServices.forEach(function(name) {
 					var key = serviceKey(name);
-					// Check if this matches any existing service
-					var matched = false;
 					Object.keys(serviceMap).forEach(function(existingKey) {
 						if (existingKey.indexOf(key) !== -1 || key.indexOf(existingKey) !== -1) {
 							serviceMap[existingKey].status = 'confirmed';
-							matched = true;
 						}
 					});
-					// If not matched to existing, it will appear in third-party tags section
 				});
 
 				// Cross-reference tracking_ids
@@ -819,145 +675,7 @@
 			});
 		},
 
-		/**
-		 * Render a list of cookies as compact HTML.
-		 */
-		renderCookieList: function(cookies) {
-			if (!cookies || cookies.length === 0) {
-				return '<em>No cookie data</em>';
-			}
-
-			var html = '<div class="consently-cookie-list">';
-			var shown = Math.min(cookies.length, 3);
-
-			for (var i = 0; i < shown; i++) {
-				html += '<code>' + Consently.escapeHtml(cookies[i].name) + '</code>';
-				if (cookies[i].duration) {
-					html += ' <small class="consently-muted">(' + Consently.escapeHtml(cookies[i].duration) + ')</small>';
-				}
-				if (i < shown - 1) {
-					html += '<br>';
-				}
-			}
-
-			if (cookies.length > 3) {
-				html += '<br><small class="consently-muted">+' + (cookies.length - 3) + ' more</small>';
-			}
-
-			html += '</div>';
-			return html;
-		},
-
-		// ─── Settings ────────────────────────────────────────────────
-
-		/**
-		 * Handle save settings form submit.
-		 */
-		handleSaveSettings: function(e) {
-			e.preventDefault();
-
-			var $form = $(this);
-			var $button = $('#consently-save-settings');
-			var $message = $('#consently-settings-message');
-
-			var bannerEnabled = $('#consently-banner-enabled').is(':checked');
-			var showToAdmins = $('#consently-show-to-admins').is(':checked');
-
-			$button.prop('disabled', true).addClass('consently-loading').text(consentlyAdmin.strings.saving);
-			$message.hide();
-
-			$.ajax({
-				url: consentlyAdmin.ajaxUrl,
-				method: 'POST',
-				data: {
-					action: 'consently_save_settings',
-					nonce: consentlyAdmin.nonce,
-					banner_enabled: bannerEnabled ? 1 : 0,
-					show_to_admins: showToAdmins ? 1 : 0
-				},
-				success: function(response) {
-					if (response.success) {
-						$message.text(response.data.message).removeClass('error').addClass('success').show();
-					} else {
-						$message.text(response.data.message).removeClass('success').addClass('error').show();
-					}
-					$button.prop('disabled', false).removeClass('consently-loading').text('Save Settings');
-				},
-				error: function() {
-					$message.text('An error occurred. Please try again.').removeClass('success').addClass('error').show();
-					$button.prop('disabled', false).removeClass('consently-loading').text('Save Settings');
-				}
-			});
-		},
-
 		// ─── Utilities ───────────────────────────────────────────────
-
-		/**
-		 * Handle copy text click.
-		 */
-		handleCopyText: function() {
-			var $el = $(this);
-			var text = $el.data('copy') || $el.text();
-
-			Consently.copyToClipboard(text, function(success) {
-				if (success) {
-					var originalBg = $el.css('background-color');
-					$el.css('background-color', '#d4edda');
-					setTimeout(function() {
-						$el.css('background-color', originalBg);
-					}, 1000);
-				}
-			});
-		},
-
-		/**
-		 * Handle dismiss notice.
-		 */
-		handleDismissNotice: function() {
-			var $notice = $(this).closest('[data-consently-notice]');
-			var noticeType = $notice.data('consently-notice');
-
-			$.ajax({
-				url: consentlyAdmin.ajaxUrl,
-				method: 'POST',
-				data: {
-					action: 'consently_dismiss_notice',
-					nonce: consentlyAdmin.nonce,
-					notice: noticeType
-				}
-			});
-		},
-
-		/**
-		 * Copy text to clipboard.
-		 */
-		copyToClipboard: function(text, callback) {
-			if (navigator.clipboard && window.isSecureContext) {
-				navigator.clipboard.writeText(text).then(function() {
-					callback(true);
-				}).catch(function() {
-					callback(false);
-				});
-			} else {
-				var textArea = document.createElement('textarea');
-				textArea.value = text;
-				textArea.style.position = 'fixed';
-				textArea.style.left = '-999999px';
-				textArea.style.top = '-999999px';
-				document.body.appendChild(textArea);
-				textArea.focus();
-				textArea.select();
-
-				try {
-					document.execCommand('copy');
-					callback(true);
-				} catch (err) {
-					callback(false);
-				}
-
-				document.body.removeChild(textArea);
-			}
-		},
 
 		/**
 		 * Escape HTML entities.

@@ -21,30 +21,15 @@ function consently_uninstall() {
 		return;
 	}
 
-	// Options to delete.
-	$options = array(
-		// Connection data.
-		'consently_site_id',
-		'consently_plan',
-		'consently_canonical_domain',
-		'consently_consent_model',
-		'consently_last_validated_home_host',
-		'consently_api_key_encrypted',
-		'consently_encryption_key',
-		'consently_encryption_method',
-
-		// Settings.
-		'consently_banner_enabled',
-		'consently_show_to_admins',
-
-		// Notices.
-		'consently_setup_notice_dismissed',
-	);
-
 	// Transients to delete.
 	$transients = array(
 		'consently_audit_results',
-		'consently_rate_limit',
+		'consently_audit_phase1',
+		'consently_audit_phase2',
+		'consently_live_scan_results',
+		'consently_enqueued_scripts',
+		'consently_plugin_hash',
+		'consently_scan_started_at',
 	);
 
 	// Check if multisite.
@@ -57,11 +42,6 @@ function consently_uninstall() {
 		foreach ( $sites as $site_id ) {
 			switch_to_blog( $site_id );
 
-			// Delete options.
-			foreach ( $options as $option ) {
-				delete_option( $option );
-			}
-
 			// Delete transients.
 			foreach ( $transients as $transient ) {
 				delete_transient( $transient );
@@ -71,11 +51,6 @@ function consently_uninstall() {
 		}
 	} else {
 		// Single site.
-
-		// Delete options.
-		foreach ( $options as $option ) {
-			delete_option( $option );
-		}
 
 		// Delete transients.
 		foreach ( $transients as $transient ) {

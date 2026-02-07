@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Audit tab view.
+ * Scanner view.
  *
  * @package Consently
  */
@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="consently-audit-tab">
 	<div class="consently-card">
-		<h2><?php esc_html_e( 'Plugin Audit', 'consently' ); ?></h2>
+		<h2><?php esc_html_e( 'Site Scanner', 'consently' ); ?></h2>
 
 		<p class="consently-audit-description">
-			<?php esc_html_e( 'Scans your site to detect cookies, tracking scripts, and third-party services.', 'consently' ); ?>
+			<?php esc_html_e( 'Scans your site to detect cookies, tracking scripts, and third-party services. Results can be exported as JSON.', 'consently' ); ?>
 		</p>
 
 		<div class="consently-audit-disclaimer">
@@ -26,15 +26,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</p>
 		</div>
 
-		<!-- Ad blocker warning (shown via JS if ads.js fails to load) -->
-		<div id="consently-adblocker-warning" class="consently-notice consently-notice-warning" style="display: none;">
-			<span class="dashicons dashicons-warning"></span>
-			<p><?php esc_html_e( 'An ad blocker is active. The live scan may miss some third-party scripts that are blocked. Consider disabling your ad blocker for accurate results.', 'consently' ); ?></p>
-		</div>
-
 		<div class="consently-audit-actions">
 			<button type="button" id="consently-run-audit" class="button button-primary">
 				<?php esc_html_e( 'Run Audit', 'consently' ); ?>
+			</button>
+			<button type="button" id="consently-export-json" class="button button-secondary" style="display: none;">
+				<?php esc_html_e( 'Export JSON', 'consently' ); ?>
 			</button>
 		</div>
 
