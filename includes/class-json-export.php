@@ -380,6 +380,7 @@ class Consently_JSON_Export {
 					'wpPluginSource'        => 'WordPress',
 					'wpPluginSlug'          => null,
 					'wpDuration'            => isset( $cookie_def['duration'] ) ? $cookie_def['duration'] : null,
+					'adminOnly'             => ! empty( $cookie_def['admin_only'] ),
 				);
 			}
 		}

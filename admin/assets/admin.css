@@ -253,6 +253,18 @@
 	border: 1px solid #b6d4fe;
 }
 
+.consently-tag-admin {
+	background: #f1f3f5;
+	color: #868e96;
+	border: 1px solid #dee2e6;
+}
+
+.consently-tag-visitor {
+	background: #ebfbee;
+	color: #2b8a3e;
+	border: 1px solid #b2f2bb;
+}
+
 /* Category Badges - Additional */
 .consently-category-functional {
 	background: #ebfbee;

@@ -624,15 +624,19 @@
 			if (phase1 && phase1.wordpress_cookies && phase1.wordpress_cookies.length > 0) {
 				html += '<div class="consently-card consently-wp-cookies">';
 				html += '<h3><span class="dashicons dashicons-wordpress"></span> WordPress core cookies</h3>';
-				html += '<details><summary>' + phase1.wordpress_cookies.length + ' WordPress cookies identified — these are necessary for site functionality</summary>';
+				html += '<details><summary>' + phase1.wordpress_cookies.length + ' detected WordPress cookies</summary>';
 				html += '<table class="consently-audit-table widefat">';
-				html += '<thead><tr><th>Cookie</th><th>Category</th><th>Duration</th><th>Purpose</th></tr></thead>';
+				html += '<thead><tr><th>Cookie</th><th>Category</th><th>Scope</th><th>Duration</th><th>Purpose</th></tr></thead>';
 				html += '<tbody>';
 
 				phase1.wordpress_cookies.forEach(function(cookie) {
+					var scopeBadge = cookie.admin_only
+						? '<span class="consently-tag consently-tag-admin">Admin only</span>'
+						: '<span class="consently-tag consently-tag-visitor">All visitors</span>';
 					html += '<tr>';
 					html += '<td><code>' + Consently.escapeHtml(cookie.name) + '</code></td>';
 					html += '<td><span class="consently-category consently-category-' + Consently.escapeHtml(cookie.category) + '">' + Consently.escapeHtml(Consently.capitalize(cookie.category)) + '</span></td>';
+					html += '<td>' + scopeBadge + '</td>';
 					html += '<td>' + Consently.escapeHtml(cookie.duration) + '</td>';
 					html += '<td><small>' + Consently.escapeHtml(cookie.purpose) + '</small></td>';
 					html += '</tr>';
