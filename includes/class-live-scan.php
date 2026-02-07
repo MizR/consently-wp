@@ -251,6 +251,12 @@ class Consently_Live_Scan {
 	 * @return WP_REST_Response|WP_Error Response or error.
 	 */
 	public function handle_parse_pages_html( WP_REST_Request $request ) {
+		// Extend execution limits for shared hosting (30 pages × 15s each).
+		if ( function_exists( 'set_time_limit' ) ) {
+			set_time_limit( 600 );
+		}
+		wp_raise_memory_limit( 'admin' );
+
 		$params = $request->get_json_params();
 
 		// Validate required fields.
