@@ -3,7 +3,7 @@
  * Plugin Name: Consently Scanner
  * Plugin URI: https://consently.net
  * Description: Scans your WordPress site for cookies, tracking scripts, and third-party services. Export results as JSON for use with Consently or other consent management tools.
- * Version: 0.1.2
+ * Version: 0.1.3
  * Author: Consently
  * Author URI: https://consently.net
  * License: GPL v2 or later
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Plugin constants.
-define( 'CONSENTLY_VERSION', '0.1.2' );
+define( 'CONSENTLY_VERSION', '0.1.3' );
 define( 'CONSENTLY_PLUGIN_FILE', __FILE__ );
 define( 'CONSENTLY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CONSENTLY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
