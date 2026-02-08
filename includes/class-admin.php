@@ -54,12 +54,14 @@ class Consently_Admin {
 	 * Add admin menu.
 	 */
 	public function add_admin_menu() {
-		add_options_page(
+		add_menu_page(
 			__( 'Consently Scanner', 'consently' ),
-			__( 'Consently Scanner', 'consently' ),
+			__( 'Consently', 'consently' ),
 			'manage_options',
 			'consently',
-			array( $this, 'render_admin_page' )
+			array( $this, 'render_admin_page' ),
+			'dashicons-shield',
+			81
 		);
 	}
 
@@ -69,7 +71,7 @@ class Consently_Admin {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_admin_assets( $hook ) {
-		if ( 'settings_page_consently' !== $hook ) {
+		if ( 'toplevel_page_consently' !== $hook ) {
 			return;
 		}
 
